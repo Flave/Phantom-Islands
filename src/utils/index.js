@@ -50,3 +50,11 @@ export const getTranslate = el => {
   mat ? transArr.push(parseFloat(mat[1].split(', ')[5])) : 0;
   return transArr;
 };
+
+export const getLocationString = location => {
+  const lngSuffix = location.lng > 0 ? 'E' : 'W';
+  const latSuffix = location.lat > 0 ? 'N' : 'S';
+  return `${Math.abs(location.lng)}°${lngSuffix} ${Math.abs(
+    location.lat,
+  )}°${latSuffix}`;
+};

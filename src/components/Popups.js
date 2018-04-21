@@ -1,7 +1,11 @@
 import { autorun } from 'mobx';
 import { select as d3_select } from 'd3';
+import _template from 'lodash/template';
+import template from 'app/templates/popup.hbs';
 
 import uiState from 'app/uiState';
+
+const compiledTemplate = _template(template);
 
 export default function Popups() {
   let parent;
@@ -20,19 +24,25 @@ export default function Popups() {
     const { popupCandidate } = uiState;
 
     popupUpdate = parent
-      .selectAll('.popup')
+      .selectAll('.map-popup')
       .data(popupCandidate ? [popupCandidate] : []);
 
     popupEnter = popupUpdate
       .enter()
       .append('div')
-      .classed('popup', true)
-      .html(d => `<span>${d.name}</span>`);
+      .classed('map-popup', true)
+      .html(d => compiledTemplate(d));
 
-    popup = popupEnter
-      .merge(popupUpdate)
-      .style('left', d => `${d.locationPx.x}px`)
-      .style('top', d => `${d.locationPx.y}px`);
+    popup = popupEnter.merge(popupUpdate).each(function(d) {
+      const width = this.offsetWidth;
+      const height = this.offsetHeight;
+      const x = Math.floor(d.locationPx.x - width / 2);
+      const y = Math.floor(d.locationPx.y - height);
+
+      d3_select(this)
+        .style('left', d => `${x}px`)
+        .style('top', d => `${y}px`);
+    });
 
     popupUpdate.exit().remove();
   }

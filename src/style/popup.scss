@@ -1,5 +1,38 @@
-.popup {
+.map-popup {
   position: fixed;
   top: 20px;
   left: 20px;
+  border: 1px solid #000;
+  width: 450px;
+}
+
+.map-popup__header {
+  border-bottom: 1px solid #000;
+  display: flex;
+  justify-content: space-between;
+}
+
+.map-popup__name,
+.map-popup__location,
+.map-popup__main,
+.map-popup__footer-section {
+  padding: 15px;
+}
+
+.map-popup__location {
+  border-left: 1px solid #000;
+}
+
+.map-popup__footer {
+  border-top: 1px solid #000;
+  display: flex;
+}
+
+.map-popup__footer-section {
+  width: 50%;
+  border-right: 1px solid #000;
+
+  &:last-child {
+    border: none;
+  }
 }

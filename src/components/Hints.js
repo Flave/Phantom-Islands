@@ -4,8 +4,6 @@ import _template from 'lodash/template';
 import template from 'app/templates/hint.hbs';
 import uiState from 'app/uiState';
 
-console.log(template);
-
 const compiledTemplate = _template(template);
 
 export default function Hints() {

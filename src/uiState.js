@@ -5,6 +5,7 @@ import {
   windowHeight,
   getDistances,
   getTranslate,
+  getLocationString,
 } from './utils';
 import { scaleLinear as d3_scaleLinear } from 'd3';
 import { scaleQuantize as d3_scaleQuantize } from 'd3';
@@ -14,8 +15,8 @@ import { LngLatBounds, LngLat, Marker } from 'mapbox-gl';
 import islands from 'app/data/islands';
 
 class UiState {
-  @observable mapCenter = { lng: 179, lat: 0 };
-  @observable mapZoom = 6;
+  @observable mapCenter = { lng: 177, lat: 0 };
+  @observable mapZoom = 5;
   @observable mapInitialized = false;
   @observable
   mapBounds = new LngLatBounds(
@@ -100,6 +101,7 @@ class UiState {
       );
       return {
         ...island,
+        locationString: getLocationString(island.location),
         locationPx,
         dLng,
         dLat,
@@ -124,24 +126,22 @@ class UiState {
   @computed
   get islandHints() {
     let candidates = _sortBy(this.islands, 'dist');
-    return (
-      candidates
-        //.slice(0, 3)
-        .map(island => {
-          if (this.isPointInsideView(island.locationPx)) return;
-          const borderPos = this.getHintPos(island.locationPx);
-          const side = this.getHintSide(island.locationPx);
-          const { angle, dist } = this.getPolarPosition(island.locationPx);
-          return {
-            ...island,
-            borderPos,
-            side,
-            angle,
-            dist,
-          };
-        })
-        .filter(d => d)
-    );
+    return candidates
+      .slice(0, 4)
+      .map(island => {
+        if (this.isPointInsideView(island.locationPx)) return;
+        const borderPos = this.getHintPos(island.locationPx);
+        const side = this.getHintSide(island.locationPx);
+        const { angle, dist } = this.getPolarPosition(island.locationPx);
+        return {
+          ...island,
+          borderPos,
+          side,
+          angle,
+          dist,
+        };
+      })
+      .filter(d => d);
   }
 
   // The maximum visible distance from center of map. Depends on zoom level
@@ -174,7 +174,7 @@ class UiState {
   @computed
   get dist2Normalized() {
     return d3_scaleLinear()
-      .domain([0, 10])
+      .domain([0, 15])
       .range([0, 1])
       .clamp(true);
   }
@@ -182,7 +182,7 @@ class UiState {
   @computed
   get dist2Volume() {
     return d3_scaleLinear()
-      .domain([0, 10])
+      .domain([0, 15])
       .range([0, -70])
       .clamp(true);
   }

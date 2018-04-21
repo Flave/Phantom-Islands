@@ -1,5 +1,9 @@
 .hint {
   position: fixed;
+  white-space: nowrap;
+
+  &--top {
+  }
 
   &--right {
     transform: translateX(-100%);
@@ -8,10 +12,54 @@
   &--bottom {
     transform: translateY(-100%);
   }
+
+  &--left {
+  }
+}
+
+.hint__inner {
+  padding: 40px;
+  text-align: center;
+}
+
+.hint__name {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.hint__info {
+  font-size: 11px;
 }
 
 .hint__arrow {
-  width: 20px;
+  width: 50px;
   height: 1px;
-  background-color: #000;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform-origin: 0% 0%;
+
+  &:before {
+    content: '';
+    position: absolute;
+    display: block;
+    right: 0;
+    width: 16px;
+    height: 1px;
+    background-color: #000;
+  }
+
+  &:after {
+    content: '';
+    position: absolute;
+    display: block;
+    right: 0;
+    transform: translateY(-3px) rotate(45deg);
+    width: 6px;
+    height: 6px;
+    border-top: 1px solid #000;
+    border-right: 1px solid #000;
+  }
 }

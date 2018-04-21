@@ -38,10 +38,13 @@
 
 .map__island-name {
   position: absolute;
-  bottom: -17px;
+  bottom: -20px;
   text-align: center;
   white-space: nowrap;
   transform: translateX(-50%);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
 }
 
 .popup {

@@ -22,6 +22,8 @@ const map = new mapboxgl.Map({
   style: 'mapbox://styles/flaviogortana/cj9wv1fat63yv2rpij16iayff',
   center: [uiState.mapCenter.lng, uiState.mapCenter.lat],
   zoom: uiState.mapZoom,
+  minZoom: 4,
+  maxZoom: 10,
 });
 
 uiState.setMap(map);
