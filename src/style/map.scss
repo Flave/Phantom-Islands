@@ -1,0 +1,47 @@
+#map {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+.map__island {
+  width: 10px;
+  height: 10px;
+  background-color: rgba(0, 0, 0, 0);
+
+  &:before,
+  &:after {
+    content: '';
+    position: absolute;
+    background-color: #000;
+    display: block;
+    width: 17px;
+    height: 1px;
+    top: 0;
+    left: 0;
+  }
+
+  &:before {
+    transform: translateX(-50%) rotate(45deg);
+  }
+
+  &:after {
+    transform: translateX(-50%) rotate(-45deg);
+  }
+}
+
+.map__island-name {
+  position: absolute;
+  bottom: -17px;
+  text-align: center;
+  white-space: nowrap;
+  transform: translateX(-50%);
+}
+
+.popup {
+  background-color: #fff;
+  padding: 20px;
+  position: fixed;
+}
