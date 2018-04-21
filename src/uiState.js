@@ -1,10 +1,16 @@
 import { observable, action, computed } from 'mobx';
-import { addEvent, windowWidth, windowHeight, getDistances } from './utils';
+import {
+  addEvent,
+  windowWidth,
+  windowHeight,
+  getDistances,
+  getTranslate,
+} from './utils';
 import { scaleLinear as d3_scaleLinear } from 'd3';
 import { scaleQuantize as d3_scaleQuantize } from 'd3';
 import _minBy from 'lodash/minBy';
 import _sortBy from 'lodash/sortBy';
-import { LngLatBounds, LngLat } from 'mapbox-gl';
+import { LngLatBounds, LngLat, Marker } from 'mapbox-gl';
 import islands from 'app/data/islands';
 
 class UiState {
@@ -87,12 +93,7 @@ class UiState {
   @computed
   get islands() {
     return islands.map(island => {
-      const locationPx = this.map.project(island.location);
-      // Do something with Math.abs...no idea what
-      const altLocationPx = this.map.project({
-        lng: 360 - island.location.lng,
-        lat: island.location.lat,
-      });
+      const locationPx = this.getLocationPx(island.location);
       const { dLng, dLat, dist } = getDistances(
         island.location,
         this.mapCenter,
@@ -118,7 +119,10 @@ class UiState {
   }
 
   @computed
-  get hintCandidates() {
+  get islandMarkers() {}
+
+  @computed
+  get islandHints() {
     let candidates = _sortBy(this.islands, 'dist');
     return (
       candidates
@@ -127,10 +131,13 @@ class UiState {
           if (this.isPointInsideView(island.locationPx)) return;
           const borderPos = this.getHintPos(island.locationPx);
           const side = this.getHintSide(island.locationPx);
+          const { angle, dist } = this.getPolarPosition(island.locationPx);
           return {
             ...island,
             borderPos,
             side,
+            angle,
+            dist,
           };
         })
         .filter(d => d)
@@ -189,6 +196,13 @@ class UiState {
     return { topBottom, leftRigth };
   }
 
+  getLocationPx(location) {
+    const mockMarker = new Marker().setLngLat(location).addTo(this.map);
+    const translate = getTranslate(mockMarker.getElement());
+    mockMarker.remove();
+    return { x: translate[0], y: translate[1] };
+  }
+
   getPolarPosition(p) {
     // Suuper ugly way of getting polar coordinates ranging from 0 to 2 * PI
     const angle1 = Math.atan2(
@@ -234,9 +248,9 @@ class UiState {
     const yPrefix = dY > 0 ? 1 : -1;
     const xPrefix = dX > 0 ? 1 : -1;
     const xIntersection =
-      yPrefix * this.mapCenterPx.y / slope + this.mapCenterPx.y;
+      yPrefix * this.mapCenterPx.y / slope + this.mapCenterPx.x;
     const yIntersection =
-      xPrefix * this.mapCenterPx.x * slope + this.mapCenterPx.x;
+      xPrefix * this.mapCenterPx.x * slope + this.mapCenterPx.y;
     return {
       x: Math.max(0, Math.min(xIntersection, this.windowDimensions.width)),
       y: Math.max(0, Math.min(yIntersection, this.windowDimensions.height)),
@@ -254,7 +268,3 @@ class UiState {
 }
 
 export default new UiState();
-
-
-
-

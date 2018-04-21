@@ -55,6 +55,14 @@ module.exports = {
         ],
       },
       {
+        test: /\.hbs$/,
+        use: [
+          {
+            loader: 'raw-loader',
+          },
+        ],
+      },
+      {
         test: /\.css$/,
         use: [
           {

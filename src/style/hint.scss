@@ -1,17 +1,17 @@
 .hint {
   position: fixed;
-  transform: translate(-50%, -50%);
 
-  div {
-    width: 10px;
-    height: 10px;
-    background-color: #000;
+  &--right {
+    transform: translateX(-100%);
   }
-  // &--right {
-  //   transform: translateX(-100%);
-  // }
 
-  // &--bottom {
-  //   transform: translateY(-100%);
-  // }
+  &--bottom {
+    transform: translateY(-100%);
+  }
+}
+
+.hint__arrow {
+  width: 20px;
+  height: 1px;
+  background-color: #000;
 }
