@@ -3,8 +3,10 @@
     "version": "1.0.0",
     "main": "index.js",
     "scripts": {
-        "development": "cross-env NODE_ENV=development webpack-dev-server --devtool source-map --progress --colors --inline --hot",
-        "production": "cross-env NODE_ENV=production webpack -p"
+        "development":
+            "cross-env NODE_ENV=development webpack-dev-server --devtool source-map --progress --colors --inline --hot",
+        "production":
+            "cross-env NODE_ENV=production webpack -p --optimize-minimize"
     },
     "license": "MIT",
     "devDependencies": {

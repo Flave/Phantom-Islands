@@ -2,3 +2,5 @@
 /node_modules
 /design
 /data
+/build
+.DS_Store

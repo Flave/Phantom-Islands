@@ -9,7 +9,6 @@ import Hints from 'components/Hints';
 import SoundManager from 'components/SoundManager';
 import uiState from './uiState';
 import loadAudio from './Loader';
-import samples from 'app/data/samples';
 
 import { queue as d3_queue } from 'd3-queue';
 
