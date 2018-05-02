@@ -1,6 +1,11 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
   background-color: #fff;
   font-family: 'Roboto Mono', monospace;
+  color: $c-black;
 
   // &:after,
   // &:before {

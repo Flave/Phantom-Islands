@@ -2,12 +2,12 @@
   position: fixed;
   top: 20px;
   left: 20px;
-  border: 1px solid #000;
+  border: 1px solid $c-black;
   width: 450px;
 }
 
 .map-popup__header {
-  border-bottom: 1px solid #000;
+  border-bottom: 1px solid $c-black;
   display: flex;
   justify-content: space-between;
 }
@@ -20,17 +20,17 @@
 }
 
 .map-popup__location {
-  border-left: 1px solid #000;
+  border-left: 1px solid $c-black;
 }
 
 .map-popup__footer {
-  border-top: 1px solid #000;
+  border-top: 1px solid $c-black;
   display: flex;
 }
 
 .map-popup__footer-section {
   width: 50%;
-  border-right: 1px solid #000;
+  border-right: 1px solid $c-black;
 
   &:last-child {
     border: none;

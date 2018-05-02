@@ -31,9 +31,13 @@ export default function Popups() {
       .enter()
       .append('div')
       .classed('map-popup', true)
+      .style('opacity', 0)
       .html(d => compiledTemplate(d));
 
+    popupEnter.transition().style('opacity', 1);
+
     popup = popupEnter.merge(popupUpdate).each(function(d) {
+      // Calculate position depending on size of the popup
       const width = this.offsetWidth;
       const height = this.offsetHeight;
       const x = Math.floor(d.locationPx.x - width / 2);
@@ -44,7 +48,11 @@ export default function Popups() {
         .style('top', d => `${y}px`);
     });
 
-    popupUpdate.exit().remove();
+    popupUpdate
+      .exit()
+      .transition()
+      .style('opacity', 0)
+      .remove();
   }
   return _popups;
 }

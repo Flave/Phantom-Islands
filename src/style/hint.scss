@@ -48,7 +48,7 @@
     right: 0;
     width: 16px;
     height: 1px;
-    background-color: #000;
+    background-color: $c-black;
   }
 
   &:after {
@@ -59,7 +59,7 @@
     transform: translateY(-3px) rotate(45deg);
     width: 6px;
     height: 6px;
-    border-top: 1px solid #000;
-    border-right: 1px solid #000;
+    border-top: 1px solid $c-black;
+    border-right: 1px solid $c-black;
   }
 }

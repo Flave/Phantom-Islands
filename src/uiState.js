@@ -11,25 +11,31 @@ import { scaleLinear as d3_scaleLinear } from 'd3';
 import { scaleQuantize as d3_scaleQuantize } from 'd3';
 import _minBy from 'lodash/minBy';
 import _sortBy from 'lodash/sortBy';
+import _find from 'lodash/find';
 import { LngLatBounds, LngLat, Marker } from 'mapbox-gl';
 import islands from 'app/data/islands';
 
 class UiState {
-  @observable mapCenter = { lng: 177, lat: 0 };
-  @observable mapZoom = 5;
+  @observable mapCenter = { lng: 160, lat: 0 };
+  @observable mapZoom = 4;
   @observable mapInitialized = false;
   @observable
   mapBounds = new LngLatBounds(
     new LngLat(-73.9876, 40.7661),
     new LngLat(-73.9397, 40.8002),
   );
-  @observable loadingProgress = 0;
   @observable isOverWater = false;
+  @observable selectedIsland;
   @observable.struct
   windowDimensions = {
     width: windowWidth(),
     height: windowHeight(),
   };
+
+  @observable muted = false;
+
+  @observable loadingProgress = 0;
+  @observable showIntro = false;
 
   constructor() {
     addEvent(window, 'resize', () => {
@@ -45,8 +51,13 @@ class UiState {
   }
 
   @action
-  setMapCenter(center) {
-    this.mapCenter = center;
+  setShowIntro(show) {
+    this.showIntro = show;
+  }
+
+  @action
+  setMuted(mute) {
+    this.muted = mute;
   }
 
   @action
@@ -55,16 +66,18 @@ class UiState {
   }
 
   @action
-  setMapBounds(bounds) {
-    this.mapBounds = bounds;
-  }
-
-  @action
-  setMapParams(center, zoom, bounds) {
+  setMapParams(center, zoom, bounds, isOverWater) {
     this.mapBounds = bounds;
     this.mapZoom = zoom;
     this.mapCenter = center;
+    this.isOverWater = isOverWater;
     this.mapInitialized = true;
+    this.selectedIsland = undefined;
+  }
+
+  @action
+  setSelectedIsland(id) {
+    this.selectedIsland = id;
   }
 
   @action
@@ -112,16 +125,19 @@ class UiState {
     });
   }
 
+  // if island was selected, show this island
+  // if
   @computed
   get popupCandidate() {
-    if (this.mapZoom < 7) return;
+    if (this.selectedIsland) {
+      return _find(this.islands, { id: this.selectedIsland });
+    }
     const candidate = _minBy(this.islands, 'dist');
-    if (candidate.dNormal < 0.2) return candidate;
-    return;
+    if (this.mapZoom > 7 && candidate.dNormal < 0.2) {
+      return candidate;
+    }
+    return undefined;
   }
-
-  @computed
-  get islandMarkers() {}
 
   @computed
   get islandHints() {
@@ -195,6 +211,8 @@ class UiState {
     const leftRigth = Math.abs(topBottom - Math.PI);
     return { topBottom, leftRigth };
   }
+
+  // HELPERS
 
   getLocationPx(location) {
     const mockMarker = new Marker().setLngLat(location).addTo(this.map);

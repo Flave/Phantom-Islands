@@ -14,12 +14,13 @@
   width: 10px;
   height: 10px;
   background-color: rgba(0, 0, 0, 0);
+  cursor: pointer;
 
   &:before,
   &:after {
     content: '';
     position: absolute;
-    background-color: #000;
+    background-color: $c-black;
     display: block;
     width: 17px;
     height: 1px;
@@ -38,6 +39,7 @@
 
 .map__island-name {
   position: absolute;
+  padding-top: 20px;
   bottom: -20px;
   text-align: center;
   white-space: nowrap;
@@ -45,10 +47,4 @@
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.03em;
-}
-
-.popup {
-  background-color: #fff;
-  padding: 20px;
-  position: fixed;
 }

@@ -27,7 +27,8 @@ export default class SoundManager {
   }
 
   update = () => {
-    const { islands } = uiState;
+    const { islands, muted } = uiState;
+    this.masterVol.mute = muted;
     this.islandSounds.forEach(source => {
       const { dLat, dLng, volume } = _find(islands, { id: source.id });
       source.update(volume, dLat, dLng);
