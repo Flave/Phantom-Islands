@@ -3,12 +3,13 @@ import SoundSource from 'app/components/SoundSource';
 import { autorun } from 'mobx';
 import uiState from 'app/uiState';
 import { queue as d3_queue } from 'd3-queue';
-import { Volume } from 'tone';
+import { Volume, Analyser } from 'tone';
 import _find from 'lodash/find';
 
 export default class SoundManager {
   constructor(map) {
     const queue = d3_queue();
+    this.fftAnalyser = new Analyser('waveform', 32);
     this.masterVol = new Volume(6);
     this.islandSounds = islands.map(island => {
       const islandSound = new SoundSource(island);
@@ -17,7 +18,8 @@ export default class SoundManager {
       return islandSound;
     });
     //this.waterAmbience = new SoundSource({});
-    this.masterVol.toMaster();
+    this.masterVol.connect(this.fftAnalyser);
+    this.fftAnalyser.toMaster();
 
     queue.awaitAll((err, responses) => {
       //console.log(err, responses);
@@ -30,8 +32,12 @@ export default class SoundManager {
     const { islands, muted } = uiState;
     this.masterVol.mute = muted;
     this.islandSounds.forEach(source => {
-      const { dLat, dLng, volume } = _find(islands, { id: source.id });
-      source.update(volume, dLat, dLng);
+      const { pan, volume } = _find(islands, { id: source.id });
+      source.update(volume, pan, uiState.relativeMousePos);
     });
+  };
+
+  getFFT = () => {
+    return this.fftAnalyser.getValue();
   };
 }

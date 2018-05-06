@@ -9,6 +9,7 @@ import Intro from 'components/Intro';
 import Hints from 'components/Hints';
 import Muter from 'components/Muter';
 import SoundManager from 'components/SoundManager';
+import FrequencyVisualizer from 'components/FrequencyVisualizer';
 import uiState from './uiState';
 import loadAudio from './Loader';
 
@@ -20,7 +21,7 @@ mapboxgl.accessToken =
 // //Setup mapbox-gl map
 const map = new mapboxgl.Map({
   container: 'map', // container id
-  style: 'mapbox://styles/flaviogortana/cj9wv1fat63yv2rpij16iayff',
+  style: 'mapbox://styles/flaviogortana/cjgs1ydvh00182sod2rbbrhaj',
   center: [uiState.mapCenter.lng, uiState.mapCenter.lat],
   zoom: uiState.mapZoom,
   minZoom: 2,
@@ -29,11 +30,13 @@ const map = new mapboxgl.Map({
 
 uiState.setMap(map);
 
+const soundManager = new SoundManager();
+
 Intro();
-Muter();
 WorldMap(map);
 //Canvas(map);
 Popups()(map);
 Hints()(map);
 
-const soundManager = new SoundManager();
+FrequencyVisualizer(soundManager)();
+Muter();

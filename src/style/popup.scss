@@ -4,6 +4,7 @@
   left: 20px;
   border: 1px solid $c-black;
   width: 450px;
+  pointer-events: none;
 }
 
 .map-popup__header {

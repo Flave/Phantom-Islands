@@ -10,17 +10,18 @@ export default function Muter() {
 
   function _muter() {
     const { muted } = uiState;
-
+    let className = 'header__muter header__item';
+    className += muted ? ' is-muted' : '';
     parent = d3_select('#header');
 
     muterUpdate = parent.selectAll('.header__muter').data([1]);
 
-    muterEnter = muterUpdate
-      .enter()
-      .append('div')
-      .classed('header__muter', true);
+    muterEnter = muterUpdate.enter().append('div');
 
-    muter = muterEnter.merge(muterUpdate).html(muted ? `Unmute` : `Mute`);
+    muter = muterEnter
+      .merge(muterUpdate)
+      .attr('class', className)
+      .html(muted ? `Unmute` : `Mute`);
 
     muter.on('click', () => uiState.setMuted(!uiState.muted));
 

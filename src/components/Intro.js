@@ -39,7 +39,6 @@ export default function Intro() {
       });
 
     intro.selectAll('.intro__start').on('click', () => {
-      console.log('showIntro');
       uiState.setShowIntro(false);
       uiState.setMapZoom(6);
     });

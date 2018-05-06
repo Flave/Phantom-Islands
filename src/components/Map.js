@@ -25,9 +25,9 @@ const WorldMap = function(map) {
 
   const setMaxZoom = () => {
     // set min zoom to 4 after intro to prevent zooming out too much
-    if (!uiState.showIntro) {
-      map.setMinZoom(4);
-    }
+    // if (!uiState.showIntro) {
+    //   map.setMinZoom(4);
+    // }
   };
 
   const selectIsland = island => {

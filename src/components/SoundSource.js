@@ -1,10 +1,11 @@
-import { Players, PanVol } from 'tone';
+import Tone, { Players, PanVol } from 'tone';
 
 export default class SoundSource {
   constructor({ samples, id }) {
     this.samples = samples;
     this.id = id;
     this.masterPanVol = new PanVol(0, -10);
+    this.effect = new Tone.Filter(600, 'highpass');
 
     // Dictionary to create players object
     this.samplesDict = {};
@@ -20,13 +21,17 @@ export default class SoundSource {
       player.loop = true;
       player.start();
     }).connect(this.masterPanVol);
+
+    //this.effect.connect(this.masterPanVol);
   };
 
   connect(node) {
     this.masterPanVol.connect(node);
   }
 
-  update = (volume, dLat, dLng) => {
+  update = (volume, pan, filterVal) => {
+    //this.effect.frequency.value = 10000 - filterVal.x * 10000;
     this.masterPanVol.volume.set('value', volume);
+    this.masterPanVol.pan.value = pan;
   };
 }

@@ -12,6 +12,7 @@ import { scaleQuantize as d3_scaleQuantize } from 'd3';
 import _minBy from 'lodash/minBy';
 import _sortBy from 'lodash/sortBy';
 import _find from 'lodash/find';
+import _debounce from 'lodash/debounce';
 import { LngLatBounds, LngLat, Marker } from 'mapbox-gl';
 import islands from 'app/data/islands';
 
@@ -26,6 +27,8 @@ class UiState {
   );
   @observable isOverWater = false;
   @observable selectedIsland;
+
+  @observable mouse = { x: 0, y: 0 };
   @observable.struct
   windowDimensions = {
     width: windowWidth(),
@@ -38,11 +41,21 @@ class UiState {
   @observable showIntro = false;
 
   constructor() {
-    addEvent(window, 'resize', () => {
-      this.windowDimensions = {
-        width: windowWidth(),
-        height: windowHeight(),
-      };
+    addEvent(
+      window,
+      'resize',
+      _debounce(() => {
+        this.windowDimensions = {
+          width: windowWidth(),
+          height: windowHeight(),
+        };
+      }),
+      500,
+    );
+
+    document.addEventListener('mousemove', e => {
+      this.mouse.x = e.pageX;
+      this.mouse.y = e.pageY;
     });
   }
 
@@ -85,6 +98,39 @@ class UiState {
     this.loadingProgress = progress;
   }
 
+  // COMPUTES
+
+  // Utility function to simplify access to the corner points of the map
+  @computed
+  get mapBoundsAsObject() {
+    const { lng: left, lat: top } = this.mapBounds.getNorthWest();
+    const { lng: right, lat: bottom } = this.mapBounds.getSouthEast();
+    return {
+      left,
+      top,
+      right,
+      bottom,
+    };
+  }
+
+  // Returns an array of lat/lng coordinates for the four corners
+  // of the map bounds (used manily to position the canvas source)
+  @computed
+  get mapBoundsAsArray() {
+    const { left, top, right, bottom } = this.mapBoundsAsObject;
+    return [[left, top], [right, top], [right, bottom], [left, bottom]];
+  }
+
+  // Retuns the width and height of the map in geographical distance (degrees)
+  @computed
+  get mapDimensions() {
+    const { left, top, right, bottom } = this.mapBoundsAsObject;
+    return {
+      width: Math.abs(right - left),
+      height: Math.abs(bottom - top),
+    };
+  }
+
   @computed
   get mapCenterPx() {
     return this.map.project([this.mapCenter.lng, this.mapCenter.lat]);
@@ -112,15 +158,18 @@ class UiState {
         island.location,
         this.mapCenter,
       );
+      const dX = locationPx.x - this.mapCenterPx.x;
       return {
         ...island,
         locationString: getLocationString(island.location),
         locationPx,
         dLng,
         dLat,
+        dX,
         dist,
         dNormal: this.dist2Normalized(dist),
         volume: this.dist2Volume(dist),
+        pan: Math.max(-1, Math.min(1, dX / this.mapCenterPx.x * 4)),
       };
     });
   }
@@ -203,13 +252,21 @@ class UiState {
       .clamp(true);
   }
 
-  // Calculates the angle
+  // Calculates the angle formed by the center and the corners of the screen
   @computed
   get sideCenterAngles() {
     const sideSum = this.windowDimensions.width + this.windowDimensions.height;
     const topBottom = this.windowDimensions.width / sideSum * Math.PI;
     const leftRigth = Math.abs(topBottom - Math.PI);
     return { topBottom, leftRigth };
+  }
+
+  @computed
+  get relativeMousePos() {
+    return {
+      x: this.mouse.x / this.windowDimensions.width,
+      y: this.mouse.y / this.windowDimensions.height,
+    };
   }
 
   // HELPERS
