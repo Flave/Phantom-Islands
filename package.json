@@ -3,10 +3,8 @@
     "version": "1.0.0",
     "main": "index.js",
     "scripts": {
-        "development":
-            "cross-env NODE_ENV=development webpack-dev-server --devtool source-map --progress --colors --inline --hot",
-        "production":
-            "cross-env NODE_ENV=production webpack -p --optimize-minimize"
+        "development": "cross-env NODE_ENV=development webpack-dev-server --devtool source-map --progress --colors --inline --hot",
+        "production": "cross-env NODE_ENV=production webpack -p --optimize-minimize"
     },
     "license": "MIT",
     "devDependencies": {
@@ -45,6 +43,7 @@
         "mobx": "^3.2.2",
         "mobx-utils": "^2.0.1",
         "node-sass": "^4.5.3",
+        "pixi.js": "^4.7.3",
         "tone": "^0.12.80"
     }
 }

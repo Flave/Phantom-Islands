@@ -13,11 +13,14 @@ import _minBy from 'lodash/minBy';
 import _sortBy from 'lodash/sortBy';
 import _find from 'lodash/find';
 import _debounce from 'lodash/debounce';
+import _negate from 'lodash/negate';
+import _groupBy from 'lodash/groupBy';
+import _map from 'lodash/map';
 import { LngLatBounds, LngLat, Marker } from 'mapbox-gl';
 import islands from 'app/data/islands';
 
 class UiState {
-  @observable mapCenter = { lng: 160, lat: 0 };
+  @observable mapCenter = { lng: 178, lat: 0 };
   @observable mapZoom = 4;
   @observable mapInitialized = false;
   @observable
@@ -174,8 +177,6 @@ class UiState {
     });
   }
 
-  // if island was selected, show this island
-  // if
   @computed
   get popupCandidate() {
     if (this.selectedIsland) {
@@ -191,22 +192,24 @@ class UiState {
   @computed
   get islandHints() {
     let candidates = _sortBy(this.islands, 'dist');
-    return candidates
-      .slice(0, 4)
-      .map(island => {
-        if (this.isPointInsideView(island.locationPx)) return;
-        const borderPos = this.getHintPos(island.locationPx);
-        const side = this.getHintSide(island.locationPx);
-        const { angle, dist } = this.getPolarPosition(island.locationPx);
-        return {
-          ...island,
-          borderPos,
-          side,
-          angle,
-          dist,
-        };
-      })
-      .filter(d => d);
+    candidates = candidates
+      .filter(_negate(this.isIslandInView))
+      .map(island => ({
+        ...island,
+        side: this.getHintSide(island.locationPx),
+      }));
+    candidates = _groupBy(candidates, 'side');
+    return _map(candidates, sideGroup => {
+      const island = sideGroup[0];
+      const borderPos = this.getHintPos(island.locationPx);
+      const { angle, dist } = this.getPolarPosition(island.locationPx);
+      return {
+        ...island,
+        borderPos,
+        angle,
+        dist,
+      };
+    });
   }
 
   // The maximum visible distance from center of map. Depends on zoom level
@@ -332,14 +335,14 @@ class UiState {
     };
   }
 
-  isPointInsideView(point) {
+  isIslandInView = ({ locationPx }) => {
     return (
-      point.x > 0 &&
-      point.x < this.windowDimensions.width &&
-      point.y > 0 &&
-      point.y < this.windowDimensions.height
+      locationPx.x > 0 &&
+      locationPx.x < this.windowDimensions.width &&
+      locationPx.y > -50 &&
+      locationPx.y < this.windowDimensions.height
     );
-  }
+  };
 }
 
 export default new UiState();

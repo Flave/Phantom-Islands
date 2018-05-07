@@ -2,9 +2,10 @@ import { autorun } from 'mobx';
 import uiState from 'app/uiState';
 import islands from 'app/data/islands';
 import { Marker, Popup } from 'mapbox-gl';
-import { selection as d3_selection, event as d3_event } from 'd3';
+import { select as d3_select, event as d3_event } from 'd3';
 
 const WorldMap = function(map) {
+  const markers = [];
   const updateMapParams = () => {
     const centerInPixels = map.project(map.getCenter());
     const feature = map.queryRenderedFeatures([
@@ -21,6 +22,16 @@ const WorldMap = function(map) {
       map.getBounds(),
       isOverWater,
     );
+  };
+
+  const handleZoom = () => {
+    markers.forEach(marker => {
+      d3_select(marker.getElement()).classed(
+        'map__island--low-zoom',
+        map.getZoom() < 5,
+      );
+    });
+    updateMapParams();
   };
 
   const setMaxZoom = () => {
@@ -52,19 +63,21 @@ const WorldMap = function(map) {
   };
 
   uiState.islands.forEach(island => {
-    const el = d3_selection(document.body)
+    const el = d3_select(document.body)
       .append('div')
+      .classed('map__island--low-zoom', true)
       .html(`<div class="map__island-name">${island.name}</div>`)
       .on('click', function(e) {
         selectIsland(island);
         d3_event.stopPropagation();
       })
       .classed('map__island', true);
-    new Marker(el.node()).setLngLat(island.location).addTo(map);
+    const marker = new Marker(el.node()).setLngLat(island.location).addTo(map);
+    markers.push(marker);
   });
 
   map.on('click', deselectIsland);
-  map.on('zoom', updateMapParams);
+  map.on('zoom', handleZoom);
   map.on('move', updateMapParams);
   map.on('load', updateMapParams);
   map.on('zoomend', setMaxZoom);

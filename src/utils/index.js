@@ -51,10 +51,24 @@ export const getTranslate = el => {
   return transArr;
 };
 
+export const roundToDecimals = (value, decimals) => {
+  return Math.round(value * Math.pow(10, decimals)) / Math.pow(10, decimals);
+};
+
+export const decimalToMinutes = value => {
+  let val = Math.abs(value);
+  val = Math.round(val) - val;
+  val = val * 60 / 100;
+  return Math.round(val * 100);
+};
+
 export const getLocationString = location => {
   const lngSuffix = location.lng > 0 ? 'E' : 'W';
   const latSuffix = location.lat > 0 ? 'N' : 'S';
-  return `${Math.abs(location.lng)}°${lngSuffix} ${Math.abs(
-    location.lat,
-  )}°${latSuffix}`;
+  const lngDegree = Math.abs(Math.round(location.lng));
+  const latDegree = Math.abs(Math.round(location.lat));
+  const lngMinutes = decimalToMinutes(location.lng);
+  const latMinutes = decimalToMinutes(location.lat);
+  //return `${lngDegree}°${lngMinutes}"${lngSuffix} ${latDegree}°${latMinutes}"${latSuffix}`;
+  return `${lngDegree}°${lngSuffix} ${latDegree}°${latSuffix}`;
 };

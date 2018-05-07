@@ -1,19 +1,29 @@
 .hint {
   position: fixed;
   white-space: nowrap;
+  min-width: 160px;
 
   &--top {
+    transform: translateX(-50%);
   }
 
   &--right {
-    transform: translateX(-100%);
+    transform: translate(-100%, -50%);
   }
 
   &--bottom {
-    transform: translateY(-100%);
+    transform: translate(-50%, -100%);
   }
 
   &--left {
+    transform: translateY(-50%);
+  }
+
+  &--bottom,
+  &--top {
+    .hint__arrow {
+      width: 45px;
+    }
   }
 }
 
@@ -23,18 +33,19 @@
 }
 
 .hint__name {
-  font-size: 12px;
+  font-size: 10px;
+  line-height: 12px;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.03em;
 }
 
 .hint__info {
-  font-size: 11px;
+  font-size: 10px;
 }
 
 .hint__arrow {
-  width: 50px;
+  width: 65px;
   height: 1px;
   position: absolute;
   left: 50%;

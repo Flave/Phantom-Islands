@@ -11,7 +11,6 @@ import Muter from 'components/Muter';
 import SoundManager from 'components/SoundManager';
 import FrequencyVisualizer from 'components/FrequencyVisualizer';
 import uiState from './uiState';
-import loadAudio from './Loader';
 
 import { queue as d3_queue } from 'd3-queue';
 
@@ -21,7 +20,7 @@ mapboxgl.accessToken =
 // //Setup mapbox-gl map
 const map = new mapboxgl.Map({
   container: 'map', // container id
-  style: 'mapbox://styles/flaviogortana/cjgs1ydvh00182sod2rbbrhaj',
+  style: 'mapbox://styles/flaviogortana/cjgv2tswq001n2roamotpvdyr',
   center: [uiState.mapCenter.lng, uiState.mapCenter.lat],
   zoom: uiState.mapZoom,
   minZoom: 2,

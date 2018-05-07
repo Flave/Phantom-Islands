@@ -16,9 +16,20 @@
   background-color: rgba(0, 0, 0, 0);
   cursor: pointer;
 
+  &--low-zoom {
+    .map__island-name {
+      bottom: -20px;
+      padding-top: 30px;
+    }
+
+    &:before,
+    &:after {
+      content: '';
+    }
+  }
+
   &:before,
   &:after {
-    content: '';
     position: absolute;
     background-color: $c-black;
     display: block;
@@ -26,6 +37,7 @@
     height: 1px;
     top: 0;
     left: 0;
+    z-index: 1;
   }
 
   &:before {
@@ -39,8 +51,6 @@
 
 .map__island-name {
   position: absolute;
-  padding-top: 20px;
-  bottom: -20px;
   text-align: center;
   white-space: nowrap;
   transform: translateX(-50%);
