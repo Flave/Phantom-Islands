@@ -38,18 +38,25 @@ export const getDistances = (l1, l2) => {
   };
 };
 
-export const getTranslate = el => {
-  const transArr = [];
-  if (!window.getComputedStyle) return;
-  const style = getComputedStyle(el),
-    transform = style.transform || style.webkitTransform || style.mozTransform;
-  let mat = transform.match(/^matrix3d\((.+)\)$/);
-  if (mat) return parseFloat(mat[1].split(', ')[13]);
-  mat = transform.match(/^matrix\((.+)\)$/);
-  mat ? transArr.push(parseFloat(mat[1].split(', ')[4])) : 0;
-  mat ? transArr.push(parseFloat(mat[1].split(', ')[5])) : 0;
-  return transArr;
+export const getTranslate = transformString => {
+  const pixelTranslation = transformString.match(
+    /translate\((-?([0-9\.]+px))(,\s?(-?([0-9\.]+px)))?\)/,
+  )[0];
+  return pixelTranslation.match(/(-?[0-9\.]+)/g).slice(0, 2);
 };
+
+// export const getTranslate = el => {
+//   const transArr = [];
+//   if (!window.getComputedStyle) return;
+//   const style = getComputedStyle(el),
+//     transform = style.transform || style.webkitTransform || style.mozTransform;
+//   let mat = transform.match(/^matrix3d\((.+)\)$/);
+//   if (mat) return parseFloat(mat[1].split(', ')[13]);
+//   mat = transform.match(/^matrix\((.+)\)$/);
+//   mat ? transArr.push(parseFloat(mat[1].split(', ')[4])) : 0;
+//   mat ? transArr.push(parseFloat(mat[1].split(', ')[5])) : 0;
+//   return transArr;
+// };
 
 export const roundToDecimals = (value, decimals) => {
   return Math.round(value * Math.pow(10, decimals)) / Math.pow(10, decimals);

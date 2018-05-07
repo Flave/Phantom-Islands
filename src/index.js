@@ -20,10 +20,10 @@ mapboxgl.accessToken =
 // //Setup mapbox-gl map
 const map = new mapboxgl.Map({
   container: 'map', // container id
-  style: 'mapbox://styles/flaviogortana/cjgv2tswq001n2roamotpvdyr',
+  style: 'mapbox://styles/flaviogortana/cjgwmwuic001p2rnrr7xnxpyy',
   center: [uiState.mapCenter.lng, uiState.mapCenter.lat],
   zoom: uiState.mapZoom,
-  minZoom: 2,
+  minZoom: 4,
   maxZoom: 10,
 });
 

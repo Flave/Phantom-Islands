@@ -9,6 +9,7 @@ import {
 } from './utils';
 import { scaleLinear as d3_scaleLinear } from 'd3';
 import { scaleQuantize as d3_scaleQuantize } from 'd3';
+import { selectAll as d3_selectAll } from 'd3';
 import _minBy from 'lodash/minBy';
 import _sortBy from 'lodash/sortBy';
 import _find from 'lodash/find';
@@ -19,16 +20,15 @@ import _map from 'lodash/map';
 import { LngLatBounds, LngLat, Marker } from 'mapbox-gl';
 import islands from 'app/data/islands';
 
+const SURFACE_CACHE_SIZE = 100;
+
 class UiState {
   @observable mapCenter = { lng: 178, lat: 0 };
   @observable mapZoom = 4;
   @observable mapInitialized = false;
+  @observable mapSurfacesCache = [];
   @observable
-  mapBounds = new LngLatBounds(
-    new LngLat(-73.9876, 40.7661),
-    new LngLat(-73.9397, 40.8002),
-  );
-  @observable isOverWater = false;
+  mapBounds = new LngLatBounds(new LngLat(0, 0), new LngLat(50, 50));
   @observable selectedIsland;
 
   @observable mouse = { x: 0, y: 0 };
@@ -60,6 +60,8 @@ class UiState {
       this.mouse.x = e.pageX;
       this.mouse.y = e.pageY;
     });
+
+    this.surfacesCache = [];
   }
 
   setMap(map) {
@@ -82,11 +84,14 @@ class UiState {
   }
 
   @action
-  setMapParams(center, zoom, bounds, isOverWater) {
+  setMapParams(center, zoom, bounds, surface) {
     this.mapBounds = bounds;
     this.mapZoom = zoom;
     this.mapCenter = center;
-    this.isOverWater = isOverWater;
+    this.mapSurfacesCache = [
+      surface,
+      ...this.mapSurfacesCache.slice(0, SURFACE_CACHE_SIZE - 1),
+    ];
     this.mapInitialized = true;
     this.selectedIsland = undefined;
   }
@@ -135,6 +140,11 @@ class UiState {
   }
 
   @computed
+  get surfaces() {
+    return this.mapSurfacesCache.slice();
+  }
+
+  @computed
   get mapCenterPx() {
     return this.map.project([this.mapCenter.lng, this.mapCenter.lat]);
   }
@@ -156,7 +166,7 @@ class UiState {
   @computed
   get islands() {
     return islands.map(island => {
-      const locationPx = this.getLocationPx(island.location);
+      const locationPx = this.getLocationPx(island);
       const { dLng, dLat, dist } = getDistances(
         island.location,
         this.mapCenter,
@@ -274,11 +284,19 @@ class UiState {
 
   // HELPERS
 
-  getLocationPx(location) {
-    const mockMarker = new Marker().setLngLat(location).addTo(this.map);
-    const translate = getTranslate(mockMarker.getElement());
-    mockMarker.remove();
-    return { x: translate[0], y: translate[1] };
+  getLocationPx({ id }) {
+    //const mockMarker = new Marker().setLngLat(location).addTo(this.map);
+    const translate = { x: 0, y: 0 };
+    d3_selectAll('.map__island').each(function(d) {
+      if (d.id === id) {
+        const _translations = getTranslate(this.style.transform);
+        translate.x = _translations[0];
+        translate.y = _translations[1];
+      }
+    });
+    // const translate = getTranslate(mockMarker.getElement().style.transform);
+    // mockMarker.remove();
+    return translate; //{ x: translate[0], y: translate[1] };
   }
 
   getPolarPosition(p) {

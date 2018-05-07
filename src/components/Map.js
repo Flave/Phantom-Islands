@@ -4,24 +4,31 @@ import islands from 'app/data/islands';
 import { Marker, Popup } from 'mapbox-gl';
 import { select as d3_select, event as d3_event } from 'd3';
 
+const surfacesLookup = {
+  'ne-10m-land-8mi5v4': 'land',
+};
+
 const WorldMap = function(map) {
   const markers = [];
   const updateMapParams = () => {
+    uiState.setMapParams(
+      map.getCenter(),
+      map.getZoom(),
+      map.getBounds(),
+      getSurfaceId(),
+    );
+  };
+
+  const getSurfaceId = () => {
     const centerInPixels = map.project(map.getCenter());
     const feature = map.queryRenderedFeatures([
       centerInPixels.x,
       centerInPixels.y,
     ]);
-    let isOverWater = false;
-    if (feature.length) {
-      isOverWater = feature[0].layer.id = 'water';
-    }
-    uiState.setMapParams(
-      map.getCenter(),
-      map.getZoom(),
-      map.getBounds(),
-      isOverWater,
-    );
+    let surface;
+    if (!feature.length) surface = 'land';
+    else surface = feature[0].properties.id ? feature[0].properties.id : 'land';
+    return surface;
   };
 
   const handleZoom = () => {
@@ -64,6 +71,7 @@ const WorldMap = function(map) {
 
   uiState.islands.forEach(island => {
     const el = d3_select(document.body)
+      .datum(island)
       .append('div')
       .classed('map__island--low-zoom', true)
       .html(`<div class="map__island-name">${island.name}</div>`)

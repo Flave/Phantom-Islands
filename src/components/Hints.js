@@ -20,7 +20,7 @@ export default function Hints() {
   }
 
   function update() {
-    const { islandHints: hintData } = uiState;
+    const { islandHints: hintData, surfaces } = uiState;
 
     hintsUpdate = parent.selectAll('.hint').data(hintData, d => d.id);
 

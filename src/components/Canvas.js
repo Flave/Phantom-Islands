@@ -1,10 +1,17 @@
 import uiState from 'app/uiState';
 import islands from 'app/data/islands';
 import { autorun } from 'mobx';
-import { Application, particles, Sprite, Texture, Rectangle } from 'pixi.js';
+import { range as d3_range } from 'd3-array';
+import {
+  Application,
+  particles as pixiParticles,
+  Sprite,
+  Texture,
+  Rectangle,
+} from 'pixi.js';
 
 //const STEP_SIZE = 2; // Grid size to snap to, expressed in degrees
-const radius = 2;
+const radius = 1;
 const resolution = 1;
 
 const generateTexture = () => {
@@ -12,13 +19,12 @@ const generateTexture = () => {
   const context = textureCanvas.getContext('2d');
 
   textureCanvas.width = textureCanvas.height = radius * 2;
-  context.fillStyle = '#f00';
+  context.fillStyle = '#000';
 
   context.scale(resolution, resolution);
   context.beginPath();
   context.arc(radius, radius, radius, 0, Math.PI * 2);
   context.fill();
-  context.stroke();
 
   const texture = Texture.fromCanvas(textureCanvas);
   const baseTexture = texture.baseTexture;
@@ -53,8 +59,9 @@ const Canvas = function(map) {
   const particleTexture = generateTexture();
   const renderer = pixiApp.renderer;
   const stage = pixiApp.stage;
-  const particleContainer = new particles.ParticleContainer(5000);
+  const particleContainer = new pixiParticles.ParticleContainer(20000);
   let stepSize = 10;
+  let particles = new Map();
 
   stage.addChild(particleContainer);
   pixiApp.start();
@@ -72,43 +79,59 @@ const Canvas = function(map) {
   const update = () => {
     const { windowDimensions, mapZoom, mapBoundsAsObject: bounds } = uiState;
     const prevStepSize = stepSize;
-    stepSize = Math.ceil(100 / Math.pow(Math.floor(mapZoom), 3.5));
+    stepSize = 300 / Math.pow(Math.round(mapZoom), 3.65);
 
-    const lngStart = Math.round(bounds.left / stepSize) * stepSize;
-    const lngEnd = Math.round(bounds.right / stepSize) * stepSize;
-    const latStart = Math.round(bounds.top / stepSize) * stepSize;
-    const latEnd = Math.round(bounds.bottom / stepSize) * stepSize;
+    const lngStart = Math.floor(bounds.left / stepSize) * stepSize;
+    const lngEnd = Math.ceil(bounds.right / stepSize) * stepSize;
+    const latStart = Math.floor(bounds.top / stepSize) * stepSize;
+    const latEnd = Math.ceil(bounds.bottom / stepSize) * stepSize;
 
-    if (stepSize !== prevStepSize) particleContainer.removeChildren();
-    else
+    const cols = d3_range(lngStart, lngEnd, stepSize).map(lng => ({
+      lng,
+      x: map.project({
+        lng,
+        lat: latStart,
+      }).x,
+    }));
+
+    const rows = d3_range(latEnd, latStart, stepSize).map(lat => ({
+      lat,
+      y: map.project({
+        lng: lngStart,
+        lat,
+      }).y,
+    }));
+
+    if (stepSize !== prevStepSize) {
+      particleContainer.removeChildren();
+      particles = new Map();
+    } else
       particleContainer.children.forEach(particle => {
         if (
-          particle.x < 0 ||
-          particle.x > windowDimensions.width ||
-          particle.y < 0 ||
-          particle.y > windowDimensions.height
+          particle.lng < lngStart ||
+          particle.lng > lngEnd ||
+          particle.lat < latStart ||
+          particle.lat > latEnd
         ) {
           particleContainer.removeChild(particle);
+          particles.delete(particle.name);
         }
       });
 
-    for (var lng = lngStart; lng < lngEnd; lng = lng + stepSize) {
-      for (var lat = latStart; lat > latEnd; lat = lat - stepSize) {
-        const name = `${lng}__${lat}`;
-        let particle = particleContainer.getChildByName(name);
+    cols.forEach(col => {
+      rows.forEach(row => {
+        const name = `${col.lng}__${row.lat}`;
+        let particle = particles.get(name);
         if (!particle) {
           particle = createParticle(name);
+          particles.set(name, particle);
           particleContainer.addChild(particle);
         }
-        const { x, y } = map.project({
-          lat: lat,
-          lng: lng,
-        });
-
-        particle.position.set(x, y);
-      }
-    }
-    console.log(particleContainer.children.length);
+        particle.lng = col.lng;
+        particle.lat = row.lat;
+        particle.position.set(col.x, row.y);
+      });
+    });
   };
 
   map.on('load', update);
