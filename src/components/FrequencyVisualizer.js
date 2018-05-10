@@ -13,12 +13,12 @@ export default function FrequencyVisualizer(soundManager) {
   let ctx;
 
   function _visualizer() {
-    let className = 'header__visualizer';
     parent = d3_select('#header');
     visualizerUpdate = parent.selectAll('.header__visualizer').data([1]);
     visualizerEnter = visualizerUpdate
       .enter()
       .append('canvas')
+      .attr('class', 'header__item header__visualizer')
       .style('width', WIDTH)
       .style('height', HEIGHT)
       .attr('width', WIDTH)

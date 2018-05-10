@@ -13,6 +13,8 @@ export default class SoundSource {
       cb(null, this.id);
     }).connect(this.masterPanVol);
     this.player.loop = true;
+    this.player.playbackRate = 1;
+    this.player.reverse = true;
     //this.effect.connect(this.masterPanVol);
   };
 
@@ -24,8 +26,7 @@ export default class SoundSource {
     this.player.start();
   }
 
-  update = (volume, pan, filterVal) => {
-    //this.effect.frequency.value = 10000 - filterVal.x * 10000;
+  update = (volume, pan, speedVal) => {
     this.masterPanVol.volume.set('value', volume);
     this.masterPanVol.pan.value = pan;
   };

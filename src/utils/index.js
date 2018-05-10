@@ -38,6 +38,17 @@ export const getDistances = (l1, l2) => {
   };
 };
 
+export const getDistancesPx = (p1, p2) => {
+  const dX = p1.y - p2.y;
+  let dY = p1.x - p2.x;
+  const dist = Math.sqrt(Math.pow(dX, 2) + Math.pow(dY, 2));
+  return {
+    dX,
+    dY,
+    dist,
+  };
+};
+
 export const getTranslate = transformString => {
   const pixelTranslation = transformString.match(
     /translate\((-?([0-9\.]+px))(,\s?(-?([0-9\.]+px)))?\)/,

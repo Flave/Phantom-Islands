@@ -1,18 +1,18 @@
-import sample_1 from 'app/assets/samples/WaterParticles1M.mp3';
-import sample_2 from 'app/assets/samples/Waves1M.mp3';
-import sample_3 from 'app/assets/samples/WindClicksS.mp3';
+import atlantic from 'app/assets/samples/waves_1.mp3';
+import pacific from 'app/assets/samples/waves_1.mp3';
+import indian from 'app/assets/samples/waves_1.mp3';
 
 export default [
   {
     id: 'atlantic',
-    samples: [{ id: 'sample_1', url: sample_1 }],
+    samples: atlantic,
   },
   {
     id: 'pacific',
-    samples: [{ id: 'sample_1', url: sample_2 }],
+    samples: pacific,
   },
   {
     id: 'indian',
-    samples: [{ id: 'sample_1', url: sample_3 }],
+    samples: indian,
   },
 ];

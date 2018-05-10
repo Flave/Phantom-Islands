@@ -4,12 +4,14 @@ import {
   windowWidth,
   windowHeight,
   getDistances,
+  getDistancesPx,
   getTranslate,
   getLocationString,
 } from './utils';
 import { scaleLinear as d3_scaleLinear } from 'd3';
 import { scaleQuantize as d3_scaleQuantize } from 'd3';
 import { selectAll as d3_selectAll } from 'd3';
+import _maxBy from 'lodash/maxBy';
 import _minBy from 'lodash/minBy';
 import _sortBy from 'lodash/sortBy';
 import _find from 'lodash/find';
@@ -19,8 +21,11 @@ import _groupBy from 'lodash/groupBy';
 import _map from 'lodash/map';
 import { LngLatBounds, LngLat, Marker } from 'mapbox-gl';
 import islands from 'app/data/islands';
+import oceans from 'app/data/oceans';
+import { MAX_ZOOM, MIN_ZOOM } from './config';
 
 const SURFACE_CACHE_SIZE = 100;
+const MIN_VOLUME = -75;
 
 class UiState {
   @observable mapCenter = { lng: 178, lat: 0 };
@@ -39,8 +44,7 @@ class UiState {
   };
 
   @observable muted = false;
-
-  @observable loadingProgress = 0;
+  @observable pendingRequests = [];
   @observable showIntro = false;
 
   constructor() {
@@ -60,8 +64,6 @@ class UiState {
       this.mouse.x = e.pageX;
       this.mouse.y = e.pageY;
     });
-
-    this.surfacesCache = [];
   }
 
   setMap(map) {
@@ -102,11 +104,22 @@ class UiState {
   }
 
   @action
-  setLoadingProgress(progress) {
-    this.loadingProgress = progress;
+  addPendingRequest(id) {
+    this.pendingRequests.push(id);
+  }
+
+  @action
+  removePendingRequest(id) {
+    const index = this.pendingRequests.indexOf(id);
+    this.pendingRequests.splice(index, 1);
   }
 
   // COMPUTES
+
+  @computed
+  get loadingProgress() {
+    this.pendingRequests;
+  }
 
   // Utility function to simplify access to the corner points of the map
   @computed
@@ -167,24 +180,47 @@ class UiState {
   get islands() {
     return islands.map(island => {
       const locationPx = this.getLocationPx(island);
-      const { dLng, dLat, dist } = getDistances(
-        island.location,
-        this.mapCenter,
-      );
-      const dX = locationPx.x - this.mapCenterPx.x;
+      const { dX, dY, dist } = getDistancesPx(locationPx, this.mapCenterPx);
+      const volume = this.distPx2Volume(dist);
+      const volNormal = 1 - volume / MIN_VOLUME;
       return {
         ...island,
         locationString: getLocationString(island.location),
         locationPx,
-        dLng,
-        dLat,
         dX,
+        dY,
         dist,
-        dNormal: this.dist2Normalized(dist),
-        volume: this.dist2Volume(dist),
+        volNormal,
+        volume,
         pan: Math.max(-1, Math.min(1, dX / this.mapCenterPx.x * 4)),
       };
     });
+  }
+
+  @computed
+  get envParams() {
+    const maxIslandVol = _maxBy(this.islands, 'volNormal').volNormal;
+    let groupedSurfaces = _groupBy(this.mapSurfacesCache);
+    const { land } = groupedSurfaces;
+    // Number between 0 and 1 indicating the relative amount of hovered land
+    const landFactor = land ? land.length / SURFACE_CACHE_SIZE : 0;
+    // Get the number of occurences of oceans in the surfaces cache
+    let oceanOccurences = this.mapSurfacesCache.filter(
+      surface => surface !== 'land' && surface !== 'island',
+    );
+    const oceanValues = oceans.map(ocean => {
+      const occurences = groupedSurfaces[ocean.id] || [];
+      let value = occurences.length / oceanOccurences.length;
+      value = isNaN(value) ? 0 : value;
+      return {
+        id: ocean.id,
+        value: value,
+      };
+    });
+    const vol = -20 * maxIslandVol + -30 * landFactor;
+    return {
+      volume: vol,
+    };
   }
 
   @computed
@@ -193,7 +229,7 @@ class UiState {
       return _find(this.islands, { id: this.selectedIsland });
     }
     const candidate = _minBy(this.islands, 'dist');
-    if (this.mapZoom > 7 && candidate.dNormal < 0.2) {
+    if (this.mapZoom > 7 && candidate.volNormal < 0.2) {
       return candidate;
     }
     return undefined;
@@ -239,11 +275,41 @@ class UiState {
     );
   }
 
+  // ZOOM SCALES
   @computed
-  get distPx2Val() {
+  get zoom2Normalized() {
+    return d3_scaleLinear()
+      .domain([MIN_ZOOM, MAX_ZOOM])
+      .range([0, 1])
+      .clamp(true);
+  }
+
+  @computed
+  get zoomNormal() {
+    return this.zoom2Normalized(this.mapZoom);
+  }
+
+  @computed
+  get zoom2Volume() {
+    return d3_scaleLinear()
+      .domain([MIN_ZOOM, MIN_ZOOM + 1])
+      .range([-40, 0])
+      .clamp(true);
+  }
+
+  @computed
+  get zoomVolume() {
+    return this.zoom2Volume(this.mapZoom);
+  }
+
+  // DIST SCALES
+
+  @computed
+  get distPx2Normalized() {
     return d3_scaleLinear()
       .domain([0, this.maxDistancePx])
-      .range([0, 1]);
+      .range([0, 1])
+      .clamp(true);
   }
 
   // An scale to convert lat/lng distances to a range between 0 and 1.
@@ -252,16 +318,16 @@ class UiState {
   @computed
   get dist2Normalized() {
     return d3_scaleLinear()
-      .domain([0, 15])
-      .range([0, 1])
+      .domain([0, 7])
+      .range([1, 0])
       .clamp(true);
   }
 
   @computed
   get dist2Volume() {
     return d3_scaleLinear()
-      .domain([0, 15])
-      .range([0, -70])
+      .domain([0, 7])
+      .range([0, -75])
       .clamp(true);
   }
 
@@ -283,6 +349,16 @@ class UiState {
   }
 
   // HELPERS
+
+  // Returns the volume of an island depending on distance to center and
+  // zoom level, constrained to MIN_VOLUME
+  distPx2Volume(dist) {
+    const distNormal = this.distPx2Normalized(dist);
+    return Math.max(
+      distNormal * MIN_VOLUME + (1 - this.zoomNormal) * MIN_VOLUME,
+      MIN_VOLUME,
+    );
+  }
 
   getLocationPx({ id }) {
     //const mockMarker = new Marker().setLngLat(location).addTo(this.map);

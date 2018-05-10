@@ -4,7 +4,8 @@
     {
       "type": "Feature",
       "properties": {
-        "id": "tuanahe"
+        "id": "tuanahe",
+        "type": "island"
       },
       "geometry": {
         "type": "Polygon",
@@ -89,7 +90,8 @@
     {
       "type": "Feature",
       "properties": {
-        "id": "dougherty_island"
+        "id": "dougherty_island",
+        "type": "island"
       },
       "geometry": {
         "type": "Polygon",
@@ -178,7 +180,8 @@
     {
       "type": "Feature",
       "properties": {
-        "id": "davis_land"
+        "id": "davis_land",
+        "type": "island"
       },
       "geometry": {
         "type": "Polygon",
@@ -247,7 +250,8 @@
     {
       "type": "Feature",
       "properties": {
-        "id": "bermeja"
+        "id": "bermeja",
+        "type": "island"
       },
       "geometry": {
         "type": "Polygon",
@@ -316,7 +320,8 @@
     {
       "type": "Feature",
       "properties": {
-        "id": "antillia"
+        "id": "antillia",
+        "type": "island"
       },
       "geometry": {
         "type": "Polygon",
@@ -441,7 +446,8 @@
     {
       "type": "Feature",
       "properties": {
-        "id": "fonseca"
+        "id": "fonseca",
+        "type": "island"
       },
       "geometry": {
         "type": "Polygon",
@@ -510,7 +516,8 @@
     {
       "type": "Feature",
       "properties": {
-        "id": "satanazes"
+        "id": "satanazes",
+        "type": "island"
       },
       "geometry": {
         "type": "Polygon",
@@ -639,7 +646,8 @@
     {
       "type": "Feature",
       "properties": {
-        "id": "st_brendans_island"
+        "id": "st_brendans_island",
+        "type": "island"
       },
       "geometry": {
         "type": "Polygon",
@@ -708,7 +716,8 @@
     {
       "type": "Feature",
       "properties": {
-        "id": "hy_brasil"
+        "id": "hy_brasil",
+        "type": "island"
       },
       "geometry": {
         "type": "Polygon",
@@ -837,7 +846,8 @@
     {
       "type": "Feature",
       "properties": {
-        "id": "buss_island"
+        "id": "buss_island",
+        "type": "island"
       },
       "geometry": {
         "type": "Polygon",
@@ -1114,7 +1124,8 @@
     {
       "type": "Feature",
       "properties": {
-        "id": "frisland"
+        "id": "frisland",
+        "type": "island"
       },
       "geometry": {
         "type": "Polygon",
@@ -1491,7 +1502,8 @@
     {
       "type": "Feature",
       "properties": {
-        "id": "juan_de_lisoboa"
+        "id": "juan_de_lisboa",
+        "type": "island"
       },
       "geometry": {
         "type": "Polygon",
@@ -1612,7 +1624,8 @@
     {
       "type": "Feature",
       "properties": {
-        "id": "londons"
+        "id": "londons",
+        "type": "island"
       },
       "geometry": {
         "type": "Polygon",
@@ -1857,7 +1870,8 @@
     {
       "type": "Feature",
       "properties": {
-        "id": "candy"
+        "id": "candy",
+        "type": "island"
       },
       "geometry": {
         "type": "Polygon",
@@ -1986,7 +2000,8 @@
     {
       "type": "Feature",
       "properties": {
-        "id": "turtle"
+        "id": "turtle",
+        "type": "island"
       },
       "geometry": {
         "type": "Polygon",
@@ -2083,7 +2098,8 @@
     {
       "type": "Feature",
       "properties": {
-        "id": "gama"
+        "id": "gama",
+        "type": "island"
       },
       "geometry": {
         "type": "Polygon",
@@ -2252,7 +2268,8 @@
     {
       "type": "Feature",
       "properties": {
-        "id": "taprobana"
+        "id": "taprobana",
+        "type": "island"
       },
       "geometry": {
         "type": "Polygon",
@@ -2437,7 +2454,8 @@
     {
       "type": "Feature",
       "properties": {
-        "id": "trial_rocks"
+        "id": "trial_rocks",
+        "type": "island"
       },
       "geometry": {
         "type": "Polygon",
@@ -2582,7 +2600,8 @@
     {
       "type": "Feature",
       "properties": {
-        "id": "some island"
+        "id": "some island",
+        "type": "island"
       },
       "geometry": {
         "type": "Polygon",
@@ -2651,7 +2670,8 @@
     {
       "type": "Feature",
       "properties": {
-        "id": "los_jardines"
+        "id": "los_jardines",
+        "type": "island"
       },
       "geometry": {
         "type": "Polygon",
@@ -2760,7 +2780,8 @@
     {
       "type": "Feature",
       "properties": {
-        "id": "rica_de_oro"
+        "id": "rica_de_oro",
+        "type": "island"
       },
       "geometry": {
         "type": "Polygon",
@@ -2881,7 +2902,8 @@
     {
       "type": "Feature",
       "properties": {
-        "id": "rico_de_planta"
+        "id": "rico_de_planta",
+        "type": "island"
       },
       "geometry": {
         "type": "Polygon",
@@ -2998,7 +3020,8 @@
     {
       "type": "Feature",
       "properties": {
-        "id": "morrell_island"
+        "id": "morrell_island",
+        "type": "island"
       },
       "geometry": {
         "type": "Polygon",
@@ -3111,7 +3134,8 @@
     {
       "type": "Feature",
       "properties": {
-        "id": "byers_island"
+        "id": "byers_island",
+        "type": "island"
       },
       "geometry": {
         "type": "Polygon",
@@ -3304,7 +3328,8 @@
     {
       "type": "Feature",
       "properties": {
-        "id": "onaseuse_hunter_island"
+        "id": "onaseuse_hunter_island",
+        "type": "island"
       },
       "geometry": {
         "type": "Polygon",
@@ -3509,7 +3534,8 @@
     {
       "type": "Feature",
       "properties": {
-        "id": "pepys_island"
+        "id": "pepys_island",
+        "type": "island"
       },
       "geometry": {
         "type": "Polygon",
@@ -3594,7 +3620,8 @@
     {
       "type": "Feature",
       "properties": {
-        "id": "aurora_island"
+        "id": "aurora_island",
+        "type": "island"
       },
       "geometry": {
         "type": "Polygon",
@@ -3647,7 +3674,8 @@
     {
       "type": "Feature",
       "properties": {
-        "id": "aurora_island"
+        "id": "aurora_island",
+        "type": "island"
       },
       "geometry": {
         "type": "Polygon",
@@ -3712,7 +3740,8 @@
     {
       "type": "Feature",
       "properties": {
-        "id": "aurora_island"
+        "id": "aurora_island",
+        "type": "island"
       },
       "geometry": {
         "type": "Polygon",
@@ -3765,7 +3794,8 @@
     {
       "type": "Feature",
       "properties": {
-        "id": "saxenburgh_island"
+        "id": "saxenburgh_island",
+        "type": "island"
       },
       "geometry": {
         "type": "Polygon",

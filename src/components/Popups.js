@@ -41,7 +41,7 @@ export default function Popups() {
       const width = this.offsetWidth;
       const height = this.offsetHeight;
       const x = Math.floor(d.locationPx.x - width / 2);
-      const y = Math.floor(d.locationPx.y - height);
+      const y = Math.floor(d.locationPx.y - height - 40);
 
       d3_select(this)
         .style('left', d => `${x}px`)

@@ -4,10 +4,6 @@ import islands from 'app/data/islands';
 import { Marker, Popup } from 'mapbox-gl';
 import { select as d3_select, event as d3_event } from 'd3';
 
-const surfacesLookup = {
-  'ne-10m-land-8mi5v4': 'land',
-};
-
 const WorldMap = function(map) {
   const markers = [];
   const updateMapParams = () => {
@@ -26,8 +22,16 @@ const WorldMap = function(map) {
       centerInPixels.y,
     ]);
     let surface;
-    if (!feature.length) surface = 'land';
-    else surface = feature[0].properties.id ? feature[0].properties.id : 'land';
+
+    // there seems to be a gap at {180, 0} with no feature
+    if (!feature.length) {
+      surface = 'pacific';
+    } else {
+      const id = feature[0].properties.id;
+      const type = feature[0].properties.type;
+      surface = id ? id : 'land';
+      surface = type ? type : surface;
+    }
     return surface;
   };
 
