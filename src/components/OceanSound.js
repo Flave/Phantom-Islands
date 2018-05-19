@@ -1,6 +1,7 @@
 import Tone, { Player, PanVol } from 'tone';
+import oceans from 'app/data/oceans';
 
-export default class SoundSource {
+export default class OceanSound {
   constructor({ sample, id }) {
     this.sample = sample;
     this.id = id;
@@ -13,8 +14,7 @@ export default class SoundSource {
       cb(null, this.id);
     }).connect(this.masterPanVol);
     this.player.loop = true;
-    this.player.playbackRate = 1;
-    this.player.reverse = true;
+    //this.player.reverse = true;
     //this.effect.connect(this.masterPanVol);
   };
 
@@ -26,8 +26,8 @@ export default class SoundSource {
     this.player.start();
   }
 
-  update = (volume, pan, speedVal) => {
+  update = (volume, latNormal) => {
+    this.player.playbackRate = 1 + latNormal * 2;
     this.masterPanVol.volume.set('value', volume);
-    this.masterPanVol.pan.value = pan;
   };
 }

@@ -13,7 +13,7 @@ import LoadingIndicator from 'components/LoadingIndicator';
 import SoundManager from 'components/SoundManager';
 import FrequencyVisualizer from 'components/FrequencyVisualizer';
 import uiState from './uiState';
-import { MAX_ZOOM, MIN_ZOOM } from './config';
+import { MAX_ZOOM, MIN_ZOOM, MAX_LAT, MIN_LAT } from './config';
 
 mapboxgl.accessToken =
   'pk.eyJ1IjoiZmxhdmlvZ29ydGFuYSIsImEiOiJzalRHcS1JIn0.aeJmH09S2p_hjOSs3wuT3w';
@@ -26,7 +26,10 @@ const map = new mapboxgl.Map({
   zoom: uiState.mapZoom,
   minZoom: MIN_ZOOM,
   maxZoom: MAX_ZOOM,
+  maxBounds: [[-Infinity, MIN_LAT], [Infinity, MAX_LAT]],
 });
+map.dragRotate.disable();
+map.touchZoomRotate.disableRotation();
 
 uiState.setMap(map);
 

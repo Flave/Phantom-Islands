@@ -1,19 +1,29 @@
-import Tone, { Player, PanVol } from 'tone';
+import Tone, { Players, PanVol } from 'tone';
+import _every from 'lodash/every';
 
 export default class SoundSource {
-  constructor({ sample, id }) {
-    this.sample = sample;
+  constructor({ samples, id }) {
+    this.samples = samples;
     this.id = id;
     this.masterPanVol = new PanVol(0, -10);
     this.effect = new Tone.Filter(600, 'highpass');
+
+    // Dictionary to create players object
+    this.samplesDict = {};
+    samples.forEach(sample => {
+      this.samplesDict[sample.id] = sample.url;
+    });
   }
 
   load = cb => {
-    this.player = new Player(this.sample, (p, y) => {
-      cb(null, this.id);
-    }).connect(this.masterPanVol);
-    this.player.loop = true;
     //this.effect.connect(this.masterPanVol);
+    this.players = new Players(this.samplesDict, (p, y) => {
+      cb(null, this.id);
+      this.samples.forEach(sample => {
+        const player = this.players.get(sample.id);
+        player.loop = true;
+      });
+    }).connect(this.masterPanVol);
   };
 
   connect(node) {
@@ -21,7 +31,16 @@ export default class SoundSource {
   }
 
   start() {
-    this.player.start();
+    this.samples.forEach(sample => {
+      const player = this.players.get(sample.id);
+      if (player.state !== 'started' && player.loaded) {
+        player.start();
+      }
+    });
+  }
+
+  get loaded() {
+    return _every(this.samples, sample => this.players.get(sample.id).loaded);
   }
 
   update = (volume, pan, filterVal) => {

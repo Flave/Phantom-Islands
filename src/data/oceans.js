@@ -5,14 +5,14 @@ import indian from 'app/assets/samples/waves_1.mp3';
 export default [
   {
     id: 'atlantic',
-    samples: atlantic,
+    sample: atlantic,
   },
   {
     id: 'pacific',
-    samples: pacific,
+    sample: pacific,
   },
   {
     id: 'indian',
-    samples: indian,
+    sample: indian,
   },
 ];
