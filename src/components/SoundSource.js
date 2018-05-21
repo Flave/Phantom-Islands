@@ -15,7 +15,7 @@ export default class SoundSource {
     // Dictionary to create players object
     this.samplesDict = {};
     samples.forEach(sample => {
-      this.samplesDict[sample.id] = `./src/assets/samples/${sample.id}.mp3`;
+      this.samplesDict[sample.id] = `./src/assets/${sample.id}.mp3`;
     });
   }
 

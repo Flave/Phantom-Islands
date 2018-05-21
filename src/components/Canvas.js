@@ -1,5 +1,4 @@
 import uiState from 'app/uiState';
-import islands from 'app/data/islands';
 import { autorun } from 'mobx';
 import { range as d3_range } from 'd3-array';
 import {

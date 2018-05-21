@@ -74,10 +74,17 @@ class UiState {
 
   @action
   setIslands(islands) {
-    this.islandsData = islands.map(island => ({
-      ...island,
-      loaded: false,
-    }));
+    this.islandsData = islands
+      .map(island => ({
+        ...island,
+        loaded: false,
+      }))
+      // Sort islands by ascending distance to prioritize loading
+      .sort((islandA, islandB) => {
+        const { dist: distA } = getDistances(islandA.location, this.mapCenter);
+        const { dist: distB } = getDistances(islandB.location, this.mapCenter);
+        return distA - distB;
+      });
   }
 
   @action

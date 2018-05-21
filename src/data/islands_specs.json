@@ -14,7 +14,7 @@
     },
     "samples": [
       {
-        "id": "friesland",
+        "id": "friesland_1",
         "playbackRate": 1,
         "reverse": false,
         "filter": {
@@ -60,7 +60,7 @@
     "description": "Some description",
     "firstAppearance": "1399 A.D. in some Atlas",
     "lastAppearance": "1639 A.D. in some other Atlas",
-    "samples": [{ "id": "hy_brasil" }]
+    "samples": [{ "id": "hy_brasil_1" }]
   },
   {
     "name": "St. Brendan's Island",
@@ -99,7 +99,7 @@
     "description": "Some description",
     "firstAppearance": "1399 A.D. in some Atlas",
     "lastAppearance": "1639 A.D. in some other Atlas",
-    "samples": [{ "id": "antillia" }]
+    "samples": [{ "id": "antillia_1" }]
   },
   {
     "name": "Pepys Island",
@@ -108,7 +108,7 @@
     "description": "Some description",
     "firstAppearance": "1399 A.D. in some Atlas",
     "lastAppearance": "1639 A.D. in some other Atlas",
-    "samples": [{ "id": "pepys_island" }]
+    "samples": [{ "id": "pepys_island_1" }]
   },
   {
     "name": "Saxenburgh Island",
@@ -117,7 +117,7 @@
     "description": "Some description",
     "firstAppearance": "1399 A.D. in some Atlas",
     "lastAppearance": "1639 A.D. in some other Atlas",
-    "samples": [{ "id": "saxenburgh_island" }]
+    "samples": [{ "id": "saxenburgh_island_1" }]
   },
   {
     "name": "Aurora Islands",
@@ -135,7 +135,7 @@
     "description": "Some description",
     "firstAppearance": "1399 A.D. in some Atlas",
     "lastAppearance": "1639 A.D. in some other Atlas",
-    "samples": [{ "id": "juan_de_lisboa" }]
+    "samples": [{ "id": "juan_de_lisboa_1" }]
   },
   {
     "name": "Taprobana",
@@ -153,7 +153,7 @@
     "description": "Some description",
     "firstAppearance": "1399 A.D. in some Atlas",
     "lastAppearance": "1639 A.D. in some other Atlas",
-    "samples": [{ "id": "gama" }]
+    "samples": [{ "id": "gama_1" }]
   },
   {
     "name": "Turtle",
@@ -162,7 +162,7 @@
     "description": "Some description",
     "firstAppearance": "1399 A.D. in some Atlas",
     "lastAppearance": "1639 A.D. in some other Atlas",
-    "samples": [{ "id": "turtle" }]
+    "samples": [{ "id": "turtle_1" }]
   },
   {
     "name": "Candy",
@@ -172,7 +172,7 @@
     "description": "Some description",
     "firstAppearance": "1399 A.D. in some Atlas",
     "lastAppearance": "1639 A.D. in some other Atlas",
-    "samples": [{ "id": "candy" }]
+    "samples": [{ "id": "candy_1" }]
   },
   {
     "name": "Londons",
@@ -182,7 +182,7 @@
     "description": "Some description",
     "firstAppearance": "1399 A.D. in some Atlas",
     "lastAppearance": "1639 A.D. in some other Atlas",
-    "samples": [{ "id": "londons" }]
+    "samples": [{ "id": "londons_1" }]
   },
   {
     "name": "Trial Rocks",
@@ -191,7 +191,7 @@
     "description": "Some description",
     "firstAppearance": "1399 A.D. in some Atlas",
     "lastAppearance": "1639 A.D. in some other Atlas",
-    "samples": [{ "id": "trial_rocks" }]
+    "samples": [{ "id": "trial_rocks_1" }]
   },
   {
     "name": "Onaseuse (Hunter Island)",
@@ -200,7 +200,7 @@
     "description": "Some description",
     "firstAppearance": "1399 A.D. in some Atlas",
     "lastAppearance": "1639 A.D. in some other Atlas",
-    "samples": [{ "id": "onaseuse_hunter_island" }]
+    "samples": [{ "id": "onaseuse_hunter_island_1" }]
   },
   {
     "name": "Los Jardines",
@@ -218,7 +218,7 @@
     "description": "Some description",
     "firstAppearance": "1399 A.D. in some Atlas",
     "lastAppearance": "1639 A.D. in some other Atlas",
-    "samples": [{ "id": "byers_island" }]
+    "samples": [{ "id": "byers_island_1" }]
   },
   {
     "name": "Morrell Island",
@@ -227,7 +227,7 @@
     "description": "Some description",
     "firstAppearance": "1399 A.D. in some Atlas",
     "lastAppearance": "1639 A.D. in some other Atlas",
-    "samples": [{ "id": "morrell_island" }]
+    "samples": [{ "id": "morrell_island_1" }]
   },
   {
     "name": "Tuanahe",
@@ -236,7 +236,7 @@
     "description": "Some description",
     "firstAppearance": "1399 A.D. in some Atlas",
     "lastAppearance": "1639 A.D. in some other Atlas",
-    "samples": [{ "id": "tuanahe" }]
+    "samples": [{ "id": "tuanahe_1" }]
   },
   {
     "name": "Dougherty Island",
@@ -254,7 +254,7 @@
     "description": "Some description",
     "firstAppearance": "1399 A.D. in some Atlas",
     "lastAppearance": "1639 A.D. in some other Atlas",
-    "samples": [{ "id": "davis_land" }]
+    "samples": [{ "id": "davis_land_1" }]
   },
   {
     "name": "Bermeja",
@@ -263,7 +263,7 @@
     "description": "Some description",
     "firstAppearance": "1399 A.D. in some Atlas",
     "lastAppearance": "1639 A.D. in some other Atlas",
-    "samples": [{ "id": "bermeja" }]
+    "samples": [{ "id": "bermeja_1" }]
   },
   {
     "name": "Rica de Oro",
@@ -272,7 +272,7 @@
     "description": "Some description",
     "firstAppearance": "1399 A.D. in some Atlas",
     "lastAppearance": "1639 A.D. in some other Atlas",
-    "samples": [{ "id": "rica_de_oro" }]
+    "samples": [{ "id": "rica_de_oro_1" }]
   },
   {
     "name": "Rico de Plata",
@@ -281,6 +281,6 @@
     "description": "Some description",
     "firstAppearance": "1399 A.D. in some Atlas",
     "lastAppearance": "1639 A.D. in some other Atlas",
-    "samples": [{ "id": "rico_de_plata" }]
+    "samples": [{ "id": "rico_de_plata_1" }]
   }
 ]
