@@ -208,7 +208,7 @@ class UiState {
       const locationPx = this.getLocationPx(island);
       const { dX, dY, dist } = getDistancesPx(locationPx, this.mapCenterPx);
       const volume = this.mapInitialized
-        ? this.distPx2Volume(dist)
+        ? this.distPx2Volume(dist, island.distanceThreshold)
         : MIN_VOLUME;
 
       const volNormal = 1 - volume / MIN_VOLUME;
@@ -334,17 +334,6 @@ class UiState {
     );
   }
 
-  /**
-   *
-   */
-  @computed
-  get distPx2Normalized() {
-    return d3_scaleLinear()
-      .domain([0, this.maxDistancePx])
-      .range([0, 1])
-      .clamp(true);
-  }
-
   @computed
   get smoothZoom() {
     const zoomSum = this.zoomBuffer.reduce((sum, val) => sum + val, 0);
@@ -384,8 +373,13 @@ class UiState {
 
   // Returns the volume of an island depending on distance to center and
   // zoom level, constrained to MIN_VOLUME
-  distPx2Volume(dist) {
-    const distNormal = this.distPx2Normalized(dist);
+  distPx2Volume(dist, distanceThreshold = 1) {
+    // Scale to normalize px distance depending on threshold
+    const distPx2Normalized = d3_scaleLinear()
+      .domain([0, this.maxDistancePx * distanceThreshold])
+      .range([0, 1])
+      .clamp(true);
+    const distNormal = distPx2Normalized(dist);
     const distPow = Math.pow(distNormal, 2);
     return Math.max(
       distPow * MIN_VOLUME + (1 - this.zoomNormal) * MIN_VOLUME,

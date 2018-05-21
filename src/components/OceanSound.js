@@ -1,5 +1,4 @@
 import Tone, { Player, PanVol } from 'tone';
-import oceans from 'app/data/oceans';
 
 export default class OceanSound {
   constructor({ sample, id }) {
@@ -10,7 +9,7 @@ export default class OceanSound {
   }
 
   load = cb => {
-    this.player = new Player(this.sample, (p, y) => {
+    this.player = new Player('./assets/waves_1.mp3', (p, y) => {
       cb(null, this.id);
     }).connect(this.masterPanVol);
     this.player.loop = true;

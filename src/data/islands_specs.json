@@ -7,7 +7,6 @@
     "lastAppearance": "1639 A.D. in some other Atlas",
     "description": "Some description",
     "distanceThreshold": 1,
-    "volumeOffset": -10,
     "distance_filter": {
       "type": "highpass",
       "frequency": 3243
@@ -15,6 +14,7 @@
     "samples": [
       {
         "id": "friesland_1",
+        "volumeOffset": 0,
         "playbackRate": 1,
         "reverse": false,
         "filter": {
@@ -200,7 +200,13 @@
     "description": "Some description",
     "firstAppearance": "1399 A.D. in some Atlas",
     "lastAppearance": "1639 A.D. in some other Atlas",
-    "samples": [{ "id": "onaseuse_hunter_island_1" }]
+    "distanceThreshold": 1,
+    "samples": [
+      {
+        "id": "onaseuse_hunter_island_1",
+        "volumeOffset": 0
+      }
+    ]
   },
   {
     "name": "Los Jardines",

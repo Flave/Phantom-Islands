@@ -7,5 +7,6 @@ module.exports = merge(common, {
   devServer: {
     port: 8080,
     historyApiFallback: true,
+    contentBase: './src',
   },
 });

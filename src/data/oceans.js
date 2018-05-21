@@ -1,16 +1,14 @@
-import ocean from 'app/assets/waves_1.mp3';
-
 export default [
   {
     id: 'atlantic',
-    sample: ocean,
+    sample: '',
   },
   {
     id: 'pacific',
-    sample: ocean,
+    sample: './src/assets/waves_1.mp3',
   },
   {
     id: 'indian',
-    sample: ocean,
+    sample: './src/assets/waves_1.mp3',
   },
 ];
