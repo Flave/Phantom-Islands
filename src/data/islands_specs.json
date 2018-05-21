@@ -1,0 +1,286 @@
+[
+  {
+    "name": "Friesland",
+    "id": "friesland",
+    "location": { "lng": -18.0, "lat": 60.0 },
+    "firstAppearance": "1399 A.D. in some Atlas",
+    "lastAppearance": "1639 A.D. in some other Atlas",
+    "description": "Some description",
+    "distanceThreshold": 1,
+    "volumeOffset": -10,
+    "distance_filter": {
+      "type": "highpass",
+      "frequency": 3243
+    },
+    "samples": [
+      {
+        "id": "friesland",
+        "playbackRate": 1,
+        "reverse": false,
+        "filter": {
+          "type": "bandpass",
+          "gain": 1,
+          "Q": 0.1,
+          "frequency": {
+            "type": "sine",
+            "rate": 0.5,
+            "min": 100,
+            "max": 1000
+          }
+        },
+        "volume": {
+          "type": "sine",
+          "rate": 0.5,
+          "min": -2,
+          "max": 2
+        }
+      }
+    ]
+  },
+  {
+    "name": "Buss Island",
+    "id": "buss_island",
+    "location": { "lng": -28.0, "lat": 58.0 },
+    "firstAppearance": "1399 A.D. in some Atlas",
+    "lastAppearance": "1639 A.D. in some other Atlas",
+    "description": "Some description",
+    "samples": [
+      {
+        "id": "buss_island_1"
+      },
+      {
+        "id": "buss_island_2"
+      }
+    ]
+  },
+  {
+    "name": "Hy Brasil",
+    "id": "hy_brasil",
+    "location": { "lng": -17.566666666666599, "lat": 51.0 },
+    "description": "Some description",
+    "firstAppearance": "1399 A.D. in some Atlas",
+    "lastAppearance": "1639 A.D. in some other Atlas",
+    "samples": [{ "id": "hy_brasil" }]
+  },
+  {
+    "name": "St. Brendan's Island",
+    "id": "st_brendans_island",
+    "location": { "lng": -23.233333333333299, "lat": 28.533333333333299 },
+    "description": "Some description",
+    "firstAppearance": "1399 A.D. in some Atlas",
+    "lastAppearance": "1639 A.D. in some other Atlas",
+    "samples": [
+      { "id": "st_brendans_island_1" },
+      { "id": "st_brendans_island_2" }
+    ]
+  },
+  {
+    "name": "Fonseca",
+    "id": "fonseca",
+    "location": { "lng": -54.8, "lat": 12.45 },
+    "description": "Some description",
+    "firstAppearance": "1399 A.D. in some Atlas",
+    "lastAppearance": "1639 A.D. in some other Atlas",
+    "samples": [{ "id": "fonseca_1" }, { "id": "fonseca_2" }]
+  },
+  {
+    "name": "Satanazes",
+    "id": "satanazes",
+    "location": { "lng": -48.4166666666666, "lat": 40.216666666666697 },
+    "description": "Some description",
+    "firstAppearance": "1399 A.D. in some Atlas",
+    "lastAppearance": "1639 A.D. in some other Atlas",
+    "samples": [{ "id": "satanazes_1" }, { "id": "satanazes_2" }]
+  },
+  {
+    "name": "Antillia",
+    "id": "antillia",
+    "location": { "lng": -54.9166666666666, "lat": 33.733333333333299 },
+    "description": "Some description",
+    "firstAppearance": "1399 A.D. in some Atlas",
+    "lastAppearance": "1639 A.D. in some other Atlas",
+    "samples": [{ "id": "antillia" }]
+  },
+  {
+    "name": "Pepys Island",
+    "id": "pepys_island",
+    "location": { "lng": -58.4, "lat": -47.566666666666698 },
+    "description": "Some description",
+    "firstAppearance": "1399 A.D. in some Atlas",
+    "lastAppearance": "1639 A.D. in some other Atlas",
+    "samples": [{ "id": "pepys_island" }]
+  },
+  {
+    "name": "Saxenburgh Island",
+    "id": "saxenburgh_island",
+    "location": { "lng": -19.6666666666666, "lat": -30.75 },
+    "description": "Some description",
+    "firstAppearance": "1399 A.D. in some Atlas",
+    "lastAppearance": "1639 A.D. in some other Atlas",
+    "samples": [{ "id": "saxenburgh_island" }]
+  },
+  {
+    "name": "Aurora Islands",
+    "id": "aurora_islands",
+    "location": { "lng": -47.816666666666698, "lat": -52.616666666666703 },
+    "description": "Some description",
+    "firstAppearance": "1399 A.D. in some Atlas",
+    "lastAppearance": "1639 A.D. in some other Atlas",
+    "samples": [{ "id": "aurora_islands_1" }, { "id": "aurora_islands_2" }]
+  },
+  {
+    "name": "Juan de Lisboa",
+    "id": "juan_de_lisboa",
+    "location": { "lng": 52.8, "lat": -26.283333333333299 },
+    "description": "Some description",
+    "firstAppearance": "1399 A.D. in some Atlas",
+    "lastAppearance": "1639 A.D. in some other Atlas",
+    "samples": [{ "id": "juan_de_lisboa" }]
+  },
+  {
+    "name": "Taprobana",
+    "id": "taprobana",
+    "location": { "lng": 88.0, "lat": 0.0 },
+    "description": "Some description",
+    "firstAppearance": "1399 A.D. in some Atlas",
+    "lastAppearance": "1639 A.D. in some other Atlas",
+    "samples": [{ "id": "taprobana_1" }, { "id": "taprobana_2" }]
+  },
+  {
+    "name": "Gama",
+    "id": "gama",
+    "location": { "lng": 75.0, "lat": -2.0 },
+    "description": "Some description",
+    "firstAppearance": "1399 A.D. in some Atlas",
+    "lastAppearance": "1639 A.D. in some other Atlas",
+    "samples": [{ "id": "gama" }]
+  },
+  {
+    "name": "Turtle",
+    "id": "turtle",
+    "location": { "lng": 73.0, "lat": -4.0 },
+    "description": "Some description",
+    "firstAppearance": "1399 A.D. in some Atlas",
+    "lastAppearance": "1639 A.D. in some other Atlas",
+    "samples": [{ "id": "turtle" }]
+  },
+  {
+    "name": "Candy",
+    "id": "candy",
+    "buddy": "londons",
+    "location": { "lng": 73.983333333333306, "lat": -5.53333333333333 },
+    "description": "Some description",
+    "firstAppearance": "1399 A.D. in some Atlas",
+    "lastAppearance": "1639 A.D. in some other Atlas",
+    "samples": [{ "id": "candy" }]
+  },
+  {
+    "name": "Londons",
+    "id": "londons",
+    "buddy": "candy",
+    "location": { "lng": 73.383333333333297, "lat": -5.96666666666667 },
+    "description": "Some description",
+    "firstAppearance": "1399 A.D. in some Atlas",
+    "lastAppearance": "1639 A.D. in some other Atlas",
+    "samples": [{ "id": "londons" }]
+  },
+  {
+    "name": "Trial Rocks",
+    "id": "trial_rocks",
+    "location": { "lng": 105.0, "lat": -20.3333333333333 },
+    "description": "Some description",
+    "firstAppearance": "1399 A.D. in some Atlas",
+    "lastAppearance": "1639 A.D. in some other Atlas",
+    "samples": [{ "id": "trial_rocks" }]
+  },
+  {
+    "name": "Onaseuse (Hunter Island)",
+    "id": "onaseuse_hunter_island)",
+    "location": { "lng": 176.183333333332996, "lat": -15.516666666666699 },
+    "description": "Some description",
+    "firstAppearance": "1399 A.D. in some Atlas",
+    "lastAppearance": "1639 A.D. in some other Atlas",
+    "samples": [{ "id": "onaseuse_hunter_island" }]
+  },
+  {
+    "name": "Los Jardines",
+    "id": "los_jardines",
+    "location": { "lng": 150.5, "lat": 21.0 },
+    "description": "Some description",
+    "firstAppearance": "1399 A.D. in some Atlas",
+    "lastAppearance": "1639 A.D. in some other Atlas",
+    "samples": [{ "id": "los_jardines_1" }, { "id": "los_jardines_2" }]
+  },
+  {
+    "name": "Byers Island",
+    "id": "byers_island",
+    "location": { "lng": 177.066666666667004, "lat": 28.533333333333299 },
+    "description": "Some description",
+    "firstAppearance": "1399 A.D. in some Atlas",
+    "lastAppearance": "1639 A.D. in some other Atlas",
+    "samples": [{ "id": "byers_island" }]
+  },
+  {
+    "name": "Morrell Island",
+    "id": "morrell_island",
+    "location": { "lng": 174.516666666666993, "lat": 29.95 },
+    "description": "Some description",
+    "firstAppearance": "1399 A.D. in some Atlas",
+    "lastAppearance": "1639 A.D. in some other Atlas",
+    "samples": [{ "id": "morrell_island" }]
+  },
+  {
+    "name": "Tuanahe",
+    "id": "tuanahe",
+    "location": { "lng": -160.21666666666701, "lat": -27.183333333333302 },
+    "description": "Some description",
+    "firstAppearance": "1399 A.D. in some Atlas",
+    "lastAppearance": "1639 A.D. in some other Atlas",
+    "samples": [{ "id": "tuanahe" }]
+  },
+  {
+    "name": "Dougherty Island",
+    "id": "dougherty_island",
+    "location": { "lng": -120.333333333333002, "lat": -59.3333333333333 },
+    "description": "Some description",
+    "firstAppearance": "1399 A.D. in some Atlas",
+    "lastAppearance": "1639 A.D. in some other Atlas",
+    "samples": [{ "id": "dougherty_island_1" }, { "id": "dougherty_island_2" }]
+  },
+  {
+    "name": "Davis Land",
+    "id": "davis_land",
+    "location": { "lng": -91.366666666666703, "lat": -27.2 },
+    "description": "Some description",
+    "firstAppearance": "1399 A.D. in some Atlas",
+    "lastAppearance": "1639 A.D. in some other Atlas",
+    "samples": [{ "id": "davis_land" }]
+  },
+  {
+    "name": "Bermeja",
+    "id": "bermeja",
+    "location": { "lng": -91.366666666666703, "lat": 22.55 },
+    "description": "Some description",
+    "firstAppearance": "1399 A.D. in some Atlas",
+    "lastAppearance": "1639 A.D. in some other Atlas",
+    "samples": [{ "id": "bermeja" }]
+  },
+  {
+    "name": "Rica de Oro",
+    "id": "rica_de_oro",
+    "location": { "lng": 155.0, "lat": 30.0 },
+    "description": "Some description",
+    "firstAppearance": "1399 A.D. in some Atlas",
+    "lastAppearance": "1639 A.D. in some other Atlas",
+    "samples": [{ "id": "rica_de_oro" }]
+  },
+  {
+    "name": "Rico de Plata",
+    "id": "rico_de_plata",
+    "location": { "lng": 164.0, "lat": 34.0 },
+    "description": "Some description",
+    "firstAppearance": "1399 A.D. in some Atlas",
+    "lastAppearance": "1639 A.D. in some other Atlas",
+    "samples": [{ "id": "rico_de_plata" }]
+  }
+]

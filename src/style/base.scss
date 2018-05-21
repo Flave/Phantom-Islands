@@ -9,23 +9,23 @@ body {
   font-family: 'Roboto Mono', monospace;
   color: $c-black;
 
-  &:after,
-  &:before {
-    content: '';
-    position: fixed;
-    display: block;
-    left: 50%;
-    top: 50%;
-    height: 1px;
-    width: 15px;
-    background-color: #ff0000;
-    transform: translate(-50%, -50%);
-    z-index: 1;
-  }
+  // &:after,
+  // &:before {
+  //   content: '';
+  //   position: fixed;
+  //   display: block;
+  //   left: 50%;
+  //   top: 50%;
+  //   height: 1px;
+  //   width: 15px;
+  //   background-color: #ff0000;
+  //   transform: translate(-50%, -50%);
+  //   z-index: 1;
+  // }
 
-  &:before {
-    width: 1px;
-    height: 15px;
-  }
+  // &:before {
+  //   width: 1px;
+  //   height: 15px;
+  // }
 }
 

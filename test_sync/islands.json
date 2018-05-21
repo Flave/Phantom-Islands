@@ -1,0 +1,164 @@
+[
+  {
+    "name": "Frisland",
+    "id": "frisland",
+    "location": { "lng": -18.0, "lat": 60.0 },
+    "description": "Some description"
+  },
+  {
+    "name": "Buss Island",
+    "id": "buss_island",
+    "location": { "lng": -28.0, "lat": 58.0 },
+    "description": "Some description"
+  },
+  {
+    "name": "Hy Brasilfdsafd",
+    "id": "hy_brasil",
+    "location": { "lng": -17.566666666666599, "lat": 51.0 },
+    "description": "Some description"
+  },
+  {
+    "name": "St. Brendan's Island",
+    "id": "st_brendans_island",
+    "location": { "lng": -23.233333333333299, "lat": 28.533333333333299 },
+    "description": "Some description"
+  },
+  {
+    "name": "Fonseca",
+    "id": "fonseca",
+    "location": { "lng": -54.8, "lat": 12.45 },
+    "description": "Some description"
+  },
+  {
+    "name": "Satanazes",
+    "id": "satanazes",
+    "location": { "lng": -48.4166666666666, "lat": 40.216666666666697 },
+    "description": "Some description"
+  },
+  {
+    "name": "Antillia",
+    "id": "antillia",
+    "location": { "lng": -54.9166666666666, "lat": 33.733333333333299 },
+    "description": "Some description"
+  },
+  {
+    "name": "Pepys Island",
+    "id": "pepys_island",
+    "location": { "lng": -58.4, "lat": -47.566666666666698 },
+    "description": "Some description"
+  },
+  {
+    "name": "Saxenburgh Island",
+    "id": "saxenburgh_island",
+    "location": { "lng": -19.6666666666666, "lat": -30.75 },
+    "description": "Some description"
+  },
+  {
+    "name": "Aurora Islands",
+    "id": "aurora_islands",
+    "location": { "lng": -47.816666666666698, "lat": -52.616666666666703 },
+    "description": "Some description"
+  },
+  {
+    "name": "Juan de Lisoboa",
+    "id": "juan_de_lisoboa",
+    "location": { "lng": 52.8, "lat": -26.283333333333299 },
+    "description": "Some description"
+  },
+  {
+    "name": "Taprobana",
+    "id": "taprobana",
+    "location": { "lng": 88.0, "lat": 0.0 },
+    "description": "Some description"
+  },
+  {
+    "name": "Gama",
+    "id": "gama",
+    "location": { "lng": 75.0, "lat": -2.0 },
+    "description": "Some description"
+  },
+  {
+    "name": "Turtle",
+    "id": "turtle",
+    "location": { "lng": 73.0, "lat": -4.0 },
+    "description": "Some description"
+  },
+  {
+    "name": "Candy",
+    "id": "candy",
+    "location": { "lng": 73.983333333333306, "lat": -5.53333333333333 },
+    "description": "Some description"
+  },
+  {
+    "name": "Londons",
+    "id": "londons",
+    "location": { "lng": 73.383333333333297, "lat": -5.96666666666667 },
+    "description": "Some description"
+  },
+  {
+    "name": "Trial Rocks",
+    "id": "trial_rocks",
+    "location": { "lng": 105.0, "lat": -20.3333333333333 },
+    "description": "Some description"
+  },
+  {
+    "name": "Onaseuse (Hunter Island)",
+    "id": "onaseuse_hunter_island)",
+    "location": { "lng": 176.183333333332996, "lat": -15.516666666666699 },
+    "description": "Some description"
+  },
+  {
+    "name": "Los Jardines",
+    "id": "los_jardines",
+    "location": { "lng": 150.5, "lat": 21.0 },
+    "description": "Some description"
+  },
+  {
+    "name": "Byers Island",
+    "id": "byers_island",
+    "location": { "lng": 177.066666666667004, "lat": 28.533333333333299 },
+    "description": "Some description"
+  },
+  {
+    "name": "Morrell Island",
+    "id": "morrell_island",
+    "location": { "lng": 174.516666666666993, "lat": 29.95 },
+    "description": "Some description"
+  },
+  {
+    "name": "Tuanahe",
+    "id": "tuanahe",
+    "location": { "lng": -160.21666666666701, "lat": -27.183333333333302 },
+    "description": "Some description"
+  },
+  {
+    "name": "Dougherty Island",
+    "id": "dougherty_island",
+    "location": { "lng": -120.333333333333002, "lat": -59.3333333333333 },
+    "description": "Some description"
+  },
+  {
+    "name": "Davis Land",
+    "id": "davis_land",
+    "location": { "lng": -91.366666666666703, "lat": -27.2 },
+    "description": "Some description"
+  },
+  {
+    "name": "Bermeja",
+    "id": "bermeja",
+    "location": { "lng": -91.366666666666703, "lat": 22.55 },
+    "description": "Some description"
+  },
+  {
+    "name": "Rica de Oro",
+    "id": "rica_de_oro",
+    "location": { "lng": 155.0, "lat": 30.0 },
+    "description": "Some description"
+  },
+  {
+    "name": "Rico de Plata",
+    "id": "rico_de_plata",
+    "location": { "lng": 164.0, "lat": 34.0 },
+    "description": "Some description"
+  }
+]

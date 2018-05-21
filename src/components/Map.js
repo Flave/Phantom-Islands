@@ -1,6 +1,5 @@
-import { autorun } from 'mobx';
+import { autorun, when } from 'mobx';
 import uiState from 'app/uiState';
-import islands from 'app/data/islands';
 import { Marker, Popup } from 'mapbox-gl';
 import { select as d3_select, event as d3_event } from 'd3';
 
@@ -39,7 +38,7 @@ const WorldMap = function(map) {
     markers.forEach(marker => {
       d3_select(marker.getElement()).classed(
         'map__island--low-zoom',
-        map.getZoom() < 5,
+        map.getZoom() < 5.5,
       );
     });
     updateMapParams();
@@ -73,20 +72,24 @@ const WorldMap = function(map) {
     }
   };
 
-  uiState.islands.forEach(island => {
-    const el = d3_select(document.body)
-      .datum(island)
-      .append('div')
-      .classed('map__island--low-zoom', true)
-      .html(`<div class="map__island-name">${island.name}</div>`)
-      .on('click', function(e) {
-        selectIsland(island);
-        d3_event.stopPropagation();
-      })
-      .classed('map__island', true);
-    const marker = new Marker(el.node()).setLngLat(island.location).addTo(map);
-    markers.push(marker);
-  });
+  const initIslands = () => {
+    uiState.islands.forEach(island => {
+      const el = d3_select(document.body)
+        .datum(island)
+        .append('div')
+        .classed('map__island--low-zoom', true)
+        .html(`<div class="map__island-name">${island.name}</div>`)
+        .on('click', function(e) {
+          selectIsland(island);
+          d3_event.stopPropagation();
+        })
+        .classed('map__island', true);
+      const marker = new Marker(el.node())
+        .setLngLat(island.location)
+        .addTo(map);
+      markers.push(marker);
+    });
+  };
 
   map.on('click', deselectIsland);
   map.on('zoom', handleZoom);
@@ -95,6 +98,7 @@ const WorldMap = function(map) {
   map.on('zoomend', setMaxZoom);
 
   autorun(update);
+  when(() => uiState.islands.length, initIslands);
 };
 
 export default WorldMap;

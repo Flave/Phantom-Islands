@@ -1,8 +1,11 @@
 import friesland from 'app/assets/samples/friesland.mp3';
-import buss_island from 'app/assets/samples/buss_island.mp3';
+import buss_island_1 from 'app/assets/samples/buss_island_1.mp3';
+import buss_island_2 from 'app/assets/samples/buss_island_2.mp3';
 import hy_brasil from 'app/assets/samples/hy_brasil.mp3';
-import st_brendans_island from 'app/assets/samples/st_brendans_island.mp3';
-import fonseca from 'app/assets/samples/fonseca.mp3';
+import st_brendans_island_1 from 'app/assets/samples/st_brendans_island_1.mp3';
+import st_brendans_island_2 from 'app/assets/samples/st_brendans_island_2.mp3';
+import fonseca_1 from 'app/assets/samples/fonseca_1.mp3';
+import fonseca_2 from 'app/assets/samples/fonseca_2.mp3';
 import satanazes_1 from 'app/assets/samples/satanazes_1.mp3';
 import satanazes_2 from 'app/assets/samples/satanazes_2.mp3';
 import antillia from 'app/assets/samples/antillia.mp3';
@@ -21,7 +24,8 @@ import londons from 'app/assets/samples/londons.mp3';
 
 import trial_rocks from 'app/assets/samples/trial_rocks.mp3';
 import onaseuse_hunter_island from 'app/assets/samples/onaseuse_hunter_island.mp3';
-import los_jardines from 'app/assets/samples/los_jardines.mp3';
+import los_jardines_1 from 'app/assets/samples/los_jardines_1.mp3';
+import los_jardines_2 from 'app/assets/samples/los_jardines_2.mp3';
 import byers_island from 'app/assets/samples/byers_island.mp3';
 import morrell_island from 'app/assets/samples/morrell_island.mp3';
 import tuanahe from 'app/assets/samples/tuanahe.mp3';
@@ -35,9 +39,10 @@ import rico_de_plata from 'app/assets/samples/rico_de_plata.mp3';
 export default [
   {
     name: 'Frisland',
-    id: 'frisland',
+    id: 'friesland',
     location: { lng: -18.0, lat: 60.0 },
     description: 'Some description',
+    test_samples: [{}],
     samples: [{ id: 'friesland', url: friesland }],
   },
   {
@@ -45,7 +50,10 @@ export default [
     id: 'buss_island',
     location: { lng: -28.0, lat: 58.0 },
     description: 'Some description',
-    samples: [{ id: 'buss_island', url: buss_island }],
+    samples: [
+      { id: 'buss_island_1', url: buss_island_1 },
+      { id: 'buss_island_2', url: buss_island_2 },
+    ],
   },
   {
     name: 'Hy Brasil',
@@ -59,14 +67,20 @@ export default [
     id: 'st_brendans_island',
     location: { lng: -23.233333333333299, lat: 28.533333333333299 },
     description: 'Some description',
-    samples: [{ id: 'st_brendans_island', url: st_brendans_island }],
+    samples: [
+      { id: 'st_brendans_island_1', url: st_brendans_island_1 },
+      { id: 'st_brendans_island_2', url: st_brendans_island_2 },
+    ],
   },
   {
     name: 'Fonseca',
     id: 'fonseca',
     location: { lng: -54.8, lat: 12.45 },
     description: 'Some description',
-    samples: [{ id: 'fonseca', url: fonseca }],
+    samples: [
+      { id: 'fonseca_1', url: fonseca_1 },
+      { id: 'fonseca_2', url: fonseca_2 },
+    ],
   },
   {
     name: 'Satanazes',
@@ -175,7 +189,10 @@ export default [
     id: 'los_jardines',
     location: { lng: 150.5, lat: 21.0 },
     description: 'Some description',
-    samples: [{ id: 'los_jardines', url: los_jardines }],
+    samples: [
+      { id: 'los_jardines_1', url: los_jardines_1 },
+      { id: 'los_jardines_2', url: los_jardines_2 },
+    ],
   },
   {
     name: 'Byers Island',

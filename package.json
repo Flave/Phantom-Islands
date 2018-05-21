@@ -44,6 +44,7 @@
         "mobx-utils": "^2.0.1",
         "node-sass": "^4.5.3",
         "pixi.js": "^4.7.3",
-        "tone": "^0.12.80"
+        "tone": "^0.12.80",
+        "webpack-merge": "^4.1.2"
     }
 }

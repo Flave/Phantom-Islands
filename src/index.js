@@ -30,6 +30,8 @@ const map = new mapboxgl.Map({
 });
 map.dragRotate.disable();
 map.touchZoomRotate.disableRotation();
+map.addControl(new mapboxgl.ScaleControl(), 'top-left');
+map.addControl(new mapboxgl.NavigationControl(), 'top-left');
 
 uiState.setMap(map);
 

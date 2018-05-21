@@ -1,7 +1,7 @@
 import { autorun } from 'mobx';
 import { select as d3_select } from 'd3';
 import _template from 'lodash/template';
-import template from 'app/templates/popup.hbs';
+import template from 'app/templates/mapControls.hbs';
 
 import uiState from 'app/uiState';
 

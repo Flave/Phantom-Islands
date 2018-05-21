@@ -1,11 +1,16 @@
-<div class="map-popup__header">
-  <div class="map-popup__name"><%= name %></div>
-  <div class="map-popup__location"><%= locationString %></div>
+<div class="map-popup__inner">
+  <div class="map-popup__header">
+    <div class="map-popup__name"><%= name %></div>
+    <div class="map-popup__location"><%= locationString %></div>
+  </div>
+  <div class="map-popup__main">
+    <%= description %>
+  </div>
+  <div class="map-popup__footer">
+    <div class="map-popup__footer-section">First Appeared</div>
+    <div class="map-popup__footer-section">Last Appeared</div>
+  </div>
 </div>
-<div class="map-popup__main">
-  <%= description %>
-</div>
-<div class="map-popup__footer">
-  <div class="map-popup__footer-section">First Appeared</div>
-  <div class="map-popup__footer-section">Last Appeared</div>
-</div>
+<svg width="<%= svgWidth %>" height="<%= svgHeight %>" style="transform: translate(<%= svgX %>px, <%= svgY %>px);" class="map-popup__line-svg">
+  <line class="map-popup__line" x1="<%= lineStartX %>" y1="<%= lineStartY %>" x2="<%= lineEndX %>" y2="<%= lineEndY %>"></line>
+</svg>

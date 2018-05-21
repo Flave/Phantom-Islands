@@ -1,12 +1,11 @@
 import SoundSource from 'app/components/SoundSource';
 import OceanSound from 'app/components/OceanSound';
-import { autorun } from 'mobx';
+import { autorun, when } from 'mobx';
 import uiState from 'app/uiState';
 import { queue as d3_queue } from 'd3-queue';
 import { Volume, Analyser } from 'tone';
 import _find from 'lodash/find';
 
-import islands from 'app/data/islands';
 import oceans from 'app/data/oceans';
 
 export default class SoundManager {
@@ -16,8 +15,8 @@ export default class SoundManager {
     this.masterVol = new Volume(6);
     this.masterVol.connect(this.fftAnalyser);
 
+    when(() => uiState.islands.length, this.initIslandSounds);
     this.initWaterSounds();
-    this.initIslandSounds();
     autorun(this.update);
   }
 
@@ -37,7 +36,7 @@ export default class SoundManager {
   };
 
   initIslandSounds = () => {
-    this.islandSounds = islands.map(island => {
+    this.islandSounds = uiState.islands.map(island => {
       const islandSound = new SoundSource(island);
 
       islandSound.load(() => {
@@ -62,13 +61,12 @@ export default class SoundManager {
 
   update = () => {
     const { islands, muted, envParams, readyToPlay } = uiState;
+    if (!islands.length || !this.islandSounds) return;
 
     this.masterVol.mute = !readyToPlay || muted;
 
-    this.islandSounds.forEach(source => {
-      const { pan, loaded, volume, volNormal } = _find(islands, {
-        id: source.id,
-      });
+    islands.forEach(({ id, pan, loaded, volume, volNormal }) => {
+      const source = _find(this.islandSounds, { id });
       source.update(volume, pan, volNormal);
     });
 

@@ -20,43 +20,37 @@ import _negate from 'lodash/negate';
 import _groupBy from 'lodash/groupBy';
 import _map from 'lodash/map';
 import { LngLatBounds, LngLat, Marker } from 'mapbox-gl';
-import islands from 'app/data/islands';
+import dataAPI from 'app/data/dataAPI';
 import oceans from 'app/data/oceans';
 import { MAX_ZOOM, MIN_ZOOM, MAX_LAT, MIN_LAT } from './config';
 
 const SURFACE_CACHE_SIZE = 100;
-const ZOOM_BUFFER_SIZE = 50;
+const ZOOM_BUFFER_SIZE = 40;
 const MIN_VOLUME = -75;
 const MAX_LAT_MOVEMENT = Math.abs(MIN_LAT - MAX_LAT);
-
-const initializedIslands = islands.map(island => ({
-  ...island,
-  loaded: false,
-}));
 
 class UiState {
   @observable mapCenter = { lng: 178, lat: 0 };
   @observable mapZoom = 4;
+  @observable zoomBuffer = [];
   @observable mapInitialized = false;
   @observable mapSurfacesCache = [];
+  @observable islandsData = [];
   @observable
   mapBounds = new LngLatBounds(new LngLat(0, 0), new LngLat(50, 50));
   @observable selectedIsland;
 
-  @observable mouse = { x: 0, y: 0 };
   @observable.struct
   windowDimensions = {
     width: windowWidth(),
     height: windowHeight(),
   };
 
-  @observable muted = false;
+  @observable muted = true;
   @observable pendingRequests = [];
   @observable showIntro = false;
 
   constructor() {
-    this.zoomBuffer = [];
-
     addEvent(
       window,
       'resize',
@@ -69,14 +63,21 @@ class UiState {
       500,
     );
 
-    document.addEventListener('mousemove', e => {
-      this.mouse.x = e.pageX;
-      this.mouse.y = e.pageY;
+    dataAPI.load(d => {
+      this.setIslands(d);
     });
   }
 
   setMap(map) {
     this.map = map;
+  }
+
+  @action
+  setIslands(islands) {
+    this.islandsData = islands.map(island => ({
+      ...island,
+      loaded: false,
+    }));
   }
 
   @action
@@ -105,7 +106,7 @@ class UiState {
     ];
     this.zoomBuffer = [zoom, ...this.zoomBuffer.slice(0, ZOOM_BUFFER_SIZE - 1)];
     this.mapInitialized = true;
-    this.selectedIsland = undefined;
+    //this.selectedIsland = undefined;
   }
 
   @action
@@ -127,11 +128,17 @@ class UiState {
   // COMPUTES
 
   @computed
-  get loadingProgress() {
-    this.pendingRequests;
+  get readyToPlay() {
+    return this.pendingRequests.indexOf('ocean') === -1;
   }
 
-  // Utility function to simplify access to the corner points of the map
+  //-----
+  // MAP
+  //-----
+
+  /**
+   * Utility function to simplify access to the corner points of the map
+   */
   @computed
   get mapBoundsAsObject() {
     const { lng: left, lat: top } = this.mapBounds.getNorthWest();
@@ -144,15 +151,18 @@ class UiState {
     };
   }
 
-  // Returns an array of lat/lng coordinates for the four corners
-  // of the map bounds (used manily to position the canvas source)
+  /**
+   * Returns an array of lat/lng coordinates for the four corners of the map bounds (used manily to position the canvas source)
+   */
   @computed
   get mapBoundsAsArray() {
     const { left, top, right, bottom } = this.mapBoundsAsObject;
     return [[left, top], [right, top], [right, bottom], [left, bottom]];
   }
 
-  // Retuns the width and height of the map in geographical distance (degrees)
+  /**
+   * Retuns the width and height of the map in geographical distance (degrees)
+   */
   @computed
   get mapDimensions() {
     const { left, top, right, bottom } = this.mapBoundsAsObject;
@@ -187,7 +197,7 @@ class UiState {
 
   @computed
   get islands() {
-    return islands.map(island => {
+    return this.islandsData.map(island => {
       const locationPx = this.getLocationPx(island);
       const { dX, dY, dist } = getDistancesPx(locationPx, this.mapCenterPx);
       const volume = this.mapInitialized
@@ -212,14 +222,27 @@ class UiState {
 
   @computed
   get popupCandidate() {
-    if (this.selectedIsland) {
-      return _find(this.islands, { id: this.selectedIsland });
-    }
-    const candidate = _minBy(this.islands, 'dist');
-    if (this.mapZoom > 7 && candidate.volNormal < 0.2) {
-      return candidate;
+    if (!this.islands.length) return;
+    let candidate = _find(this.islands, { id: this.selectedIsland });
+    const closestCandidate = _minBy(this.islands, 'dist');
+    if (this.mapZoom > 9 && closestCandidate.volNormal > 0.2)
+      candidate = closestCandidate;
+
+    if (candidate) {
+      const { x, y } = this.getPopupPosition(candidate.locationPx);
+      return {
+        ...candidate,
+        x,
+        y,
+      };
     }
     return undefined;
+  }
+
+  getPopupPosition({ x, y }) {
+    const pPos = this.cartesianToPolar(x, y);
+    const pos = this.polarToCartesian(pPos.radius - 350, pPos.angle);
+    return pos;
   }
 
   @computed
@@ -247,6 +270,7 @@ class UiState {
 
   @computed
   get envParams() {
+    if (!this.islands.length) return;
     const maxIslandVol = _maxBy(this.islands, 'volNormal').volNormal;
     let groupedSurfaces = _groupBy(this.mapSurfacesCache);
     const { land } = groupedSurfaces;
@@ -275,6 +299,10 @@ class UiState {
       latNormal,
     };
   }
+
+  //--------
+  // SCALES
+  //--------
 
   /**
    * The maximum visible distance from center of map in lat/long. Depends on zoom level
@@ -310,20 +338,26 @@ class UiState {
       .clamp(true);
   }
 
+  @computed
+  get smoothZoom() {
+    const zoomSum = this.zoomBuffer.reduce((sum, val) => sum + val, 0);
+    return zoomSum / this.zoomBuffer.length;
+  }
+
   /**
    *
    */
   @computed
   get zoom2Normalized() {
     return d3_scaleLinear()
-      .domain([MIN_ZOOM, 6])
+      .domain([MIN_ZOOM, 5.5])
       .range([0, 1])
       .clamp(true);
   }
 
   @computed
   get zoomNormal() {
-    return this.zoom2Normalized(this.mapZoom);
+    return this.zoom2Normalized(this.smoothZoom);
   }
 
   /**
@@ -335,19 +369,6 @@ class UiState {
     const topBottom = this.windowDimensions.width / sideSum * Math.PI;
     const leftRigth = Math.abs(topBottom - Math.PI);
     return { topBottom, leftRigth };
-  }
-
-  @computed
-  get relativeMousePos() {
-    return {
-      x: this.mouse.x / this.windowDimensions.width,
-      y: this.mouse.y / this.windowDimensions.height,
-    };
-  }
-
-  @computed
-  get readyToPlay() {
-    return this.pendingRequests.indexOf('ocean') === -1;
   }
 
   //---------
@@ -378,6 +399,44 @@ class UiState {
     // const translate = getTranslate(mockMarker.getElement().style.transform);
     // mockMarker.remove();
     return translate; //{ x: translate[0], y: translate[1] };
+  }
+
+  polarToCartesian(radius, angle) {
+    return {
+      x: this.mapCenterPx.x + radius * Math.cos(angle),
+      y: this.mapCenterPx.y + radius * Math.sin(angle),
+    };
+  }
+
+  // cartesianToPolar(x, y) {
+  //   const cx = this.mapCenterPx.x;
+  //   const cy = this.mapCenterPx.y;
+  //   const dx = cx - x;
+  //   const dy = cy - y;
+  //   const radius = Math.sqrt(Math.pow(dx, 2) + Math.pow(dy, 2));
+  //   let angle = Math.atan2(-dy, -dx);
+  //   // Add 360 if we're in quadrant IV
+  //   if (y < cy && x > cx) angle += Math.PI * 2;
+  //   else if (x < cx) angle += Math.PI; // Add 180 if we're in quadrant II or III
+  //   return {
+  //     angle,
+  //     radius,
+  //   };
+  // }
+
+  cartesianToPolar(x, y) {
+    const cx = this.mapCenterPx.x;
+    const cy = this.mapCenterPx.y;
+    const dx = cx - x;
+    const dy = cy - y;
+    const radius = Math.sqrt(Math.pow(dx, 2) + Math.pow(dy, 2));
+    let angle = Math.atan2(-dy, -dx);
+    if (x < cx && y < cy) angle = Math.PI * 2 + angle;
+    if (y < cy && x > cx) angle = Math.PI * 2 + angle;
+    return {
+      angle,
+      radius,
+    };
   }
 
   getPolarPosition(p) {
