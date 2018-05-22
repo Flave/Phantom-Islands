@@ -7,10 +7,6 @@
     "lastAppearance": "1639 A.D. in some other Atlas",
     "description": "Some description",
     "distanceThreshold": 1,
-    "distance_filter": {
-      "type": "highpass",
-      "frequency": 3243
-    },
     "samples": [
       {
         "id": "friesland_1",
@@ -28,7 +24,7 @@
             "max": 1000
           }
         },
-        "volume": {
+        "volumeLfo": {
           "type": "sine",
           "rate": 0.5,
           "min": -2,
@@ -204,7 +200,15 @@
     "samples": [
       {
         "id": "onaseuse_hunter_island_1",
-        "volumeOffset": 0
+        "volumeOffset": 0,
+        "playbackRate": 1,
+        "reverse": false,
+        "volumeLfo": {
+          "type": "sine",
+          "rate": 1,
+          "min": -20,
+          "max": 0
+        }
       }
     ]
   },

@@ -21,7 +21,7 @@ mapboxgl.accessToken =
 // //Setup mapbox-gl map
 const map = new mapboxgl.Map({
   container: 'map', // container id
-  style: 'mapbox://styles/flaviogortana/cjh0rd0ju002a2so0xcxii2bp',
+  style: 'mapbox://styles/flaviogortana/cjhhuncs809kr2snsbgr4cxrn',
   center: [uiState.mapCenter.lng, uiState.mapCenter.lat],
   zoom: uiState.mapZoom,
   minZoom: MIN_ZOOM,

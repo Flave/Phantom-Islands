@@ -46,7 +46,7 @@ class UiState {
     height: windowHeight(),
   };
 
-  @observable muted = true;
+  @observable muted = false;
   @observable pendingRequests = [];
   @observable showIntro = false;
 

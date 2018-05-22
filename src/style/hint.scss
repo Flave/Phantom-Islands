@@ -2,6 +2,7 @@
   position: fixed;
   white-space: nowrap;
   min-width: 160px;
+  user-select: none;
 
   &--top {
     transform: translateX(-50%);
