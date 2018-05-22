@@ -48,6 +48,7 @@ export default function Popups() {
         const lineEndY = dY > 0 ? svgHeight : 0;
         const svgX = Math.min(dX, 0);
         const svgY = Math.min(dY, 0);
+
         return compiledTemplate({
           ...popup,
           lineStartX,
@@ -62,8 +63,8 @@ export default function Popups() {
       })
       .each(function(d) {
         d3_select(this)
-          .style('left', d => `${d.x}px`)
-          .style('top', d => `${d.y}px`);
+          .style('left', d => `${d.x - 5}px`)
+          .style('top', d => `${d.y - 5}px`);
       });
 
     popupUpdate

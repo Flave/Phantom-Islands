@@ -19,7 +19,7 @@
   //color: #fff;
 
   &--low-zoom {
-    .map__island-name {
+    .map__island-inner {
       bottom: -20px;
       padding-top: 30px;
     }
@@ -51,14 +51,21 @@
   }
 }
 
-.map__island-name {
+.map__island-inner {
   position: absolute;
   text-align: center;
-  white-space: nowrap;
   transform: translateX(-50%);
+}
+
+.map__island-name {
+  white-space: nowrap;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.03em;
+  // border: 1px solid #000;
+  // padding: 3px;
+  // line-height: 1em;
+  // background-color: #fff;
 }
 
 .mapboxgl-ctrl.mapboxgl-ctrl-group {

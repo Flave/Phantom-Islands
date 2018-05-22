@@ -32,7 +32,6 @@ const MAX_LAT_MOVEMENT = Math.abs(MIN_LAT - MAX_LAT);
 class UiState {
   @observable mapCenter = { lng: 178, lat: 0 };
   @observable mapZoom = 4;
-  @observable zoomBuffer = [];
   @observable mapInitialized = false;
   @observable mapSurfacesCache = [];
   @observable islandsData = [];
@@ -51,6 +50,8 @@ class UiState {
   @observable showIntro = false;
 
   constructor() {
+    // hacky helper to prevent blips of sounds when jumping to different location
+    this.updateSounds = true;
     addEvent(
       window,
       'resize',
@@ -103,7 +104,14 @@ class UiState {
   }
 
   @action
+  setMapCenter(mapCenter) {
+    this.updateSounds = false;
+    this.mapCenter = mapCenter;
+  }
+
+  @action
   setMapParams(center, zoom, bounds, surface) {
+    this.updateSounds = true;
     this.mapBounds = bounds;
     this.mapZoom = zoom;
     this.mapCenter = center;
@@ -111,9 +119,7 @@ class UiState {
       surface,
       ...this.mapSurfacesCache.slice(0, SURFACE_CACHE_SIZE - 1),
     ];
-    this.zoomBuffer = [zoom, ...this.zoomBuffer.slice(0, ZOOM_BUFFER_SIZE - 1)];
     this.mapInitialized = true;
-    //this.selectedIsland = undefined;
   }
 
   @action
@@ -334,12 +340,6 @@ class UiState {
     );
   }
 
-  @computed
-  get smoothZoom() {
-    const zoomSum = this.zoomBuffer.reduce((sum, val) => sum + val, 0);
-    return zoomSum / this.zoomBuffer.length;
-  }
-
   /**
    *
    */
@@ -353,7 +353,7 @@ class UiState {
 
   @computed
   get zoomNormal() {
-    return this.zoom2Normalized(this.smoothZoom);
+    return this.zoom2Normalized(this.mapZoom);
   }
 
   /**

@@ -60,8 +60,10 @@ export default class SoundManager {
   };
 
   update = () => {
-    const { islands, muted, envParams, readyToPlay } = uiState;
-    if (!islands.length || !this.islandSounds) return;
+    const { islands, muted, envParams, readyToPlay, updateSounds } = uiState;
+    // abort if islands not loaded or islandSounds not initialized or if sounds
+    // explicitly should not be updated to prevent transition blips
+    if (!islands.length || !this.islandSounds || !updateSounds) return;
 
     this.masterVol.mute = !readyToPlay || muted;
     islands.forEach(({ id, pan, volume, volNormal }) => {

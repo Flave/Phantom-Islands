@@ -31,6 +31,9 @@ export default function Hints() {
 
     hints = hintsEnter
       .merge(hintsUpdate)
+      .on('click', d => {
+        uiState.setMapCenter(d.location);
+      })
       .attr('class', d => `hint hint--${d.side}`)
       .style('left', d => `${d.borderPos.x}px`)
       .style('top', d => `${d.borderPos.y}px`)

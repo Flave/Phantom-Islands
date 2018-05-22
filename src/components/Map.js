@@ -5,6 +5,7 @@ import { select as d3_select, event as d3_event } from 'd3';
 
 const WorldMap = function(map) {
   const markers = [];
+
   const updateMapParams = () => {
     uiState.setMapParams(
       map.getCenter(),
@@ -70,6 +71,12 @@ const WorldMap = function(map) {
         duration: 3000,
       });
     }
+    if (uiState.mapCenter !== map.getCenter()) {
+      map.easeTo({
+        center: uiState.mapCenter,
+        duration: 10000,
+      });
+    }
   };
 
   const initIslands = () => {
@@ -78,7 +85,11 @@ const WorldMap = function(map) {
         .datum(island)
         .append('div')
         .classed('map__island--low-zoom', true)
-        .html(`<div class="map__island-name">${island.name}</div>`)
+        .html(
+          `<div class="map__island-inner"><div class="map__island-name">${
+            island.name
+          }</div></div>`,
+        )
         .on('click', function(e) {
           selectIsland(island);
           d3_event.stopPropagation();
