@@ -142,7 +142,7 @@ class UiState {
 
   @computed
   get readyToPlay() {
-    return this.pendingRequests.indexOf('ocean') === -1;
+    return this.pendingRequests.indexOf('ocean') === -1 && this.mapInitialized;
   }
 
   //-----
@@ -213,11 +213,10 @@ class UiState {
     return this.islandsData.map(island => {
       const locationPx = this.getLocationPx(island);
       const { dX, dY, dist } = getDistancesPx(locationPx, this.mapCenterPx);
-      const volume = this.mapInitialized
-        ? this.distPx2Volume(dist, island.distanceThreshold)
-        : MIN_VOLUME;
+      const volume = this.distPx2Volume(dist, island.distanceThreshold);
 
       const volNormal = 1 - volume / MIN_VOLUME;
+
       return {
         ...island,
         loaded: this.pendingRequests.indexOf(island.id) === -1,
@@ -289,26 +288,11 @@ class UiState {
     const { land } = groupedSurfaces;
     // Number between 0 and 1 indicating the relative amount of hovered land
     const landFactor = land ? land.length / SURFACE_CACHE_SIZE : 0;
-    const latNormal = (this.mapCenter.lat - MIN_LAT) / MAX_LAT_MOVEMENT;
-    const maxOceanVolume = -20 * maxIslandVol + -30 * landFactor;
-
-    // Get the number of occurences of oceans in the surfaces cache
-    let oceanOccurences = this.mapSurfacesCache.filter(
-      surface => surface !== 'land' && surface !== 'island',
-    );
-    const oceanValues = oceans.map(ocean => {
-      const occurences = groupedSurfaces[ocean.id] || [];
-      let value = occurences.length / oceanOccurences.length;
-      value = isNaN(value) ? 0 : value;
-      return {
-        id: ocean.id,
-        volume: (1 - value) * MIN_VOLUME + maxOceanVolume,
-        value,
-      };
-    });
+    const latNormal = Math.abs(this.mapCenter.lat / MAX_LAT);
+    const oceanVolume = -20 * maxIslandVol + -30 * landFactor;
 
     return {
-      oceanValues,
+      volume: oceanVolume,
       latNormal,
     };
   }
@@ -346,14 +330,14 @@ class UiState {
   @computed
   get zoom2Normalized() {
     return d3_scaleLinear()
-      .domain([MIN_ZOOM, 5.5])
+      .domain([MIN_ZOOM, 6])
       .range([0, 1])
       .clamp(true);
   }
 
   @computed
   get zoomNormal() {
-    return this.zoom2Normalized(this.mapZoom);
+    return Math.sqrt(this.zoom2Normalized(this.mapZoom));
   }
 
   /**
@@ -381,10 +365,7 @@ class UiState {
       .clamp(true);
     const distNormal = distPx2Normalized(dist);
     const distPow = Math.pow(distNormal, 2);
-    return Math.max(
-      distPow * MIN_VOLUME + (1 - this.zoomNormal) * MIN_VOLUME,
-      MIN_VOLUME,
-    );
+    return distPow * MIN_VOLUME + (1 - this.zoomNormal) * MIN_VOLUME;
   }
 
   getLocationPx({ id }) {

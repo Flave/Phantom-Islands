@@ -16,23 +16,19 @@ export default class SoundManager {
     this.masterVol.connect(this.fftAnalyser);
 
     when(() => uiState.islands.length, this.initIslandSounds);
-    this.initWaterSounds();
+    this.initWaterSound();
     autorun(this.update);
   }
 
-  initWaterSounds = () => {
-    this.oceanSounds = oceans.map(ocean => {
-      const oceanSound = new OceanSound(ocean);
-
-      oceanSound.load(() => {
-        uiState.removePendingRequest('ocean');
-        oceanSound.start();
-      });
-
-      uiState.addPendingRequest('ocean');
-      oceanSound.connect(this.masterVol);
-      return oceanSound;
+  initWaterSound = () => {
+    this.oceanSound = new OceanSound();
+    this.oceanSound.load(() => {
+      uiState.removePendingRequest('ocean');
+      this.oceanSound.start();
     });
+
+    uiState.addPendingRequest('ocean');
+    this.oceanSound.connect(this.masterVol);
   };
 
   initIslandSounds = () => {
@@ -71,10 +67,7 @@ export default class SoundManager {
       source.update(volume, pan, volNormal);
     });
 
-    this.oceanSounds.forEach(source => {
-      const { volume } = _find(envParams.oceanValues, { id: source.id });
-      source.update(volume, envParams.latNormal);
-    });
+    this.oceanSound.update(envParams.volume, envParams.latNormal);
   };
 
   getFFT = () => {

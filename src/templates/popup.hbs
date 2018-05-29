@@ -7,8 +7,14 @@
     <%= description %>
   </div>
   <div class="map-popup__footer">
-    <div class="map-popup__footer-section">First Appeared</div>
-    <div class="map-popup__footer-section">Last Appeared</div>
+    <div class="map-popup__footer-section">
+      <div class="map-popup__section-header">First Appearance</div>
+      <div class="map-popup__section-content"><%= firstAppearance %></div>
+    </div>
+    <div class="map-popup__footer-section">
+      <div class="map-popup__section-header">Last Appearance</div>
+      <div class="map-popup__section-content"><%= lastAppearance %></div>
+    </div>
   </div>
 </div>
 <svg width="<%= svgWidth %>" height="<%= svgHeight %>" style="transform: translate(<%= svgX %>px, <%= svgY %>px);" class="map-popup__line-svg">

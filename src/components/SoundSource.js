@@ -1,5 +1,6 @@
 import Tone, { Players, PanVol } from 'tone';
 import _every from 'lodash/every';
+import { scaleLinear as d3ScaleLinear } from 'd3';
 
 export default class SoundSource {
   constructor({ samples, id, distanceFilter }) {
@@ -7,14 +8,19 @@ export default class SoundSource {
     this.id = id;
     this.masterPanVol = new PanVol(0, -10);
     if (distanceFilter) {
-      this.distanceFilter = this.createFilter(distanceFilter);
+      this.distanceFilter = this.createFilter({
+        ...distanceFilter,
+        type: 'highpass',
+      });
       this.distanceFilter.connect(this.masterPanVol);
+      const min = distanceFilter.min !== undefined ? distanceFilter.min : 30;
+      const max = distanceFilter.max !== undefined ? distanceFilter.max : 1500;
+      this.distanceFilterScale = d3ScaleLinear()
+        .domain([1, 0])
+        .range([min, max]);
     }
-    // this.filter = new Tone.Filter(600, 'bandpass');
-    // this.lfo = new Tone.LFO(0.25, 100, 2000);
 
-    // this.lfo.connect(this.filter.frequency);
-    // this.lfo.start();
+    const lfo = new Tone.LFO(1, 100, 500);
 
     // Dictionary to create players object
     this.samplesDict = {};
@@ -38,13 +44,6 @@ export default class SoundSource {
         } else {
           player.connect(this.distanceFilter || this.masterPanVol);
         }
-
-        // if (sample.volumeLfo) {
-        //   const { rate, type, min, max } = sample.volumeLfo;
-        //   const lfo = new Tone.LFO(rate, min, max);
-        //   lfo.type = type;
-        //   lfo.connect(player.volume);
-        // }
       });
     });
   };
@@ -56,7 +55,7 @@ export default class SoundSource {
   createFilter({ frequency: frequencySpec, type, Q, gain }) {
     const frequency = typeof frequencySpec === 'number' ? frequencySpec : 100;
     const filter = new Tone.Filter(frequency, type);
-    filter.Q.value = Q !== undefined ? Q : 0;
+    filter.Q.value = Q !== undefined ? Q : 1;
     filter.gain.value = gain !== undefined ? gain : 0;
 
     if (typeof frequencySpec === 'object') {
@@ -88,8 +87,14 @@ export default class SoundSource {
     });
   }
 
-  update = (volume, pan, filterVal) => {
-    //this.filter.frequency.value = 10000 - filterVal.x * 10000;
+  update = (volume, pan, normalDistance) => {
+    // if (this.id === 'onaseuse_hunter_island')
+    //   console.log(volume, normalDistance);
+    if (this.distanceFilter) {
+      this.distanceFilter.frequency.value = this.distanceFilterScale(
+        normalDistance,
+      );
+    }
     this.masterPanVol.volume.set('value', volume);
     this.masterPanVol.pan.value = pan;
     this.eachPlayer((player, sample) => {
