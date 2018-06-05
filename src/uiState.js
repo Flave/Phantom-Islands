@@ -48,6 +48,7 @@ class UiState {
   @observable muted = false;
   @observable pendingRequests = [];
   @observable showIntro = false;
+  @observable showAbout = false;
 
   constructor() {
     // hacky helper to prevent blips of sounds when jumping to different location
@@ -94,12 +95,18 @@ class UiState {
   }
 
   @action
+  setShowAbout(show) {
+    this.showAbout = show;
+  }
+
+  @action
   setMuted(mute) {
     this.muted = mute;
   }
 
   @action
   setMapZoom(zoom) {
+    this.updateSounds = false;
     this.mapZoom = zoom;
   }
 
@@ -143,6 +150,20 @@ class UiState {
   @computed
   get readyToPlay() {
     return this.pendingRequests.indexOf('ocean') === -1 && this.mapInitialized;
+  }
+
+  @computed
+  get loadingStats() {
+    const numSamples =
+      this.islandsData.reduce(
+        (sum, island) => sum + island.samples.length,
+        0,
+      ) || 1;
+    return {
+      totalSamples: numSamples,
+      samplesLoaded: numSamples - this.pendingRequests.length,
+      progress: (numSamples - this.pendingRequests.length) / numSamples,
+    };
   }
 
   //-----
@@ -237,7 +258,7 @@ class UiState {
     if (!this.islands.length) return;
     let candidate = _find(this.islands, { id: this.selectedIsland });
     const closestCandidate = _minBy(this.islands, 'dist');
-    if (this.mapZoom > 9 && closestCandidate.volNormal > 0.2)
+    if (this.mapZoom >= 9 && closestCandidate.volNormal > 0.2)
       candidate = closestCandidate;
 
     if (candidate) {
@@ -277,7 +298,7 @@ class UiState {
         angle,
         dist,
       };
-    });
+    }).filter(hint => this.mapCenter.lng - hint.location.lng < 20);
   }
 
   @computed

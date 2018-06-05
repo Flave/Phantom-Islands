@@ -9,15 +9,11 @@
     "firstAppearance": "1399 A.D. in some Atlas",
     "lastAppearance": "1639 A.D. in some other Atlas",
     "description": "Some description",
-    "distanceThreshold": 0.5,
-    "distanceFilter": {
-      "min": 100,
-      "max": 12000
-    },
+    "distanceThreshold": 0.75,
     "samples": [
       {
         "id": "friesland_1",
-        "volumeOffset": 0,
+        "volumeOffset": 4,
         "playbackRate": 1,
         "reverse": false,
         "filter": {
@@ -41,9 +37,10 @@
       "lng": -28.0,
       "lat": 58.0
     },
-    "firstAppearance": "1399 A.D. in some Atlas",
-    "lastAppearance": "1639 A.D. in some other Atlas",
-    "description": "Some description",
+    "firstAppearance": "Emery Molyneux’s 1592 Globus",
+    "lastAppearance": "Keith Johnston’s 1858 Physical Atlas",
+    "description":
+      "In 1578, on the return journey of Sir Martin Frobisher’s third attempt to find a Northwest Passage from Europe to Asia through the Arctic, his crew makes an unexpected discovery: their smallest ship is separated during a heavy storm from the rest of the expedition. Making their way homeward they discover an island: <i>never yet founde before, and sayled three days alongst the coast, the land seeming to be fruitful, full of woods, and a champion countrie</i>. Soon after, the Buss appears on sea charts. Many navigators attempt to find Buss, some of them reporting great banks of ice (rather than fruits and trees) until in 1671 the royal hydrographer John Seller draws a detailed map of the island. Seller labels its harbours, capes and bays with names he derives from those of several directors of the newly formed Hudson’s Bay Company. In May 1675, the Company acquires the rights of trade and commerce for this island that no one has ever set foot on. By the 18th century, with maritime traffic increasing in the North Atlantic and no further sightings recorded, Buss is treated with suspicion: whether it was a real island that sank, or an erroneously cartographed bank of fog, or a fraud from the very beginning – in 1791 Captain Charles Duncan, hired by the HBC to locate the land of Buss, gives up: <i> I strove as much as the winds would permit me to keep in the supposed latitude of the supposed Buss island, but it is my firm opinion that no such island is now above water, if ever it was</i>.",
     "samples": [
       {
         "id": "buss_island_1",
@@ -78,9 +75,10 @@
       "lng": -23.233333333333299,
       "lat": 28.533333333333299
     },
-    "description": "Some description",
-    "firstAppearance": "1399 A.D. in some Atlas",
-    "lastAppearance": "1639 A.D. in some other Atlas",
+    "description":
+      "Named after the Irish saint who claims to have landed there in 512 with at least a dozen other monks. The monastic party reported its stay as 15 days, while the ships that expected their return complained that they had to wait a year, during which period the island remained concealed behind a thick curtain of mist. St. Brendan’s discovery is mentioned in several medieval texts and stokes the interest of the Portuguese prince Henry the Navigator (1394–1460), who orders an expedition to the island after hearing reports of its sighting. In 1719, the Scottish monk Sigbert de Gembloux reports seeing the island, as does Don Matea Dacesta, mayor of Valverde, on the Canary island of El Hierro in 1721. According to the Canary historian Ramirez, in 1723 a priest performs the rite of exorcism towards the island during one of its apparitions behind low cloud. And in 1759 an unnamed Franciscan monk writes of an occasion when the island was visible for 90 minutes and was witnessed by about 40 spectators.",
+    "firstAppearance": "1235 Ebstorf map of the world",
+    "lastAppearance": "1707 de l’Isle’s map of West Africa",
     "samples": [
       {
         "id": "st_brendans_island_1",
@@ -98,9 +96,10 @@
       "lng": -54.8,
       "lat": 12.45
     },
-    "description": "Some description",
-    "firstAppearance": "1399 A.D. in some Atlas",
-    "lastAppearance": "1639 A.D. in some other Atlas",
+    "description":
+      "In 1628 Charles I of England grants Fonseca to Philip, the Earl of Montgomery. Several expeditions – including one by a group of English Puritans in 1630 – aiming to explore and colonize the island prove unsuccessful. A 1682 account, <i>A Discovery of Fonseca</i>, describes its inhabitants as moon-worshipping Amazon women of Welsh origin. A 1708 pamphlet, <i>A Voyage to the New Island of Fonseca</i>, reports that it is a predominantly British community of around 16,000, with an African slave population of 70,000.",
+    "firstAppearance": "Cabot's 1544 map of the world",
+    "lastAppearance": "Johnston's 1866 Royal Atlas",
     "samples": [
       {
         "id": "fonseca_1"
@@ -137,9 +136,10 @@
       "lng": -54.9166666666666,
       "lat": 33.733333333333299
     },
-    "description": "Some description",
-    "firstAppearance": "1399 A.D. in some Atlas",
-    "lastAppearance": "1639 A.D. in some other Atlas",
+    "description":
+      "Mentioned in various geographies since at least the 1st century, the Atlantic island of Antilia frequently appears west of the Azores on world maps of the 15th century. A 1474 map by Paolo Toscanelli becomes an integral part of Christopher Columbus’ route planning, with Antillia figuring as an ideal stopover point for his West Route to India. On his journey, Columbus does indeed find islands beyond the Azores. However, none of these are Antillia, but rather an archipelago located off the coast of America and given the name Antilles.",
+    "firstAppearance": "1424 Zuane Pizzigano map of the Atlantic",
+    "lastAppearance": "1631 Hondius’ map of the world",
     "samples": [
       {
         "id": "antillia_1"
@@ -153,9 +153,11 @@
       "lng": -58.4,
       "lat": -47.566666666666698
     },
-    "description": "Some description",
-    "firstAppearance": "1399 A.D. in some Atlas",
-    "lastAppearance": "1639 A.D. in some other Atlas",
+    "description":
+      "In 1683 the buccaneer William Ambrose Cowley makes the following entry in his journal: <i>In the latitude of 47°, we saw land, the same being an island not before known. It is a good place for fresh water and tinder. Its harbour is excellent with safe anchorage for a thousand ships. We saw an enormous number of birds on this island and we believe that there will be abundant fishing around its coasts, for they are surrounded by a bottom of sand and shingle.</i> The editor and publisher of Cowley’s journal, William Hacke names this island Pepys after the then secretary of the British Admiralty, Samuel Pepys. Hacke also omits a crucial reference made by Cowley: <i>We saw likewise another island by this that night, which made me thinke them to be the Sebald de Weerts</i> (as the Falkland Islands are called at this time). At least 111 maps and 130 years of searches later, it becomes clear that Pepys must be a misidentified account of the Falkland Islands. Ironically, in a journal entry written on the same ship and later published in <i>A New Voyage Round the World</i> (1697), William Dampier clearly states sighting one of the Falklands on this date.",
+    "firstAppearance":
+      "1699 Drawing of Pepys Island by William Hacke, in his book <i>Collection of Original Voyages</i>",
+    "lastAppearance": "1808 Admiralty Chart of the South Atlantic",
     "samples": [
       {
         "id": "pepys_island_1"
@@ -169,7 +171,8 @@
       "lng": -19.6666666666666,
       "lat": -30.75
     },
-    "description": "Some description",
+    "description":
+      "The Dutch merchant J.Lindemann first sights Saxenburg Island on August 23, 1670. He describes it as having a narrow peak or column rising in the middle. A number of sketches, including those made by the governor of nearby, East India Company-owned island of St.Helena, describe Saxemburg’s topology, flora and fauna in some detail. Further sightings include those made by Captain Galloway of the American ship <i>Fanny</i> in 1804, by Captain Long of the <i>Columbus</i> (albeit eight degrees further west), and by Captain Head of the <i>True Briton</i> in 1816. None of the above ever actually lands on the island.",
     "firstAppearance": "1399 A.D. in some Atlas",
     "lastAppearance": "1639 A.D. in some other Atlas",
     "samples": [
@@ -185,9 +188,10 @@
       "lng": -47.816666666666698,
       "lat": -52.616666666666703
     },
-    "description": "Some description",
-    "firstAppearance": "1399 A.D. in some Atlas",
-    "lastAppearance": "1639 A.D. in some other Atlas",
+    "description":
+      "In April 1502, aboard a Portuguese expedition to explore the extent of the newly found continent, Amerigo Vespucci sets sail from Cabo Frio in Brazil and follows the Sirocco winds south-east into the rough, cold South Atlantic. This far south, the familiar constellations of the north disappear beyond the horizon, and in the middle of a storm he sights a new land. Sailing alongside for almost 20 leagues, Vespucci describes the coast as wild, without any harbour or people and does not attempt to land there. The island remains lost for 250 years until the Spanish trade ship <i>Aurora</i> identifies three islands at the same location in 1762. These islands, now called the Auroras, are sighted several times again in the 18th and 19th century, and deliver the basis for the plot of Edgar Allan Poe’s <i>The Narrative of Arthur Gordon Pym of Nantucket </i>(1838).",
+    "firstAppearance": "1808 British Admiralty Chart No. 357",
+    "lastAppearance": "John Laurie’s 1859 world map",
     "samples": [
       {
         "id": "aurora_islands_1"
@@ -205,9 +209,11 @@
       "lng": 52.8,
       "lat": -26.283333333333299
     },
-    "description": "Some description",
-    "firstAppearance": "1399 A.D. in some Atlas",
-    "lastAppearance": "1639 A.D. in some other Atlas",
+    "description":
+      "Juan de Lisboa first appears on a Portuguese map in 1520 and is included in G.A. Magini’s 1597 commentary of Ptolemy’s <i>Geographiae</i>. Specific details are provided in 1707 by the French navigator Boynot, who sees the island on his route between Bourbon and Pondicherry and describes it as about 35 leagues in circumference and possessing a bay with an islet in the middle, along with mountains, forests, rivers, game, hares and wild pigs. In 1765 an unidentified buccaneer reports going ashore and killing a dozen oxen in less than two hours and in 1772 a further sighting is made from a ship passing from the Cape of Good Hope to the Isle of France (Mauritius). In 1806, French authorities, eager to expand their operations in the western Indian Ocean, launch an investigation into the alleged establishment and evacuation of a Portuguese settlement on Juan de Lisboa.",
+    "firstAppearance": "Jorge Reinel’s 1520 map of the Indian Ocean",
+    "lastAppearance":
+      "Jean Baptiste D’Anville’s 1727 map of East and South Africa",
     "samples": [
       {
         "id": "juan_de_lisboa_1"
@@ -257,7 +263,21 @@
     "lastAppearance": "1639 A.D. in some other Atlas",
     "samples": [
       {
-        "id": "gama_1"
+        "id": "gama_1",
+        "volumeOffset": 5,
+        "playbackRate": 1,
+        "reverse": false,
+        "filter": {
+          "type": "bandpass",
+          "gain": 0.17,
+          "Q": 1.2,
+          "frequency": {
+            "type": "sine",
+            "rate": 0.07,
+            "min": 225,
+            "max": 5000
+          }
+        }
       }
     ]
   },
@@ -269,6 +289,7 @@
       "lat": -4.0
     },
     "description": "Some description",
+    "distanceThreshold": 3,
     "firstAppearance": "1399 A.D. in some Atlas",
     "lastAppearance": "1639 A.D. in some other Atlas",
     "samples": [
@@ -286,6 +307,7 @@
       "lat": -5.53333333333333
     },
     "description": "Some description",
+    "distanceThreshold": 1,
     "firstAppearance": "1399 A.D. in some Atlas",
     "lastAppearance": "1639 A.D. in some other Atlas",
     "samples": [
@@ -320,6 +342,11 @@
       "lat": -20.3333333333333
     },
     "description": "Some description",
+    "distanceThreshold": 1,
+    "distanceFilter": {
+      "min": 500,
+      "max": 20000
+    },
     "firstAppearance": "1399 A.D. in some Atlas",
     "lastAppearance": "1639 A.D. in some other Atlas",
     "samples": [
@@ -331,14 +358,15 @@
   },
   {
     "name": "Onaseuse (Hunter Island)",
-    "id": "onaseuse_hunter_island",
+    "id": "onaseuse_hunter_island)",
     "location": {
       "lng": 176.183333333332996,
       "lat": -15.516666666666699
     },
-    "description": "Some description and some words in <i>italic</i>",
-    "firstAppearance": "1399 A.D. in some Atlas",
-    "lastAppearance": "1639 A.D. in some other Atlas",
+    "description":
+      "In the early afternoon of July, 20 1823 Captain Hunter and the crew of the <i>Donna Carmelita</i> land on a fertile and populous volcanic island 300 miles north-west of Fiji. They are met by a group of natives bringing them meat and plantains for refreshment. Hunter and some of the men go to meet Funafooah, the king of the island, and present him and his brother with white shirts. Seemingly delighted, they offer gifts in return: a hog, a basket of yams, bananas and cocoa-nuts. The women of the island have red, circular tattoos inscribed their arms, wear shells as ornaments and have some kind of white paste smeared on top of their hair. Captain Hunter also observes that all islanders have their cheekbones perforated and their little fingers cut off at the second joint on the left hand – a peculiarity of self-mutilation that later on arouses the interest of numerous anthropologists. Numerous attempts to are made to locate Onaseuse in the 19th century but it is never seen again. ",
+    "firstAppearance": "1859 British Admiralty Pacific Ocean Chart",
+    "lastAppearance": "n/a",
     "distanceThreshold": 1,
     "distanceFilter": {
       "min": 30,
@@ -359,9 +387,9 @@
       "lat": 21.0
     },
     "description":
-      "In 1528, while attempting to sail from Manila to Mexico, the Spanish captain Alavaro de Saaverda reported spending several days on two islands east of the Marianas. He called them Los Beunos Jardines and commended the friendly natives. In 1542, four ships sent by the Mexican viceroy to discover spice islands not controlled by the Portuguese sailed across the Pacific and established a settlement on the Philippine island of Sarangani. On their return journey to Mexico, one of these ships reported to also have visited Los Jardines.",
-    "firstAppearance": "Mercator 1587",
-    "lastAppearance": "Meyer 1932",
+      "In 1528, while attempting to sail from Manila to Mexico, the Spanish captain Alavaro de Saaverda reports spending several days on two islands east of the Marianas. He calls them Los Beunos Jardines and commends the friendly natives. In 1542, four ships sent by the Mexican viceroy in search of spice islands not yet controlled by the Portuguese sail across the Pacific and establish a settlement on the Philippine island of Sarangani. On their return journey to Mexico, one of these ships reports visiting Los Jardines.",
+    "firstAppearance": "Mercator’s 1587 map of the world",
+    "lastAppearance": "Meyer Blitz-Lexikon 1932 edition",
     "samples": [
       {
         "id": "los_jardines_1"
@@ -378,9 +406,12 @@
       "lng": 177.066666666667004,
       "lat": 28.533333333333299
     },
-    "description": "Some description",
-    "firstAppearance": "1399 A.D. in some Atlas",
-    "lastAppearance": "1639 A.D. in some other Atlas",
+    "description":
+      "Invented by the America captain Benjamin Morrell. Byers Island is one of several islands Morrell recounts discovering in the Pacific and South Atlantic in his 1832 publication <i>A Narrative of Four Voyages</i>.",
+    "distanceThreshold": 2,
+    "firstAppearance": "1835 British Admiralty Chart",
+    "lastAppearance":
+      "National Geographic Society’s 1921 Isles of the Pacific map",
     "samples": [
       {
         "id": "byers_island_1",
@@ -395,9 +426,11 @@
       "lng": 174.516666666666993,
       "lat": 29.95
     },
-    "description": "Some description",
-    "firstAppearance": "1399 A.D. in some Atlas",
-    "lastAppearance": "1639 A.D. in some other Atlas",
+    "description":
+      "Invented by Benjamin Morrell and described in his 1832 book <i>A Narrative of Four Voyages</i> (see also Byers’ Island). Between 1867 and 1910, the International Date Line is redrawn to put Morrell Island into the same time zone as Hawaii.",
+    "firstAppearance": "1835 British Admiralty Chart",
+    "lastAppearance":
+      "National Geographic Society’s 1921 Isles of the Pacific map",
     "samples": [
       {
         "id": "morrell_island_1",
@@ -412,12 +445,15 @@
       "lng": -160.21666666666701,
       "lat": -27.183333333333302
     },
-    "description": "Some description",
-    "firstAppearance": "1399 A.D. in some Atlas",
-    "lastAppearance": "1639 A.D. in some other Atlas",
+    "description":
+      "According to accounts from the 18th and early 19th centuries, Tuanahe (also called Tuanaki) is well known to inhabitants of neighboring islands, traders and whalers who occasionally stop there to resupply. Administrators of nearby French Polynesia and Christian missionaries in the region make much mention of Tuanahe but a ship sent there in 1844 is unable to find the island. All subsequent attempts to locate it fail. An eyewitness description of Tuanahe and its inhabitants is included in <i>Cannibals and Converts: Radical Change in the Cook Islands</i>, a memoir of pre-colonial life in the South Pacific written by Maratu of Rarotonga in 1871.",
+    "firstAppearance": "1864 Royal Admiralty chart 2683",
+    "lastAppearance":
+      "1921 National Geographic Society Isles of the Pacific map",
     "samples": [
       {
-        "id": "tuanahe_1"
+        "id": "tuanahe_1",
+        "volumeOffset": 2
       }
     ]
   },
@@ -428,9 +464,11 @@
       "lng": -120.333333333333002,
       "lat": -59.3333333333333
     },
-    "description": "Some description",
-    "firstAppearance": "1399 A.D. in some Atlas",
-    "lastAppearance": "1639 A.D. in some other Atlas",
+    "description":
+      "Captain Dougherty of the <i>James Stewart</i>, an English whaler, discovers the island in 1841 and describes it as 5–6 miles long with a high bluff to the northeast and a valley in the middle covered in snow. Dougherty's discovery is confirmed by Captain Keates of the <i>Louise</i> in 1859, and by Captain Stannard of the <i>Thurso</i> in 1891. Sailing through the area during Shackleton's Antarctic expedition of 1908–1909, Captain Davis, Chief Officer of the <i>Nimrod</i> suggests that Dougherty, Keates, and Stannard have all been deceived by fog banks or icebergs. A license granting “exclusive rights to occupy the island for the purposes of removing guano and other fertilising substances” is issued to the Norwegian whaler HJ Bull by the British Government in 1913.",
+    "firstAppearance": "1892 British Admiralty Chart of the South Pacific",
+    "lastAppearance":
+      "1910 Royal Geographic Society Chart of the voyage of the <i>Nimrod</i>",
     "samples": [
       {
         "id": "dougherty_island_1",
@@ -448,9 +486,11 @@
       "lng": -91.366666666666703,
       "lat": -27.2
     },
-    "description": "Some description",
-    "firstAppearance": "1399 A.D. in some Atlas",
-    "lastAppearance": "1639 A.D. in some other Atlas",
+    "description":
+      "As described in William Dampier’s book <i>A New Voyage Round the World</i>, Edward Davis, one of a number of pirates operating off the Pacific coast of America at this time, discovers the island in 1687 while in command of the ship <i>Bachelor’s Delight</i>. The Dutch West India Company dispatches three ships to the area in 1721 under the command of Jacob Roggeveen. Though unable to find Davis Land, Roggeveen and his crew stumble upon the previously unknown Easter Island. Their visit results in the death of about a dozen islanders and the wounding of many others.",
+    "firstAppearance":
+      "Herman Moll’s map frontispiece to William Dampier’s 1697 book <i>A New Voyage Round the World</i>",
+    "lastAppearance": "J.B. Nolin’s 1760 map of <i>L’Amerique</i>",
     "samples": [
       {
         "id": "davis_land_1",
@@ -497,6 +537,22 @@
     "location": {
       "lng": 164.0,
       "lat": 34.0
+    },
+    "description": "Some description",
+    "firstAppearance": "1399 A.D. in some Atlas",
+    "lastAppearance": "1639 A.D. in some other Atlas",
+    "samples": [
+      {
+        "id": "rico_de_plata_1"
+      }
+    ]
+  },
+  {
+    "name": "Sandy Island",
+    "id": "sandy_island",
+    "location": {
+      "lng": 159.93,
+      "lat": 19.22
     },
     "description": "Some description",
     "firstAppearance": "1399 A.D. in some Atlas",

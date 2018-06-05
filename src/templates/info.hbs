@@ -1,0 +1,23 @@
+<div class="info__inner">
+  <div class="info__section">
+    <h1 class="info__title">Phantom Islands</h1>
+  </div>
+  <div class="info__section">
+    <p class="info__copy">This is some info text</p>
+  </div>
+  <% if(isAbout) { %> 
+    <div class="info__section">
+      <p class="info__copy">This Project is part of the Online Exhibition...</p>
+      <p class="info__copy">Concept and Sound: Andrew Peckler</p>
+      <p class="info__copy">Design and Development: Flavio Gortana</p>
+    </div>
+  <% } %>
+  <div class="info__section">
+    <% if(isAbout) { %> 
+      <span class="info__close">Back to Sea</span>
+    <% } else { %>
+      <span class="info__start">Set Sail</span>
+    <% } %>
+  </div>
+
+</div>

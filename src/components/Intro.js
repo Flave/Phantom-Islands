@@ -1,35 +1,36 @@
 import { autorun } from 'mobx';
 import { select as d3_select } from 'd3';
 import _template from 'lodash/template';
-import template from 'app/templates/intro.hbs';
+import template from 'app/templates/info.hbs';
 import uiState from 'app/uiState';
 
 const compiledTemplate = _template(template);
 
-export default function Intro() {
+export default function Info() {
   let parent;
-  let intro;
-  let introEnter;
-  let introUpdate;
+  let info;
+  let infoEnter;
+  let infoUpdate;
   let cancelAutorun;
 
-  function _intro() {
-    const { showIntro } = uiState;
+  function _info() {
+    const { showIntro, showAbout } = uiState;
     parent = d3_select('#app');
+    const show = showIntro || showAbout;
 
-    introUpdate = parent.selectAll('.intro').data(showIntro ? [1] : []);
+    infoUpdate = parent.selectAll('.info').data(show ? [1] : []);
 
-    introEnter = introUpdate
+    infoEnter = infoUpdate
       .enter()
       .append('div')
-      .classed('intro', true);
+      .classed('info', true);
 
-    intro = introEnter
-      .merge(introUpdate)
-      .html(d => compiledTemplate({ loaded: true }))
+    info = infoEnter
+      .merge(infoUpdate)
+      .html(d => compiledTemplate({ loaded: true, isAbout: showAbout }))
       .each(function(d) {
         const inner = d3_select(this)
-          .selectAll('.intro__inner')
+          .selectAll('.info__inner')
           .node();
         const { offsetWidth, offsetHeight } = inner;
         const width = offsetWidth % 2 === 0 ? offsetWidth : offsetWidth - 1;
@@ -38,14 +39,18 @@ export default function Intro() {
         inner.style.height = `${height}px`;
       });
 
-    intro.selectAll('.intro__start').on('click', () => {
+    info.selectAll('.info__start').on('click', () => {
       uiState.setShowIntro(false);
       uiState.setMapZoom(6);
     });
 
-    introUpdate.exit().remove();
+    info.selectAll('.info__close').on('click', () => {
+      uiState.setShowAbout(false);
+    });
+
+    infoUpdate.exit().remove();
   }
 
-  cancelAutorun = autorun(_intro);
-  return _intro;
+  cancelAutorun = autorun(_info);
+  return _info;
 }

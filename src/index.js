@@ -2,6 +2,7 @@ import 'html/index.html';
 import 'style/index.scss';
 
 import mapboxgl from 'mapbox-gl';
+import { autorun } from 'mobx';
 
 import WorldMap from 'components/Map';
 import Canvas from 'components/Canvas';
@@ -9,6 +10,7 @@ import Popups from 'components/Popups';
 import Intro from 'components/Intro';
 import Hints from 'components/Hints';
 import Muter from 'components/Muter';
+import AboutButton from 'components/AboutButton';
 import LoadingIndicator from 'components/LoadingIndicator';
 import SoundManager from 'components/SoundManager';
 import FrequencyVisualizer from 'components/FrequencyVisualizer';
@@ -21,7 +23,7 @@ mapboxgl.accessToken =
 // //Setup mapbox-gl map
 const map = new mapboxgl.Map({
   container: 'map', // container id
-  style: 'mapbox://styles/flaviogortana/cjhhuncs809kr2snsbgr4cxrn',
+  style: 'mapbox://styles/flaviogortana/cji1nmfus51rx2sm53ewcslu0',
   center: [uiState.mapCenter.lng, uiState.mapCenter.lat],
   zoom: uiState.mapZoom,
   minZoom: MIN_ZOOM,
@@ -44,5 +46,10 @@ Popups()(map);
 Hints()(map);
 
 LoadingIndicator();
-Muter();
 FrequencyVisualizer(soundManager)();
+Muter();
+AboutButton();
+
+autorun(() => {
+  if (uiState.readyToPlay) window.removeInitialLoader();
+});

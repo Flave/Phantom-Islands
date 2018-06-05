@@ -6,15 +6,25 @@
   align-items: center;
   justify-content: center;
   padding: 10px 20px;
+  font-size: 14px;
 }
 
 .header__item {
   margin-left: 15px;
+  text-transform: uppercase;
 }
 
 .header__muter {
+  border-right: 1px solid #ccc;
+  padding-right: 15px;
+}
+
+.header__muter,
+.header__about {
   cursor: pointer;
+  letter-spacing: 0.08em;
 }
 
 .header__visualizer {
+  margin-right: 5px;
 }

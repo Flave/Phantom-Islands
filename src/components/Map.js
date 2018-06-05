@@ -53,10 +53,15 @@ const WorldMap = function(map) {
   };
 
   const selectIsland = island => {
+    uiState.setMapZoom(9);
+    uiState.setMapCenter({
+      lng: island.location.lng + 0.001,
+      lat: island.location.lat + 0.001,
+    });
     if (uiState.selectedIsland !== island.id) {
-      uiState.setSelectedIsland(island.id);
+      //uiState.setSelectedIsland(island.id);
     } else {
-      uiState.setSelectedIsland();
+      //uiState.setSelectedIsland();
     }
   };
 
@@ -65,16 +70,14 @@ const WorldMap = function(map) {
   };
 
   const update = transition => {
-    if (uiState.mapZoom !== map.getZoom()) {
+    if (
+      uiState.mapZoom !== map.getZoom() ||
+      uiState.mapCenter !== map.getCenter()
+    ) {
       map.easeTo({
         zoom: uiState.mapZoom,
-        duration: 3000,
-      });
-    }
-    if (uiState.mapCenter !== map.getCenter()) {
-      map.easeTo({
         center: uiState.mapCenter,
-        duration: 10000,
+        duration: 8000,
       });
     }
   };

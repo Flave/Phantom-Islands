@@ -10,7 +10,7 @@ export default function LoadingIndicator() {
   let data;
 
   function _loadingIndicator() {
-    const { pendingRequests } = uiState;
+    const { pendingRequests, loadingStats } = uiState;
     let className = 'header__loading-indicator header__item';
     parent = d3_select('#header');
     data = pendingRequests.length ? [1] : [];
@@ -22,7 +22,9 @@ export default function LoadingIndicator() {
     loadingIndicator = loadingIndicatorEnter
       .merge(loadingIndicatorUpdate)
       .attr('class', className)
-      .html(`Loading…`);
+      .html(
+        `${loadingStats.samplesLoaded} of ${loadingStats.totalSamples} loaded`,
+      );
 
     loadingIndicatorUpdate.exit().remove();
   }

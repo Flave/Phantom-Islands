@@ -1,5 +1,5 @@
 Arguments: 
-  /Users/flavio/.nvm/versions/node/v9.2.0/bin/node /usr/local/Cellar/yarn/1.5.1_1/libexec/bin/yarn.js run production
+  /Users/flavio/.nvm/versions/node/v9.2.0/bin/node /usr/local/Cellar/yarn/1.5.1_1/libexec/bin/yarn.js run development
 
 PATH: 
   /Users/flavio/.nvm/versions/node/v9.2.0/bin:/usr/local/share/npm/bin:/usr/local/bin:/usr/local/sbin:/usr/local/mysql/bin:/Users/flavio/.pyenv/shims:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Frameworks/GDAL.framework/Programs:~/bin:/usr/local/bin/git
@@ -8093,9 +8093,9 @@ Lockfile:
 
 Trace: 
   Error: Command failed.
-  Exit code: 2
+  Exit code: 1
   Command: sh
-  Arguments: -c cross-env NODE_ENV=production webpack --optimize-minimize -p --config webpack.production.js
+  Arguments: -c cross-env NODE_ENV=development webpack-dev-server --progress --colors --inline --hot --config webpack.development.js
   Directory: /Users/flavio/Code/Phantom-Islands
   Output:
   
