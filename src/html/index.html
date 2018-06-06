@@ -36,6 +36,15 @@
         fill: none;
       }
 
+      .loader__title-path {
+        fill: none;
+        stroke: #000;
+      }
+
+      svg {
+        overflow: visible;
+      }
+
     </style>
     <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:400,700" rel="stylesheet">
   </head>
@@ -45,7 +54,8 @@
       <div id="header"></div>
       <canvas id="map-canvas"></canvas>
       <div id="initial-loader">
-        <svg id="loader-canvas"></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="loader-canvas"></svg>
+        <!-- <div>Phantom Islands</div> -->
       </div>
     </div>
     <script type="text/javascript">
@@ -66,8 +76,19 @@
         var fullR = width/2;
         var static = document.createElementNS(svgNS,'g');
         var rotating = document.createElementNS(svgNS,'g');
+        var mouseX = 0;
+        var mouseY = 0;
         var counter = 0;
         var noiseStrength = .003;
+
+        var outerStart = fullR - 10;
+        var outerEnd = fullR;
+        var innerStart = fullR - 50;
+        var innerEnd = fullR - 40;
+        var outerCrossStart = fullR - 35;
+        var outerCrossEnd = fullR - 25;
+        var innerCrossStart = 30;
+        var innerCrossEnd = fullR - 55;
 
         static.setAttribute('class', 'circle-group');
         static.setAttribute('id', 'circle-group__static');
@@ -76,11 +97,32 @@
         rotating.setAttribute('id', 'circle-group__rotating');
         svgElement.appendChild(rotating);
 
+        window.addEventListener('mousemove', function(e) {
+          mouseX = e.clientX;
+          mouseY = e.clientY;
+        })
+
         function render() {
-          var rotation = noise.simplex2(counter * noiseStrength, 0) * 60;
+          var angle = cartesianToPolar(window.innerWidth/2, window.innerHeight/2, mouseX, mouseY).angle;
+          var rotation = angle * 360 / (Math.PI*2) + 90;
+          rotation += noise.simplex2(counter * noiseStrength, 0) * 50;
           rotating.setAttribute('transform', 'rotate(' + rotation + ',' + center + ',' + center +')');
           counter++;
         }
+
+        function cartesianToPolar(centerX, centerY, x, y) {
+          var dx = centerX - x;
+          var dy = centerY - y;
+          var radius = Math.sqrt(Math.pow(dx, 2) + Math.pow(dy, 2));
+          var angle = Math.atan2(-dy, -dx);
+          // Add 360 if we're in quadrant IV
+          if (y < 0 && x > 0) angle += Math.PI * 2;
+          else if (x < 0) angle += Math.PI; // Add 180 if we're in quadrant II or III
+          return {
+            angle: angle,
+            radius: radius,
+          };
+        };
 
         function drawRing(container, innerRadius, outerRadius, big, small, id) {
           for(var angle=0; angle < 360; angle+=small) {
@@ -97,37 +139,53 @@
           
         }
 
-        var outerStart = fullR - 10;
-        var outerEnd = fullR;
-        var innerStart = fullR - 50;
-        var innerEnd = fullR - 40;
-        var outerCrossStart = fullR - 35;
-        var outerCrossEnd = fullR - 25;
-        var innerCrossStart = 30;
-        var innerCrossEnd = fullR - 55;
+        function drawArrowHead() {
+          var arrowHead = document.createElementNS(svgNS,'path');
+          var x1 = center - -2.5;
+          var y1 = center - outerCrossEnd + 3;
+          var x2 = center - 0;
+          var y2 = center - outerCrossEnd - 5;
+          var x3 = center - 2.5;
+          var y3 = center - outerCrossEnd + 3;
+          var d = 'M' + x1 + ' ' + y1 + 'L' + x2 + ' ' + y2 + 'L' + x3 + ' ' + y3;
+          arrowHead.setAttribute('d', d);
+          arrowHead.setAttribute('class', 'loder__arrow-head');
+          rotating.appendChild(arrowHead);
+        }
+
+        function drawTextPath() {
+          var r = center + outerEnd;
+          var d = 'M' + r + ' ' + center + 'A' + outerEnd + ' ' + outerEnd + ' 0 0 0 ' + (center - outerEnd) + ' ' + center;
+          var path = document.createElementNS(svgNS,'path');
+          var text = document.createElementNS(svgNS,'text');
+          var textPath = document.createElementNS(svgNS,'textPath');
+          path.setAttribute('d', d);
+          path.setAttribute('class', 'loader__title-path');
+          path.setAttribute('id', 'loader__title-path')
+          rotating.appendChild(path);
+
+          text.setAttribute('class', 'loader__title-text');
+          textPath.setAttribute('xlink:href', '#loader__title-path');
+          textPath.setAttribute('class', 'loader__title-text-path');
+          textPath.setAttribute('side', 'right');
+          textPath.textContent = "Phantom Islands";
+          text.appendChild(textPath);
+          rotating.appendChild(text);
+        }
 
         drawRing(static, outerStart, outerEnd, 10, 2);
         drawRing(rotating, innerStart, innerEnd, 10, 5);
         drawRing(rotating, outerCrossStart, outerCrossEnd, 360/4, 360/4);
         drawRing(rotating, innerCrossStart, innerCrossEnd, 360/4, 360/4);
+        drawArrowHead();
+        //drawTextPath();
 
-        var arrowHead = document.createElementNS(svgNS,'path');
-        var x1 = center - -2.5;
-        var y1 = center - outerCrossEnd + 3;
-        var x2 = center - 0;
-        var y2 = center - outerCrossEnd - 5;
-        var x3 = center - 2.5;
-        var y3 = center - outerCrossEnd + 3;
-        var d = 'M' + x1 + ' ' + y1 + 'L' + x2 + ' ' + y2 + 'L' + x3 + ' ' + y3;
-        arrowHead.setAttribute('d', d);
-        arrowHead.setAttribute('class', 'loder__arrow-head');
-        rotating.appendChild(arrowHead)
 
         window.removeInitialLoader = function() {
           loaderElement.classList.add('is-hidden');
           window.setTimeout(function() {
             window.clearInterval(timer);
-          }, 2000)
+          }, 500)
         }
       })();
     </script>

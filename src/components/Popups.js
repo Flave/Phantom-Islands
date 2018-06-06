@@ -63,8 +63,11 @@ export default function Popups() {
       })
       .each(function(d) {
         d3_select(this)
-          .style('left', d => `${d.x - 5}px`)
-          .style('top', d => `${d.y - 5}px`);
+          .style('left', d => `${Math.floor(d.x - 5)}px`)
+          .style('top', d => `${Math.floor(d.y - 5)}px`)
+          .style('height', function() {
+            return `${this.offsetHeight + this.offsetHeight % 2}px`;
+          });
       });
 
     popupUpdate

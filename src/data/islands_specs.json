@@ -40,15 +40,37 @@
     "firstAppearance": "Emery Molyneux’s 1592 Globus",
     "lastAppearance": "Keith Johnston’s 1858 Physical Atlas",
     "description":
-      "In 1578, on the return journey of Sir Martin Frobisher’s third attempt to find a Northwest Passage from Europe to Asia through the Arctic, his crew makes an unexpected discovery: their smallest ship is separated during a heavy storm from the rest of the expedition. Making their way homeward they discover an island: <i>never yet founde before, and sayled three days alongst the coast, the land seeming to be fruitful, full of woods, and a champion countrie</i>. Soon after, the Buss appears on sea charts. Many navigators attempt to find Buss, some of them reporting great banks of ice (rather than fruits and trees) until in 1671 the royal hydrographer John Seller draws a detailed map of the island. Seller labels its harbours, capes and bays with names he derives from those of several directors of the newly formed Hudson’s Bay Company. In May 1675, the Company acquires the rights of trade and commerce for this island that no one has ever set foot on. By the 18th century, with maritime traffic increasing in the North Atlantic and no further sightings recorded, Buss is treated with suspicion: whether it was a real island that sank, or an erroneously cartographed bank of fog, or a fraud from the very beginning – in 1791 Captain Charles Duncan, hired by the HBC to locate the land of Buss, gives up: <i> I strove as much as the winds would permit me to keep in the supposed latitude of the supposed Buss island, but it is my firm opinion that no such island is now above water, if ever it was</i>.",
+      "In 1578, on the return journey of Sir Martin Frobisher’s third attempt to find a Northwest Passage from Europe to Asia through the Arctic, the smallest ship of the flotilla is separated from the rest of the expedition during a heavy storm. On its way homeward, its crew sees an island <i>never yet founde before, and sayled three days alongst the coast, the land seeming to be fruitful, full of woods, and a champion countrie</i>. Soon after, the island Buss appears on sea charts. Many navigators attempt to find it, some of them reporting great banks of ice (rather than fruits and trees) until in 1671 the royal hydrographer John Seller draws a detailed map of the island. Seller labels its harbours, capes and bays with names he derives from those of several directors of the newly formed Hudson’s Bay Company. In May 1675, the Company acquires the rights of trade and commerce for this island no one has ever set foot on. By the 18th century, with maritime traffic increasing in the North Atlantic and no further sightings recorded, Buss is treated with suspicion. Whether it was a real island that sank, or an erroneously cartographed bank of fog, or a fraud from the very beginning – in 1791 Captain Charles Duncan, hired by the HBC to locate the land of Buss, gives up: <i> I strove as much as the winds would permit me to keep in the supposed latitude of the supposed Buss island, but it is my firm opinion that no such island is now above water, if ever it was</i>.",
     "samples": [
       {
         "id": "buss_island_1",
-        "volumeOffset": 5
+        "volumeOffset": 5,
+        "filter": {
+          "type": "bandpass",
+          "gain": 0.12,
+          "Q": 1,
+          "frequency": {
+            "type": "sine",
+            "rate": 0.02,
+            "min": 1400,
+            "max": 2500
+          }
+        }
       },
       {
         "id": "buss_island_2",
-        "volumeOffset": -2
+        "volumeOffset": -2,
+        "filter": {
+          "type": "bandpass",
+          "gain": 0.17,
+          "Q": 1.2,
+          "frequency": {
+            "type": "sine",
+            "rate": 0.07,
+            "min": 225,
+            "max": 1200
+          }
+        }
       }
     ]
   },
@@ -111,25 +133,6 @@
     ]
   },
   {
-    "name": "Satanazes",
-    "id": "satanazes",
-    "location": {
-      "lng": -48.4166666666666,
-      "lat": 40.216666666666697
-    },
-    "description": "Some description",
-    "firstAppearance": "1399 A.D. in some Atlas",
-    "lastAppearance": "1639 A.D. in some other Atlas",
-    "samples": [
-      {
-        "id": "satanazes_1"
-      },
-      {
-        "id": "satanazes_2"
-      }
-    ]
-  },
-  {
     "name": "Antillia",
     "id": "antillia",
     "location": {
@@ -172,9 +175,10 @@
       "lat": -30.75
     },
     "description":
-      "The Dutch merchant J.Lindemann first sights Saxenburg Island on August 23, 1670. He describes it as having a narrow peak or column rising in the middle. A number of sketches, including those made by the governor of nearby, East India Company-owned island of St.Helena, describe Saxemburg’s topology, flora and fauna in some detail. Further sightings include those made by Captain Galloway of the American ship <i>Fanny</i> in 1804, by Captain Long of the <i>Columbus</i> (albeit eight degrees further west), and by Captain Head of the <i>True Briton</i> in 1816. None of the above ever actually lands on the island.",
-    "firstAppearance": "1399 A.D. in some Atlas",
-    "lastAppearance": "1639 A.D. in some other Atlas",
+      "The Dutch merchant J.Lindemann first sights Saxenburgh Island on August 23, 1670. He describes it as having a narrow peak or column rising in the middle. A number of sketches, including those made by the governor of nearby East India Company owned island of St.Helena, describe Saxenburgh’s topology, flora and fauna in some detail. Further sightings include those made by Captain Galloway of the American ship <i>Fanny</i> in 1804, by Captain Long of the <i>Columbus</i> (albeit eight degrees further west), and by Captain Head of the <i>True Briton</i> in 1816. None of the above ever actually lands on the island.<br><br>Benjamin Morrell (see Morrell Island and Byers Island), in his 1832 book <i>A Narrative of Four Voyages to the South Sea</i> recounts fruitlessly searching for Saxenburgh Island and concluding that it does not exist. In 1965, new information emerges that shows that Morrell’s mission to find Saxenburgh was itself fictitious – concocted to spice up an otherwise unremarkable journey.",
+    "firstAppearance": "Herman Moll’s 1710 map of South America",
+    "lastAppearance":
+      "Nathaniel Dwight’s 1817 <i>A System of Universal Geography for Common Schools</i>",
     "samples": [
       {
         "id": "saxenburgh_island_1"
@@ -189,7 +193,7 @@
       "lat": -52.616666666666703
     },
     "description":
-      "In April 1502, aboard a Portuguese expedition to explore the extent of the newly found continent, Amerigo Vespucci sets sail from Cabo Frio in Brazil and follows the Sirocco winds south-east into the rough, cold South Atlantic. This far south, the familiar constellations of the north disappear beyond the horizon, and in the middle of a storm he sights a new land. Sailing alongside for almost 20 leagues, Vespucci describes the coast as wild, without any harbour or people and does not attempt to land there. The island remains lost for 250 years until the Spanish trade ship <i>Aurora</i> identifies three islands at the same location in 1762. These islands, now called the Auroras, are sighted several times again in the 18th and 19th century, and deliver the basis for the plot of Edgar Allan Poe’s <i>The Narrative of Arthur Gordon Pym of Nantucket </i>(1838).",
+      "In April 1502, aboard a Portuguese expedition to explore the extent of the newly found southern continent, Amerigo Vespucci sets sail from Cabo Frio in Brazil and follows the Sirocco winds into the rough, cold South Atlantic. This far below the equator, the familiar constellations of the north disappear beyond the horizon, and in the middle of a storm a new land is sighted. Sailing alongside for almost 20 leagues, Vespucci describes the coast as wild, without any harbour or people and does not attempt to land there. The island remains lost for 250 years until the Spanish trade ship <i>Aurora</i> identifies three islands at the same location in 1762. These islands, now called the Auroras, are sighted several times again in the 18th and 19th century, and deliver the basis for the plot of Edgar Allan Poe’s <i>The Narrative of Arthur Gordon Pym of Nantucket </i>(1838).",
     "firstAppearance": "1808 British Admiralty Chart No. 357",
     "lastAppearance": "John Laurie’s 1859 world map",
     "samples": [
@@ -212,8 +216,7 @@
     "description":
       "Juan de Lisboa first appears on a Portuguese map in 1520 and is included in G.A. Magini’s 1597 commentary of Ptolemy’s <i>Geographiae</i>. Specific details are provided in 1707 by the French navigator Boynot, who sees the island on his route between Bourbon and Pondicherry and describes it as about 35 leagues in circumference and possessing a bay with an islet in the middle, along with mountains, forests, rivers, game, hares and wild pigs. In 1765 an unidentified buccaneer reports going ashore and killing a dozen oxen in less than two hours and in 1772 a further sighting is made from a ship passing from the Cape of Good Hope to the Isle of France (Mauritius). In 1806, French authorities, eager to expand their operations in the western Indian Ocean, launch an investigation into the alleged establishment and evacuation of a Portuguese settlement on Juan de Lisboa.",
     "firstAppearance": "Jorge Reinel’s 1520 map of the Indian Ocean",
-    "lastAppearance":
-      "Jean Baptiste D’Anville’s 1727 map of East and South Africa",
+    "lastAppearance": "Stieler’s <i>Hand Atlas</i> of 1868",
     "samples": [
       {
         "id": "juan_de_lisboa_1"
@@ -284,6 +287,7 @@
   {
     "name": "Turtle",
     "id": "turtle",
+    "minZoom": 4,
     "location": {
       "lng": 73.0,
       "lat": -4.0
@@ -301,6 +305,7 @@
   {
     "name": "Candy",
     "id": "candy",
+    "minZoom": 5,
     "buddy": "londons",
     "location": {
       "lng": 73.983333333333306,
@@ -341,14 +346,16 @@
       "lng": 105.0,
       "lat": -20.3333333333333
     },
-    "description": "Some description",
-    "distanceThreshold": 1,
+    "description":
+      "In 1622 on the newly established shipping route from Holland around the Cape of Good Hope to Dutch possessions in the East Indies, the <i>Tryal</i> wrecks on rocks off the coast of western Australia. A search and sighting of the rocks is made by a sloop sent in 1718 from the Dutch East Indies capital of Batavia (present day Jakarta) but afterwards numerous Dutch and English expeditions turn up nothing and the Rocks’ existence is cast into doubt. In 1818, the British brig <i>Greyhound</i>, captained by Lieutenant Ritchie, encounters the true Tryal Rocks. They are not recognised as such, however, as the Tryal Rocks are thought to be much further west and, by this time, to have never existed in the first place. Ritchie's discovery is entered on maps as Ritchie's Reef. Then in 1934, after an examination of a letter sent by a survivor of the <i>Tryal</i> shipwreck and a survey of the area, Ritchie’s Reef is declared to definitely be the Tryal Rocks and its name is changed accordingly. Final confirmation comes in 1969, when explosives used in an illegal salvage attempt badly damages the wreck of the sunken <i>Tryal</i>.",
+    "distanceThreshold": 1.5,
     "distanceFilter": {
-      "min": 500,
-      "max": 20000
+      "min": 100,
+      "max": 4000
     },
-    "firstAppearance": "1399 A.D. in some Atlas",
-    "lastAppearance": "1639 A.D. in some other Atlas",
+    "firstAppearance":
+      "Hessel Gerritsz’ 1627 <i>Caert van't Landt van d'Eendracht</i>",
+    "lastAppearance": "Google Earth present day",
     "samples": [
       {
         "id": "trial_rocks_1",
@@ -364,7 +371,7 @@
       "lat": -15.516666666666699
     },
     "description":
-      "In the early afternoon of July, 20 1823 Captain Hunter and the crew of the <i>Donna Carmelita</i> land on a fertile and populous volcanic island 300 miles north-west of Fiji. They are met by a group of natives bringing them meat and plantains for refreshment. Hunter and some of the men go to meet Funafooah, the king of the island, and present him and his brother with white shirts. Seemingly delighted, they offer gifts in return: a hog, a basket of yams, bananas and cocoa-nuts. The women of the island have red, circular tattoos inscribed their arms, wear shells as ornaments and have some kind of white paste smeared on top of their hair. Captain Hunter also observes that all islanders have their cheekbones perforated and their little fingers cut off at the second joint on the left hand – a peculiarity of self-mutilation that later on arouses the interest of numerous anthropologists. Numerous attempts to are made to locate Onaseuse in the 19th century but it is never seen again. ",
+      "In the early afternoon of July 20 1823, Captain Hunter and the crew of the <i>Donna Carmelita</i> land on a fertile and populous volcanic island 300 miles north-west of Fiji. They are met by a group of natives bringing them meat and plantains for refreshment. Hunter and some of the men go to meet Funafooah, the king of the island, and present him and his brother with white shirts. Seemingly delighted, they offer gifts in return: a hog, a basket of yams, bananas and cocoa-nuts. The women of the island have red, circular tattoos inscribed their arms, wear shells as ornaments and have some kind of white paste smeared on top of their hair. Captain Hunter also observes that all islanders have their cheekbones perforated and their little fingers cut off at the second joint on the left hand – a peculiarity of self-mutilation that later on arouses the interest of numerous anthropologists. Several attempts to are made to locate Onaseuse in the 19th century but it is never seen again. ",
     "firstAppearance": "1859 British Admiralty Pacific Ocean Chart",
     "lastAppearance": "n/a",
     "distanceThreshold": 1,
@@ -402,6 +409,7 @@
   {
     "name": "Byers Island",
     "id": "byers_island",
+    "minZoom": 3.8,
     "location": {
       "lng": 177.066666666667004,
       "lat": 28.533333333333299
@@ -428,6 +436,7 @@
     },
     "description":
       "Invented by Benjamin Morrell and described in his 1832 book <i>A Narrative of Four Voyages</i> (see also Byers’ Island). Between 1867 and 1910, the International Date Line is redrawn to put Morrell Island into the same time zone as Hawaii.",
+    "distanceThreshold": 2,
     "firstAppearance": "1835 British Admiralty Chart",
     "lastAppearance":
       "National Geographic Society’s 1921 Isles of the Pacific map",
@@ -522,12 +531,15 @@
       "lng": 155.0,
       "lat": 30.0
     },
-    "description": "Some description",
-    "firstAppearance": "1399 A.D. in some Atlas",
-    "lastAppearance": "1639 A.D. in some other Atlas",
+    "description":
+      "A sister island to Rica de Plata, Rica de Oro is the subject of much speculation in the 17th and 18th centuries on the part of the Dutch, Portuguese and Spanish – rivals for colonial power in the Pacific at the time. In 1639 Anthony van Dieman, the governor of the East Indies, sends Matthijs Quast and Abel Janszoon Tasman – later to become the first known European to reach Tasmania and New Zealand – to search for Rica de Plata and Rica de Oro. Quast, eager to find the islands, raises the bonus for the first person to sight land, but also installs punishments for falling asleep on watch: one month's pay and fifty lashings for the first offence, double that amount for the second, and death penalty for the third. They expedition loses nearly half its crew to sickness but does not find the islands.",
+    "firstAppearance": "Georg Anson’s 1745 Chart of the Pacific Ocean",
+    "lastAppearance": "Andree’s 1922 Handatlas",
+    "distanceThreshold": 1.5,
     "samples": [
       {
-        "id": "rica_de_oro_1"
+        "id": "rica_de_oro_1",
+        "volumeOffset": 2
       }
     ]
   },
@@ -538,9 +550,11 @@
       "lng": 164.0,
       "lat": 34.0
     },
-    "description": "Some description",
-    "firstAppearance": "1399 A.D. in some Atlas",
-    "lastAppearance": "1639 A.D. in some other Atlas",
+    "description":
+      "In the 16th and 17th centuries, Spanish galleons sail once a year from Acapulco to Manila, carrying silver from the mines of Peru. The return voyage is perilous; sailing against unfavorable winds and stormy seas, the ships, heavily laden with luxury goods from China, require safe harbors along their route. In 1582, rumors of the existence of Rica de Plato and Rica de Oro begin to spread and successive waves of Spanish explorers embark to search for the islands. A royal order to find them is issued by the Spanish crown in 1730. Then in 1801, Francisco Crespo, en route from the Philippines to Mexico, reports sighting Rica de Plata, which from then on carries his name.<br><br>In his 1870 novel <i>20.000 Leagues Under the Sea</i>, Jules Verne depicts a submarine crew approaching Crespo underwater and encountering its rocky base while wandering on the ocean floor: <i> For a quarter of an hour I trod on this sand, sown with the impalpable dust of shells. Soon forms of objects outlined in the distance were discernible. I recognised magnificent rocks, hung with a tapestry of zoophytes of the most beautiful kind. At this period the earth sloped downwards; the light took a uniform tint. We were at a depth of a hundred and five yards and twenty inches, undergoing a pressure of six atmospheres. At this moment Captain Nemo stopped; he waited till I joined him, and then pointed to an obscure mass, looming in the shadow, at a short distance. It is the forest of the Island of Crespo thought I; and I was not mistaken</i>.",
+    "firstAppearance": "Georg Anson’s 1745 Chart of the Pacific Ocean",
+    "lastAppearance": "Bartholomew's 1922 Times Survey Atlas of the World",
+    "distanceThreshold": 1.5,
     "samples": [
       {
         "id": "rico_de_plata_1"
@@ -552,11 +566,13 @@
     "id": "sandy_island",
     "location": {
       "lng": 159.93,
-      "lat": 19.22
+      "lat": -19.22
     },
-    "description": "Some description",
-    "firstAppearance": "1399 A.D. in some Atlas",
-    "lastAppearance": "1639 A.D. in some other Atlas",
+    "description":
+      "The Australian ship Southern Surveyor sails toward the Eastern Coral Sea in November 2012. The crew is nervous when approaching the coordinates of Sandy Island north-east of New Caledonia. Miniscule archipelagos and stone-hard chalk riffs are common in this area. Captain Fred Stein and marine geologist Maria Seton have ordered their crew on deck to scan the waves for dangerous riffs or seabed sightings. Some of the scientists on board follow the search on the computer screen – and are amused to live-track their ship as it crosses the black pixels on Google Maps labelled Sandy Island. The explorers have <i>undiscovered</i> an islet that has been on the maps since Captain Cook charted it on his second voyage as lying off the northern tip of New Caledonia. A British Admiralty chart of 1908 that includes Sandy Island warns: <i>Caution is necessary while navigating among the low lying islands of the Pacific Ocean. The general details have been collated from the voyages of various navigators extending over a long series of years. The relative position of many dangers may therefore not be exactly given.</i>",
+    "firstAppearance":
+      "Chart of discoveries made in the South Pacific Ocean by HMS Resolution under the command of Captain Cook. 1774, published 1776",
+    "lastAppearance": "Google Earth 2012",
     "samples": [
       {
         "id": "rico_de_plata_1"

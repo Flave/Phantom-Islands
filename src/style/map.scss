@@ -49,6 +49,10 @@
   &:after {
     transform: translateX(-50%) rotate(-45deg);
   }
+
+  &.is-hidden {
+    visibility: hidden;
+  }
 }
 
 .map__island-inner {

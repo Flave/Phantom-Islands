@@ -11,9 +11,8 @@
   position: absolute;
   background-color: #fff;
   border: 1px solid $c-black;
-  width: 50%;
   min-width: 300px;
-  max-width: 650px;
+  max-width: 600px;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -21,19 +20,31 @@
 
 .info__section {
   border-bottom: 1px solid $c-black;
-  padding: 10px;
+  padding: 15px 20px;
   &:last-of-type {
     border-bottom: none;
+  }
+
+  &--soft {
+    border-bottom-style: dashed;
+    //border-bottom-color: #fff;
+  }
+
+  &--center {
+    text-align: center;
   }
 }
 
 .info__title {
   margin: 0;
   font-size: 16px;
+  text-transform: uppercase;
 }
 
 .info__copy {
   margin: 0;
+  font-size: 14px;
+  line-height: 1.5em;
 }
 
 .info__start,
@@ -43,4 +54,5 @@
   color: #fff;
   display: inline-block;
   padding: 12px 20px;
+  min-width: 200px;
 }

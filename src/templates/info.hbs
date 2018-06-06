@@ -1,22 +1,27 @@
 <div class="info__inner">
   <div class="info__section">
-    <h1 class="info__title">Phantom Islands</h1>
+    <h1 class="info__title">Phantom Islands – A Sonic Atlas</h1>
   </div>
-  <div class="info__section">
-    <p class="info__copy">This is some info text</p>
+  <% if(!isAbout) { %>
+  <div class="info__section info__section--soft">
+    <p class="info__copy"><b>Phantom Islands</b> are artifacts of the age of maritime discovery and colonial expansion. During centuries of ocean exploration these islands were sighted, charted, described and even explored – but their existence has never been ultimately verified. Poised somewhere between cartographical fact and maritime fiction, they haunted seafarers’ maps for hundreds of years, inspiring legends, fantasies, and counterfactual histories. <b>Phantom Islands – A Sonic Atlas</b> interprets and presents these imaginations in the form of an interactive map which charts the sounds of a number of historical phantom islands.</p>
   </div>
-  <% if(isAbout) { %> 
+  <% } %>
+  <div class="info__section info__section--soft">
+    <p class="info__copy">Zoom in on individual phantom islands to hear their musical, biophonic and geophonic soundscapes. Navigate around the map and click on islands’ names to learn the circumstances of their discovery and the dates of their cartographical existence. </p>
+  </div>
+  <% if(isAbout) { %>
     <div class="info__section">
       <p class="info__copy">This Project is part of the Online Exhibition...</p>
       <p class="info__copy">Concept and Sound: Andrew Peckler</p>
       <p class="info__copy">Design and Development: Flavio Gortana</p>
     </div>
   <% } %>
-  <div class="info__section">
+  <div class="info__section info__section--center">
     <% if(isAbout) { %> 
       <span class="info__close">Back to Sea</span>
     <% } else { %>
-      <span class="info__start">Set Sail</span>
+      <span class="info__start">Start</span>
     <% } %>
   </div>
 

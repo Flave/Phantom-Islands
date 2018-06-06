@@ -31,7 +31,7 @@ const MAX_LAT_MOVEMENT = Math.abs(MIN_LAT - MAX_LAT);
 
 class UiState {
   @observable mapCenter = { lng: 178, lat: 0 };
-  @observable mapZoom = 4;
+  @observable mapZoom = MIN_ZOOM;
   @observable mapInitialized = false;
   @observable mapSurfacesCache = [];
   @observable islandsData = [];
@@ -117,15 +117,24 @@ class UiState {
   }
 
   @action
+  transitionMap(center, zoom) {
+    this.updateSounds = false;
+    this.mapCenter = center;
+    this.mapZoom = zoom;
+  }
+
+  @action
   setMapParams(center, zoom, bounds, surface) {
     this.updateSounds = true;
-    this.mapBounds = bounds;
-    this.mapZoom = zoom;
-    this.mapCenter = center;
-    this.mapSurfacesCache = [
-      surface,
-      ...this.mapSurfacesCache.slice(0, SURFACE_CACHE_SIZE - 1),
-    ];
+    this.mapCenter = center || this.mapCenter;
+    this.mapZoom = zoom || this.mapZoom;
+    this.mapBounds = bounds || this.mapBounds;
+    if (surface) {
+      this.mapSurfacesCache = [
+        surface,
+        ...this.mapSurfacesCache.slice(0, SURFACE_CACHE_SIZE - 1),
+      ];
+    }
     this.mapInitialized = true;
   }
 
@@ -237,6 +246,7 @@ class UiState {
       const volume = this.distPx2Volume(dist, island.distanceThreshold);
 
       const volNormal = 1 - volume / MIN_VOLUME;
+      const minZoom = island.minZoom || MIN_ZOOM;
 
       return {
         ...island,
@@ -248,6 +258,7 @@ class UiState {
         dist,
         volNormal,
         volume,
+        hide: this.mapZoom < minZoom,
         pan: Math.max(-1, Math.min(1, dX / this.mapCenterPx.x * 4)),
       };
     });
@@ -298,7 +309,7 @@ class UiState {
         angle,
         dist,
       };
-    }).filter(hint => this.mapCenter.lng - hint.location.lng < 20);
+    }).filter(hint => Math.abs(this.mapCenter.lng - hint.location.lng) < 90);
   }
 
   @computed
@@ -351,8 +362,8 @@ class UiState {
   @computed
   get zoom2Normalized() {
     return d3_scaleLinear()
-      .domain([MIN_ZOOM, 6])
-      .range([0, 1])
+      .domain([MIN_ZOOM, 6, 6.5])
+      .range([0, 0.75, 1])
       .clamp(true);
   }
 

@@ -32,12 +32,14 @@ export default function Hints() {
     hints = hintsEnter
       .merge(hintsUpdate)
       .on('click', island => {
-        uiState.setMapZoom(9);
         // Slightly offset center so the
-        uiState.setMapCenter({
-          lng: island.location.lng + 0.001,
-          lat: island.location.lat + 0.001,
-        });
+        uiState.transitionMap(
+          {
+            lng: island.location.lng + 0.001,
+            lat: island.location.lat + 0.001,
+          },
+          9,
+        );
       })
       .attr('class', d => `hint hint--${d.side}`)
       .style('left', d => `${d.borderPos.x}px`)

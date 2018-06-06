@@ -53,16 +53,13 @@ const WorldMap = function(map) {
   };
 
   const selectIsland = island => {
-    uiState.setMapZoom(9);
-    uiState.setMapCenter({
-      lng: island.location.lng + 0.001,
-      lat: island.location.lat + 0.001,
-    });
-    if (uiState.selectedIsland !== island.id) {
-      //uiState.setSelectedIsland(island.id);
-    } else {
-      //uiState.setSelectedIsland();
-    }
+    uiState.transitionMap(
+      {
+        lng: island.location.lng + 0.001,
+        lat: island.location.lat + 0.001,
+      },
+      9,
+    );
   };
 
   const deselectIsland = () => {
@@ -74,12 +71,19 @@ const WorldMap = function(map) {
       uiState.mapZoom !== map.getZoom() ||
       uiState.mapCenter !== map.getCenter()
     ) {
-      map.easeTo({
+      map.flyTo({
         zoom: uiState.mapZoom,
         center: uiState.mapCenter,
-        duration: 8000,
+        speed: 0.7,
+        curve: 1.1,
       });
     }
+    uiState.islands.forEach(island => {
+      d3_select(`[data-island-id="${island.id}"]`).classed(
+        'is-hidden',
+        island.hide,
+      );
+    });
   };
 
   const initIslands = () => {
@@ -87,6 +91,7 @@ const WorldMap = function(map) {
       const el = d3_select(document.body)
         .datum(island)
         .append('div')
+        .attr('data-island-id', island.id)
         .classed('map__island--low-zoom', true)
         .html(
           `<div class="map__island-inner"><div class="map__island-name">${
@@ -98,6 +103,7 @@ const WorldMap = function(map) {
           d3_event.stopPropagation();
         })
         .classed('map__island', true);
+
       const marker = new Marker(el.node())
         .setLngLat(island.location)
         .addTo(map);
