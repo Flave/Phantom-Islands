@@ -1,6 +1,6 @@
 import { autorun } from 'mobx';
-import { select as d3_select } from 'd3';
-import _template from 'lodash/template';
+import { select as d3_select } from 'd3-selection';
+import _template from 'lodash.template';
 import template from 'app/templates/info.hbs';
 import uiState from 'app/uiState';
 
@@ -41,7 +41,13 @@ export default function Info() {
 
     info.selectAll('.info__start').on('click', () => {
       uiState.setShowIntro(false);
-      uiState.setMapZoom(6);
+      uiState.transitionMap(
+        {
+          lng: 150.5,
+          lat: 21.0,
+        },
+        9,
+      );
     });
 
     info.selectAll('.info__close').on('click', () => {

@@ -1,0 +1,89 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Phantom Islands</title>
+    <meta description="">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=.53">
+    <style id="svg__style">
+      .loader__title-path {
+        fill: none;
+        stroke: #000;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <div id="initial-loader">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="loader-canvas"></svg>
+    </div>
+    <script type="text/javascript">
+      (function initLoader() {
+        var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+        var svgNS = svg.namespaceURI;
+        var loaderElement = document.getElementById('initial-loader');
+        var svgElement = document.getElementById('loader-canvas');
+        var svgStyle = document.getElementById('svg__style');
+        var width = 260;
+        svgElement.width = width;
+        svgElement.height = width;
+        svgElement.style.width = width + 'px';
+        svgElement.style.height = width + 'px';
+        var center = width/2;
+        var fullR = width/2;
+        var rotating = document.createElementNS(svgNS,'g');
+        var mouseX = 0;
+        var mouseY = 0;
+        var counter = 0;
+        var noiseStrength = .003;
+
+        var outerStart = fullR - 10;
+        var outerEnd = fullR;
+        var innerStart = fullR - 50;
+        var innerEnd = fullR - 40;
+        var outerCrossStart = fullR - 35;
+        var outerCrossEnd = fullR - 25;
+        var innerCrossStart = 30;
+        var innerCrossEnd = fullR - 55;
+
+        rotating.setAttributeNS(svgNS, 'class', 'circle-group');
+        rotating.setAttributeNS(svgNS, 'id', 'circle-group__rotating');
+        svgElement.appendChild(svgStyle);
+        svgElement.appendChild(rotating);
+
+        function drawTextPath() {
+          var r = center + outerEnd;
+          var d = 'M' + r + ' ' + center + 'A' + outerEnd + ' ' + outerEnd + ' 0 0 0 ' + (center - outerEnd) + ' ' + center;
+          var path = document.createElementNS(svgNS,'path');
+          var text = document.createElementNS(svgNS,'text');
+          var textPath = document.createElementNS(svgNS,'textPath');
+          path.setAttributeNS(svgNS, 'd', d);
+          path.setAttributeNS(svgNS, 'class', 'loader__title-path');
+          path.setAttributeNS(svgNS, 'id', 'loader__title-path')
+          rotating.appendChild(path);
+
+          text.setAttributeNS(svgNS, 'class', 'loader__title-text');
+          textPath.setAttributeNS(svgNS, 'xlink:href', '#loader__title-path');
+          textPath.setAttributeNS(svgNS, 'class', 'loader__title-text-path');
+          textPath.setAttributeNS(svgNS, 'side', 'right');
+          textPath.textContent = "Phantom Islands";
+          text.appendChild(textPath);
+          rotating.appendChild(text);
+        }
+
+        drawTextPath();
+      })();
+    </script>
+  </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

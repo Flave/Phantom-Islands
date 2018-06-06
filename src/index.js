@@ -5,7 +5,6 @@ import mapboxgl from 'mapbox-gl';
 import { autorun } from 'mobx';
 
 import WorldMap from 'components/Map';
-import Canvas from 'components/Canvas';
 import Popups from 'components/Popups';
 import Intro from 'components/Intro';
 import Hints from 'components/Hints';
@@ -14,8 +13,11 @@ import AboutButton from 'components/AboutButton';
 import LoadingIndicator from 'components/LoadingIndicator';
 import SoundManager from 'components/SoundManager';
 import FrequencyVisualizer from 'components/FrequencyVisualizer';
+import OldBrowserInfo from 'components/OldBrowserInfo';
+
 import uiState from './uiState';
 import { MAX_ZOOM, MIN_ZOOM, MAX_LAT, MIN_LAT } from './config';
+import { USER_AGENT, HAS_WEB_AUDIO } from './utils';
 
 mapboxgl.accessToken =
   'pk.eyJ1IjoiZmxhdmlvZ29ydGFuYSIsImEiOiJzalRHcS1JIn0.aeJmH09S2p_hjOSs3wuT3w';
@@ -35,21 +37,25 @@ map.touchZoomRotate.disableRotation();
 map.addControl(new mapboxgl.ScaleControl(), 'top-left');
 map.addControl(new mapboxgl.NavigationControl(), 'top-left');
 
-uiState.setMap(map);
+if (HAS_WEB_AUDIO) {
+  uiState.setMap(map);
 
-const soundManager = new SoundManager();
+  const soundManager = new SoundManager();
 
-Intro();
-WorldMap(map);
-//Canvas(map);
-Popups()(map);
-Hints()(map);
+  Intro();
+  WorldMap(map);
+  Popups()(map);
+  Hints()(map);
 
-LoadingIndicator();
-FrequencyVisualizer(soundManager)();
-Muter();
-AboutButton();
+  LoadingIndicator();
+  FrequencyVisualizer(soundManager)();
+  Muter();
+  AboutButton();
 
-autorun(() => {
-  if (uiState.readyToPlay) window.removeInitialLoader();
-});
+  autorun(() => {
+    if (uiState.readyToPlay) window.removeInitialLoader();
+  });
+} else {
+  window.removeInitialLoader();
+  OldBrowserInfo();
+}

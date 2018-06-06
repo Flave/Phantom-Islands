@@ -1,7 +1,7 @@
 import { autorun, when } from 'mobx';
 import uiState from 'app/uiState';
 import { Marker, Popup } from 'mapbox-gl';
-import { select as d3_select, event as d3_event } from 'd3';
+import { select as d3_select, event as d3_event } from 'd3-selection';
 
 const WorldMap = function(map) {
   const markers = [];
@@ -45,21 +45,8 @@ const WorldMap = function(map) {
     updateMapParams();
   };
 
-  const setMaxZoom = () => {
-    // set min zoom to 4 after intro to prevent zooming out too much
-    // if (!uiState.showIntro) {
-    //   map.setMinZoom(4);
-    // }
-  };
-
   const selectIsland = island => {
-    uiState.transitionMap(
-      {
-        lng: island.location.lng + 0.001,
-        lat: island.location.lat + 0.001,
-      },
-      9,
-    );
+    uiState.transitionMap(island.location, 9);
   };
 
   const deselectIsland = () => {
@@ -115,7 +102,6 @@ const WorldMap = function(map) {
   map.on('zoom', handleZoom);
   map.on('move', updateMapParams);
   map.on('load', updateMapParams);
-  map.on('zoomend', setMaxZoom);
 
   autorun(update);
   when(() => uiState.islands.length, initIslands);

@@ -1,5 +1,5 @@
-import { select as d3_select } from 'd3';
-import { timer as d3_timer } from 'd3';
+import { select as d3_select } from 'd3-selection';
+import { timer as d3_timer } from 'd3-timer';
 import uiState from 'app/uiState';
 
 const WIDTH = 70;

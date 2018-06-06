@@ -1,6 +1,7 @@
 import { autorun } from 'mobx';
-import { select as d3_select } from 'd3';
-import _template from 'lodash/template';
+import { select as d3_select } from 'd3-selection';
+import { transition } from 'd3-transition';
+import _template from 'lodash.template';
 import template from 'app/templates/popup.hbs';
 
 import uiState from 'app/uiState';
@@ -70,11 +71,7 @@ export default function Popups() {
           });
       });
 
-    popupUpdate
-      .exit()
-      .transition()
-      .style('opacity', 0)
-      .remove();
+    popupUpdate.exit().remove();
   }
   return _popups;
 }

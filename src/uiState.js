@@ -8,20 +8,20 @@ import {
   getTranslate,
   getLocationString,
 } from './utils';
-import { scaleLinear as d3_scaleLinear } from 'd3';
-import { scaleQuantize as d3_scaleQuantize } from 'd3';
-import { selectAll as d3_selectAll } from 'd3';
-import _maxBy from 'lodash/maxBy';
-import _minBy from 'lodash/minBy';
-import _sortBy from 'lodash/sortBy';
-import _find from 'lodash/find';
-import _debounce from 'lodash/debounce';
-import _negate from 'lodash/negate';
-import _groupBy from 'lodash/groupBy';
-import _map from 'lodash/map';
+import { scaleLinear as d3_scaleLinear } from 'd3-scale';
+import { selectAll as d3_selectAll } from 'd3-selection';
+
+import _maxBy from 'lodash.maxBy';
+import _minBy from 'lodash.minBy';
+import _sortBy from 'lodash.sortBy';
+import _find from 'lodash.find';
+import _debounce from 'lodash.debounce';
+import _negate from 'lodash.negate';
+import _groupBy from 'lodash.groupBy';
+import _map from 'lodash.map';
 import { LngLatBounds, LngLat, Marker } from 'mapbox-gl';
+
 import dataAPI from 'app/data/dataAPI';
-import oceans from 'app/data/oceans';
 import { MAX_ZOOM, MIN_ZOOM, MAX_LAT, MIN_LAT } from './config';
 
 const SURFACE_CACHE_SIZE = 100;
@@ -47,7 +47,7 @@ class UiState {
 
   @observable muted = false;
   @observable pendingRequests = [];
-  @observable showIntro = false;
+  @observable showIntro = true;
   @observable showAbout = false;
 
   constructor() {
@@ -105,21 +105,12 @@ class UiState {
   }
 
   @action
-  setMapZoom(zoom) {
-    this.updateSounds = false;
-    this.mapZoom = zoom;
-  }
-
-  @action
-  setMapCenter(mapCenter) {
-    this.updateSounds = false;
-    this.mapCenter = mapCenter;
-  }
-
-  @action
   transitionMap(center, zoom) {
     this.updateSounds = false;
-    this.mapCenter = center;
+    this.mapCenter = {
+      lat: center.lat + 0.002,
+      lng: center.lng + 0.03,
+    };
     this.mapZoom = zoom;
   }
 
@@ -269,7 +260,7 @@ class UiState {
     if (!this.islands.length) return;
     let candidate = _find(this.islands, { id: this.selectedIsland });
     const closestCandidate = _minBy(this.islands, 'dist');
-    if (this.mapZoom >= 9 && closestCandidate.volNormal > 0.2)
+    if (this.mapZoom >= 8 && closestCandidate.volNormal > 0.2)
       candidate = closestCandidate;
 
     if (candidate) {

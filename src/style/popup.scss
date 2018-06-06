@@ -28,8 +28,13 @@
   padding: 12px 15px;
 }
 
+.map-popup__name {
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
 .map-popup__main {
-  line-height: 1.65em;
+  line-height: 1.5em;
 }
 
 .map-popup__location {

@@ -1,6 +1,6 @@
 import { autorun } from 'mobx';
-import { select as d3_select } from 'd3';
-import _template from 'lodash/template';
+import { select as d3_select } from 'd3-selection';
+import _template from 'lodash.template';
 import template from 'app/templates/hint.hbs';
 import uiState from 'app/uiState';
 
@@ -33,13 +33,7 @@ export default function Hints() {
       .merge(hintsUpdate)
       .on('click', island => {
         // Slightly offset center so the
-        uiState.transitionMap(
-          {
-            lng: island.location.lng + 0.001,
-            lat: island.location.lat + 0.001,
-          },
-          9,
-        );
+        uiState.transitionMap(island.location, 9);
       })
       .attr('class', d => `hint hint--${d.side}`)
       .style('left', d => `${d.borderPos.x}px`)

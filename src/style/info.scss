@@ -47,6 +47,16 @@
   line-height: 1.5em;
 }
 
+.info__warning-title {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  color: red;
+}
+
+.info__warning {
+}
+
 .info__start,
 .info__close {
   cursor: pointer;

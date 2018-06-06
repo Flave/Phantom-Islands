@@ -1,5 +1,5 @@
 Arguments: 
-  /Users/flavio/.nvm/versions/node/v9.2.0/bin/node /usr/local/Cellar/yarn/1.5.1_1/libexec/bin/yarn.js run development
+  /Users/flavio/.nvm/versions/node/v9.2.0/bin/node /usr/local/Cellar/yarn/1.5.1_1/libexec/bin/yarn.js add d3-json
 
 PATH: 
   /Users/flavio/.nvm/versions/node/v9.2.0/bin:/usr/local/share/npm/bin:/usr/local/bin:/usr/local/sbin:/usr/local/mysql/bin:/Users/flavio/.pyenv/shims:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Frameworks/GDAL.framework/Programs:~/bin:/usr/local/bin/git
@@ -52,8 +52,11 @@ npm manifest:
       "dependencies": {
           "classnames": "^2.2.5",
           "copy-webpack-plugin": "^4.5.1",
-          "d3": "^5.0.0",
+          "d3-array": "^1.2.1",
           "d3-queue": "^3.0.7",
+          "d3-scale": "^2.0.0",
+          "d3-selection": "^1.3.0",
+          "d3-timer": "^1.0.7",
           "director": "^1.2.8",
           "lodash": "^4.17.4",
           "mapbox-gl": "^0.44.2",
@@ -63,6 +66,7 @@ npm manifest:
           "pixi.js": "^4.7.3",
           "tone": "^0.12.80",
           "uglifyjs-webpack-plugin": "^1.2.5",
+          "webpack-bundle-analyzer": "^2.13.1",
           "webpack-merge": "^4.1.2"
       }
   }
@@ -163,6 +167,10 @@ Lockfile:
   acorn@^5.0.0, acorn@^5.1.0, acorn@^5.5.0:
     version "5.5.3"
     resolved "https://registry.yarnpkg.com/acorn/-/acorn-5.5.3.tgz#f473dd47e0277a08e28e9bec5aeeb04751f0b8c9"
+  
+  acorn@^5.3.0:
+    version "5.6.2"
+    resolved "https://registry.yarnpkg.com/acorn/-/acorn-5.6.2.tgz#b1da1d7be2ac1b4a327fb9eab851702c5045b4e7"
   
   ajv-keywords@^1.0.0:
     version "1.5.1"
@@ -383,6 +391,10 @@ Lockfile:
   async-foreach@^0.1.3:
     version "0.1.3"
     resolved "https://registry.yarnpkg.com/async-foreach/-/async-foreach-0.1.3.tgz#36121f845c0578172de419a97dbeb1d16ec34542"
+  
+  async-limiter@~1.0.0:
+    version "1.0.0"
+    resolved "https://registry.yarnpkg.com/async-limiter/-/async-limiter-1.0.0.tgz#78faed8c3d074ab81f22b4e985d79e8738f720f8"
   
   async@^1.5.0, async@^1.5.2:
     version "1.5.2"
@@ -1107,6 +1119,14 @@ Lockfile:
     dependencies:
       tweetnacl "^0.14.3"
   
+  bfj-node4@^5.2.0:
+    version "5.3.1"
+    resolved "https://registry.yarnpkg.com/bfj-node4/-/bfj-node4-5.3.1.tgz#e23d8b27057f1d0214fc561142ad9db998f26830"
+    dependencies:
+      bluebird "^3.5.1"
+      check-types "^7.3.0"
+      tryer "^1.0.0"
+  
   big.js@^3.1.3:
     version "3.2.0"
     resolved "https://registry.yarnpkg.com/big.js/-/big.js-3.2.0.tgz#a5fc298b81b9e0dca2e458824784b65c52ba588e"
@@ -1500,6 +1520,10 @@ Lockfile:
     version "0.4.2"
     resolved "https://registry.yarnpkg.com/chardet/-/chardet-0.4.2.tgz#b5473b33dc97c424e5d98dc87d55d4d8a29c8bf2"
   
+  check-types@^7.3.0:
+    version "7.3.0"
+    resolved "https://registry.yarnpkg.com/check-types/-/check-types-7.3.0.tgz#468f571a4435c24248f5fd0cb0e8d87c3c341e7d"
+  
   chokidar@^2.0.0, chokidar@^2.0.2:
     version "2.0.3"
     resolved "https://registry.yarnpkg.com/chokidar/-/chokidar-2.0.3.tgz#dcbd4f6cbb2a55b4799ba8a840ac527e5f4b1176"
@@ -1725,7 +1749,7 @@ Lockfile:
     dependencies:
       delayed-stream "~1.0.0"
   
-  commander@2, commander@2.15.x, commander@^2.9.0, commander@~2.15.0:
+  commander@2.15.x, commander@^2.13.0, commander@^2.9.0, commander@~2.15.0:
     version "2.15.1"
     resolved "https://registry.yarnpkg.com/commander/-/commander-2.15.1.tgz#df46e867d0fc2aec66a34662b406a9ccafff5b0f"
   
@@ -2031,131 +2055,33 @@ Lockfile:
     version "0.2.2"
     resolved "https://registry.yarnpkg.com/cyclist/-/cyclist-0.2.2.tgz#1b33792e11e914a2fd6d6ed6447464444e5fa640"
   
-  d3-array@1, d3-array@^1.1.1, d3-array@^1.2.0:
+  d3-array@^1.2.0, d3-array@^1.2.1:
     version "1.2.1"
     resolved "https://registry.yarnpkg.com/d3-array/-/d3-array-1.2.1.tgz#d1ca33de2f6ac31efadb8e050a021d7e2396d5dc"
-  
-  d3-axis@1:
-    version "1.0.8"
-    resolved "https://registry.yarnpkg.com/d3-axis/-/d3-axis-1.0.8.tgz#31a705a0b535e65759de14173a31933137f18efa"
-  
-  d3-brush@1:
-    version "1.0.4"
-    resolved "https://registry.yarnpkg.com/d3-brush/-/d3-brush-1.0.4.tgz#00c2f238019f24f6c0a194a26d41a1530ffe7bc4"
-    dependencies:
-      d3-dispatch "1"
-      d3-drag "1"
-      d3-interpolate "1"
-      d3-selection "1"
-      d3-transition "1"
-  
-  d3-chord@1:
-    version "1.0.4"
-    resolved "https://registry.yarnpkg.com/d3-chord/-/d3-chord-1.0.4.tgz#7dec4f0ba886f713fe111c45f763414f6f74ca2c"
-    dependencies:
-      d3-array "1"
-      d3-path "1"
   
   d3-collection@1:
     version "1.0.4"
     resolved "https://registry.yarnpkg.com/d3-collection/-/d3-collection-1.0.4.tgz#342dfd12837c90974f33f1cc0a785aea570dcdc2"
   
   d3-color@1:
-    version "1.0.3"
-    resolved "https://registry.yarnpkg.com/d3-color/-/d3-color-1.0.3.tgz#bc7643fca8e53a8347e2fbdaffa236796b58509b"
-  
-  d3-contour@1:
     version "1.2.0"
-    resolved "https://registry.yarnpkg.com/d3-contour/-/d3-contour-1.2.0.tgz#de3ea7991bbb652155ee2a803aeafd084be03b63"
-    dependencies:
-      d3-array "^1.1.1"
-  
-  d3-dispatch@1:
-    version "1.0.3"
-    resolved "https://registry.yarnpkg.com/d3-dispatch/-/d3-dispatch-1.0.3.tgz#46e1491eaa9b58c358fce5be4e8bed626e7871f8"
-  
-  d3-drag@1:
-    version "1.2.1"
-    resolved "https://registry.yarnpkg.com/d3-drag/-/d3-drag-1.2.1.tgz#df8dd4c502fb490fc7462046a8ad98a5c479282d"
-    dependencies:
-      d3-dispatch "1"
-      d3-selection "1"
-  
-  d3-dsv@1:
-    version "1.0.8"
-    resolved "https://registry.yarnpkg.com/d3-dsv/-/d3-dsv-1.0.8.tgz#907e240d57b386618dc56468bacfe76bf19764ae"
-    dependencies:
-      commander "2"
-      iconv-lite "0.4"
-      rw "1"
-  
-  d3-ease@1:
-    version "1.0.3"
-    resolved "https://registry.yarnpkg.com/d3-ease/-/d3-ease-1.0.3.tgz#68bfbc349338a380c44d8acc4fbc3304aa2d8c0e"
-  
-  d3-fetch@1:
-    version "1.1.0"
-    resolved "https://registry.yarnpkg.com/d3-fetch/-/d3-fetch-1.1.0.tgz#31cbcd506b21d6519ac6a120a079de8d0a57c00f"
-    dependencies:
-      d3-dsv "1"
-  
-  d3-force@1:
-    version "1.1.0"
-    resolved "https://registry.yarnpkg.com/d3-force/-/d3-force-1.1.0.tgz#cebf3c694f1078fcc3d4daf8e567b2fbd70d4ea3"
-    dependencies:
-      d3-collection "1"
-      d3-dispatch "1"
-      d3-quadtree "1"
-      d3-timer "1"
+    resolved "https://registry.yarnpkg.com/d3-color/-/d3-color-1.2.0.tgz#d1ea19db5859c86854586276ec892cf93148459a"
   
   d3-format@1:
-    version "1.2.2"
-    resolved "https://registry.yarnpkg.com/d3-format/-/d3-format-1.2.2.tgz#1a39c479c8a57fe5051b2e67a3bee27061a74e7a"
-  
-  d3-geo@1:
-    version "1.10.0"
-    resolved "https://registry.yarnpkg.com/d3-geo/-/d3-geo-1.10.0.tgz#2972d18014f1e38fc1f8bb6d545377bdfb00c9ab"
-    dependencies:
-      d3-array "1"
-  
-  d3-hierarchy@1:
-    version "1.1.5"
-    resolved "https://registry.yarnpkg.com/d3-hierarchy/-/d3-hierarchy-1.1.5.tgz#a1c845c42f84a206bcf1c01c01098ea4ddaa7a26"
+    version "1.3.0"
+    resolved "https://registry.yarnpkg.com/d3-format/-/d3-format-1.3.0.tgz#a3ac44269a2011cdb87c7b5693040c18cddfff11"
   
   d3-interpolate@1:
-    version "1.1.6"
-    resolved "https://registry.yarnpkg.com/d3-interpolate/-/d3-interpolate-1.1.6.tgz#2cf395ae2381804df08aa1bf766b7f97b5f68fb6"
+    version "1.2.0"
+    resolved "https://registry.yarnpkg.com/d3-interpolate/-/d3-interpolate-1.2.0.tgz#40d81bd8e959ff021c5ea7545bc79b8d22331c41"
     dependencies:
       d3-color "1"
-  
-  d3-path@1:
-    version "1.0.5"
-    resolved "https://registry.yarnpkg.com/d3-path/-/d3-path-1.0.5.tgz#241eb1849bd9e9e8021c0d0a799f8a0e8e441764"
-  
-  d3-polygon@1:
-    version "1.0.3"
-    resolved "https://registry.yarnpkg.com/d3-polygon/-/d3-polygon-1.0.3.tgz#16888e9026460933f2b179652ad378224d382c62"
-  
-  d3-quadtree@1:
-    version "1.0.3"
-    resolved "https://registry.yarnpkg.com/d3-quadtree/-/d3-quadtree-1.0.3.tgz#ac7987e3e23fe805a990f28e1b50d38fcb822438"
   
   d3-queue@^3.0.7:
     version "3.0.7"
     resolved "https://registry.yarnpkg.com/d3-queue/-/d3-queue-3.0.7.tgz#c93a2e54b417c0959129d7d73f6cf7d4292e7618"
   
-  d3-random@1:
-    version "1.1.0"
-    resolved "https://registry.yarnpkg.com/d3-random/-/d3-random-1.1.0.tgz#6642e506c6fa3a648595d2b2469788a8d12529d3"
-  
-  d3-scale-chromatic@1:
-    version "1.2.0"
-    resolved "https://registry.yarnpkg.com/d3-scale-chromatic/-/d3-scale-chromatic-1.2.0.tgz#25820d059c0eccc33e85f77561f37382a817ab58"
-    dependencies:
-      d3-color "1"
-      d3-interpolate "1"
-  
-  d3-scale@2:
+  d3-scale@^2.0.0:
     version "2.0.0"
     resolved "https://registry.yarnpkg.com/d3-scale/-/d3-scale-2.0.0.tgz#fd8ac78381bc2ed741d8c71770437a5e0549a5a5"
     dependencies:
@@ -2166,15 +2092,9 @@ Lockfile:
       d3-time "1"
       d3-time-format "2"
   
-  d3-selection@1, d3-selection@^1.1.0:
+  d3-selection@^1.3.0:
     version "1.3.0"
     resolved "https://registry.yarnpkg.com/d3-selection/-/d3-selection-1.3.0.tgz#d53772382d3dc4f7507bfb28bcd2d6aed2a0ad6d"
-  
-  d3-shape@1:
-    version "1.2.0"
-    resolved "https://registry.yarnpkg.com/d3-shape/-/d3-shape-1.2.0.tgz#45d01538f064bafd05ea3d6d2cb748fd8c41f777"
-    dependencies:
-      d3-path "1"
   
   d3-time-format@2:
     version "2.1.1"
@@ -2186,70 +2106,9 @@ Lockfile:
     version "1.0.8"
     resolved "https://registry.yarnpkg.com/d3-time/-/d3-time-1.0.8.tgz#dbd2d6007bf416fe67a76d17947b784bffea1e84"
   
-  d3-timer@1:
+  d3-timer@^1.0.7:
     version "1.0.7"
     resolved "https://registry.yarnpkg.com/d3-timer/-/d3-timer-1.0.7.tgz#df9650ca587f6c96607ff4e60cc38229e8dd8531"
-  
-  d3-transition@1:
-    version "1.1.1"
-    resolved "https://registry.yarnpkg.com/d3-transition/-/d3-transition-1.1.1.tgz#d8ef89c3b848735b060e54a39b32aaebaa421039"
-    dependencies:
-      d3-color "1"
-      d3-dispatch "1"
-      d3-ease "1"
-      d3-interpolate "1"
-      d3-selection "^1.1.0"
-      d3-timer "1"
-  
-  d3-voronoi@1:
-    version "1.1.2"
-    resolved "https://registry.yarnpkg.com/d3-voronoi/-/d3-voronoi-1.1.2.tgz#1687667e8f13a2d158c80c1480c5a29cb0d8973c"
-  
-  d3-zoom@1:
-    version "1.7.1"
-    resolved "https://registry.yarnpkg.com/d3-zoom/-/d3-zoom-1.7.1.tgz#02f43b3c3e2db54f364582d7e4a236ccc5506b63"
-    dependencies:
-      d3-dispatch "1"
-      d3-drag "1"
-      d3-interpolate "1"
-      d3-selection "1"
-      d3-transition "1"
-  
-  d3@^5.0.0:
-    version "5.0.0"
-    resolved "https://registry.yarnpkg.com/d3/-/d3-5.0.0.tgz#b373ce8ccc953cbe09cef4c1e7e2223b42441df9"
-    dependencies:
-      d3-array "1"
-      d3-axis "1"
-      d3-brush "1"
-      d3-chord "1"
-      d3-collection "1"
-      d3-color "1"
-      d3-contour "1"
-      d3-dispatch "1"
-      d3-drag "1"
-      d3-dsv "1"
-      d3-ease "1"
-      d3-fetch "1"
-      d3-force "1"
-      d3-format "1"
-      d3-geo "1"
-      d3-hierarchy "1"
-      d3-interpolate "1"
-      d3-path "1"
-      d3-polygon "1"
-      d3-quadtree "1"
-      d3-random "1"
-      d3-scale "2"
-      d3-scale-chromatic "1"
-      d3-selection "1"
-      d3-shape "1"
-      d3-time "1"
-      d3-time-format "2"
-      d3-timer "1"
-      d3-transition "1"
-      d3-voronoi "1"
-      d3-zoom "1"
   
   d@1:
     version "1.0.0"
@@ -2482,6 +2341,10 @@ Lockfile:
     version "0.1.4"
     resolved "https://registry.yarnpkg.com/duplexer3/-/duplexer3-0.1.4.tgz#ee01dd1cac0ed3cbc7fdbea37dc0a8f1ce002ce2"
   
+  duplexer@^0.1.1:
+    version "0.1.1"
+    resolved "https://registry.yarnpkg.com/duplexer/-/duplexer-0.1.1.tgz#ace6ff808c1ce66b57d1ebf97977acb02334cfc1"
+  
   duplexify@^3.4.2, duplexify@^3.5.3:
     version "3.5.4"
     resolved "https://registry.yarnpkg.com/duplexify/-/duplexify-3.5.4.tgz#4bb46c1796eabebeec4ca9a2e66b808cb7a3d8b4"
@@ -2512,6 +2375,10 @@ Lockfile:
   ejs@^2.3.1:
     version "2.5.8"
     resolved "https://registry.yarnpkg.com/ejs/-/ejs-2.5.8.tgz#2ab6954619f225e6193b7ac5f7c39c48fefe4380"
+  
+  ejs@^2.5.7:
+    version "2.6.1"
+    resolved "https://registry.yarnpkg.com/ejs/-/ejs-2.6.1.tgz#498ec0d495655abc6f23cd61868d926464071aa0"
   
   electron-to-chromium@^1.2.7, electron-to-chromium@^1.3.30:
     version "1.3.42"
@@ -3088,6 +2955,10 @@ Lockfile:
     version "2.0.1"
     resolved "https://registry.yarnpkg.com/filename-regex/-/filename-regex-2.0.1.tgz#c1c4b9bee3e09725ddb106b75c1e301fe2f18b26"
   
+  filesize@^3.5.11:
+    version "3.6.1"
+    resolved "https://registry.yarnpkg.com/filesize/-/filesize-3.6.1.tgz#090bb3ee01b6f801a8a8be99d31710b3422bb317"
+  
   fill-range@^2.1.0:
     version "2.2.3"
     resolved "https://registry.yarnpkg.com/fill-range/-/fill-range-2.2.3.tgz#50b77dfd7e469bc7492470963699fe7a8485a723"
@@ -3546,6 +3417,13 @@ Lockfile:
     dependencies:
       lodash "^4.17.2"
   
+  gzip-size@^4.1.0:
+    version "4.1.0"
+    resolved "https://registry.yarnpkg.com/gzip-size/-/gzip-size-4.1.0.tgz#8ae096257eabe7d69c45be2b67c448124ffb517c"
+    dependencies:
+      duplexer "^0.1.1"
+      pify "^3.0.0"
+  
   handle-thing@^1.2.5:
     version "1.2.5"
     resolved "https://registry.yarnpkg.com/handle-thing/-/handle-thing-1.2.5.tgz#fd7aad726bf1a5fd16dfc29b2f7a6601d27139c4"
@@ -3826,15 +3704,15 @@ Lockfile:
     version "1.0.0"
     resolved "https://registry.yarnpkg.com/https-browserify/-/https-browserify-1.0.0.tgz#ec06c10e0a34c0f2faf199f7fd7fc78fffd03c73"
   
-  iconv-lite@0.4, iconv-lite@^0.4.17:
+  iconv-lite@0.4.19:
+    version "0.4.19"
+    resolved "https://registry.yarnpkg.com/iconv-lite/-/iconv-lite-0.4.19.tgz#f7468f60135f5e5dad3399c0a81be9a1603a082b"
+  
+  iconv-lite@^0.4.17:
     version "0.4.21"
     resolved "https://registry.yarnpkg.com/iconv-lite/-/iconv-lite-0.4.21.tgz#c47f8733d02171189ebc4a400f3218d348094798"
     dependencies:
       safer-buffer "^2.1.0"
-  
-  iconv-lite@0.4.19:
-    version "0.4.19"
-    resolved "https://registry.yarnpkg.com/iconv-lite/-/iconv-lite-0.4.19.tgz#f7468f60135f5e5dad3399c0a81be9a1603a082b"
   
   icss-replace-symbols@^1.1.0:
     version "1.1.0"
@@ -5341,6 +5219,10 @@ Lockfile:
     dependencies:
       mimic-fn "^1.0.0"
   
+  opener@^1.4.3:
+    version "1.4.3"
+    resolved "https://registry.yarnpkg.com/opener/-/opener-1.4.3.tgz#5c6da2c5d7e5831e8ffa3964950f8d6674ac90b8"
+  
   opn@^5.1.0:
     version "5.3.0"
     resolved "https://registry.yarnpkg.com/opn/-/opn-5.3.0.tgz#64871565c863875f052cfdf53d3e3cb5adb53b1c"
@@ -6578,7 +6460,7 @@ Lockfile:
     dependencies:
       aproba "^1.1.1"
   
-  rw@1, rw@^1.3.3:
+  rw@^1.3.3:
     version "1.3.3"
     resolved "https://registry.yarnpkg.com/rw/-/rw-1.3.3.tgz#3f862dfa91ab766b14885ef4d01124bfda074fb4"
   
@@ -7410,6 +7292,10 @@ Lockfile:
     dependencies:
       glob "^6.0.4"
   
+  tryer@^1.0.0:
+    version "1.0.0"
+    resolved "https://registry.yarnpkg.com/tryer/-/tryer-1.0.0.tgz#027b69fa823225e551cace3ef03b11f6ab37c1d7"
+  
   tty-browserify@0.0.0:
     version "0.0.0"
     resolved "https://registry.yarnpkg.com/tty-browserify/-/tty-browserify-0.0.0.tgz#a157ba402da24e9bf957f9aa69d524eed42901a6"
@@ -7757,6 +7643,23 @@ Lockfile:
     dependencies:
       jscodeshift "^0.4.0"
   
+  webpack-bundle-analyzer@^2.13.1:
+    version "2.13.1"
+    resolved "https://registry.yarnpkg.com/webpack-bundle-analyzer/-/webpack-bundle-analyzer-2.13.1.tgz#07d2176c6e86c3cdce4c23e56fae2a7b6b4ad526"
+    dependencies:
+      acorn "^5.3.0"
+      bfj-node4 "^5.2.0"
+      chalk "^2.3.0"
+      commander "^2.13.0"
+      ejs "^2.5.7"
+      express "^4.16.2"
+      filesize "^3.5.11"
+      gzip-size "^4.1.0"
+      lodash "^4.17.4"
+      mkdirp "^0.5.1"
+      opener "^1.4.3"
+      ws "^4.0.0"
+  
   webpack-cli@^2.0.11:
     version "2.0.14"
     resolved "https://registry.yarnpkg.com/webpack-cli/-/webpack-cli-2.0.14.tgz#71d03d8c10547c1dfd674f71ff3b0457c33a74cd"
@@ -7957,6 +7860,13 @@ Lockfile:
     dependencies:
       mkdirp "^0.5.1"
   
+  ws@^4.0.0:
+    version "4.1.0"
+    resolved "https://registry.yarnpkg.com/ws/-/ws-4.1.0.tgz#a979b5d7d4da68bf54efe0408967c324869a7289"
+    dependencies:
+      async-limiter "~1.0.0"
+      safe-buffer "~5.1.0"
+  
   xtend@^4.0.0, xtend@~4.0.0, xtend@~4.0.1:
     version "4.0.1"
     resolved "https://registry.yarnpkg.com/xtend/-/xtend-4.0.1.tgz#a5c6d532be656e23db820efb943a1f04998d63af"
@@ -8092,16 +8002,14 @@ Lockfile:
       yeoman-environment "^2.0.5"
 
 Trace: 
-  Error: Command failed.
-  Exit code: 1
-  Command: sh
-  Arguments: -c cross-env NODE_ENV=development webpack-dev-server --progress --colors --inline --hot --config webpack.development.js
-  Directory: /Users/flavio/Code/Phantom-Islands
-  Output:
-  
-      at ProcessTermError.MessageError (/usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:186:110)
-      at new ProcessTermError (/usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:226:113)
-      at ChildProcess.<anonymous> (/usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:30281:17)
-      at ChildProcess.emit (events.js:159:13)
-      at maybeClose (internal/child_process.js:943:16)
-      at Process.ChildProcess._handle.onexit (internal/child_process.js:220:5)
+  Error: https://registry.yarnpkg.com/d3-json: Not found
+      at Request.params.callback [as _callback] (/usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:65019:18)
+      at Request.self.callback (/usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:132430:22)
+      at Request.emit (events.js:159:13)
+      at Request.<anonymous> (/usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:133413:10)
+      at Request.emit (events.js:159:13)
+      at IncomingMessage.<anonymous> (/usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:133333:12)
+      at Object.onceWrapper (events.js:254:19)
+      at IncomingMessage.emit (events.js:164:20)
+      at endReadableNT (_stream_readable.js:1054:12)
+      at _combinedTickCallback (internal/process/next_tick.js:138:11)

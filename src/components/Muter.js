@@ -1,5 +1,5 @@
 import { autorun } from 'mobx';
-import { select as d3_select } from 'd3';
+import { select as d3_select } from 'd3-selection';
 import uiState from 'app/uiState';
 
 export default function Muter() {

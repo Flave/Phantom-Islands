@@ -2,9 +2,8 @@ import SoundSource from 'app/components/SoundSource';
 import OceanSound from 'app/components/OceanSound';
 import { autorun, when } from 'mobx';
 import uiState from 'app/uiState';
-import { queue as d3_queue } from 'd3-queue';
 import { Volume, Analyser } from 'tone';
-import _find from 'lodash/find';
+import _find from 'lodash.find';
 
 import oceans from 'app/data/oceans';
 

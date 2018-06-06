@@ -1,6 +1,6 @@
 import Tone, { Players, PanVol } from 'tone';
-import _every from 'lodash/every';
-import { scaleLinear as d3ScaleLinear } from 'd3';
+import _every from 'lodash.every';
+import { scaleLinear as d3ScaleLinear } from 'd3-scale';
 
 export default class SoundSource {
   constructor({ samples, id, distanceFilter }) {

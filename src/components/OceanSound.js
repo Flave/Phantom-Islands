@@ -2,7 +2,7 @@ import Tone, { Player, PanVol } from 'tone';
 
 export default class OceanSound {
   constructor() {
-    this.masterPanVol = new PanVol(0, -10);
+    this.masterPanVol = new PanVol(0, -Infinity);
     this.effect = new Tone.Filter(600, 'highpass');
   }
 
@@ -11,8 +11,6 @@ export default class OceanSound {
       cb(null);
     }).connect(this.masterPanVol);
     this.player.loop = true;
-    //this.player.reverse = true;
-    //this.effect.connect(this.masterPanVol);
   };
 
   connect(node) {
@@ -25,6 +23,6 @@ export default class OceanSound {
 
   update = (volume, latNormal) => {
     this.player.playbackRate = 1 + latNormal * 0.66;
-    this.masterPanVol.volume.set('value', volume);
+    this.masterPanVol.volume.rampTo(volume, 0.5);
   };
 }

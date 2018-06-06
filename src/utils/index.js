@@ -56,19 +56,6 @@ export const getTranslate = transformString => {
   return pixelTranslation.match(/(-?[0-9\.]+)/g).slice(0, 2);
 };
 
-// export const getTranslate = el => {
-//   const transArr = [];
-//   if (!window.getComputedStyle) return;
-//   const style = getComputedStyle(el),
-//     transform = style.transform || style.webkitTransform || style.mozTransform;
-//   let mat = transform.match(/^matrix3d\((.+)\)$/);
-//   if (mat) return parseFloat(mat[1].split(', ')[13]);
-//   mat = transform.match(/^matrix\((.+)\)$/);
-//   mat ? transArr.push(parseFloat(mat[1].split(', ')[4])) : 0;
-//   mat ? transArr.push(parseFloat(mat[1].split(', ')[5])) : 0;
-//   return transArr;
-// };
-
 export const roundToDecimals = (value, decimals) => {
   return Math.round(value * Math.pow(10, decimals)) / Math.pow(10, decimals);
 };
@@ -89,4 +76,35 @@ export const getLocationString = location => {
   const latMinutes = decimalToMinutes(location.lat);
   //return `${lngDegree}°${lngMinutes}"${lngSuffix} ${latDegree}°${latMinutes}"${latSuffix}`;
   return `${lngDegree}°${lngSuffix} ${latDegree}°${latSuffix}`;
+};
+
+const hasWebAudio = () => {
+  return !!(window.webkitAudioContext || window.AudioContext);
+};
+
+export const HAS_WEB_AUDIO = hasWebAudio();
+
+const userAgent = {};
+
+if (/(android)/i.test(navigator.userAgent)) {
+  userAgent.android = true;
+  userAgent.androidVersion = parseFloat(
+    navigator.userAgent.slice(navigator.userAgent.indexOf('Android') + 8),
+  );
+} else if (/iP(hone|od|ad)/.test(navigator.platform)) {
+  const v = navigator.appVersion.match(/OS (\d+)_(\d+)_?(\d+)?/);
+  userAgent.iOS = true;
+  userAgent.iOSVersion = [
+    parseInt(v[1], 10),
+    parseInt(v[2], 10),
+    parseInt(v[3] || 0, 10),
+  ];
+} else if (navigator.userAgent.toLowerCase().indexOf('firefox') > -1) {
+  userAgent.firefox = true;
+} else if (document.documentMode || /Edge/.test(navigator.userAgent)) {
+  userAgent.ie = true;
+}
+
+export const USER_AGENT = {
+  ...userAgent,
 };
