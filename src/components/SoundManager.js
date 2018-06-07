@@ -61,9 +61,9 @@ export default class SoundManager {
     if (!islands.length || !this.islandSounds || !updateSounds) return;
 
     this.masterVol.mute = !readyToPlay || muted;
-    islands.forEach(({ id, pan, volume, volNormal }) => {
+    islands.forEach(({ id, pan, volume, volNormal, play }) => {
       const source = _find(this.islandSounds, { id });
-      source.update(volume, pan, volNormal);
+      source.update(volume, pan, volNormal, play);
     });
 
     this.oceanSound.update(envParams.volume, envParams.latNormal);

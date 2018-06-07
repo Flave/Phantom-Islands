@@ -3,6 +3,8 @@ import { select as d3_select } from 'd3-selection';
 import _template from 'lodash.template';
 import template from 'app/templates/info.hbs';
 import uiState from 'app/uiState';
+import navigateIcon from 'assets/icons/navigate.svg';
+import islandsIcon from 'assets/icons/islands.svg';
 
 const compiledTemplate = _template(template);
 
@@ -27,7 +29,14 @@ export default function Info() {
 
     info = infoEnter
       .merge(infoUpdate)
-      .html(d => compiledTemplate({ loaded: true, isAbout: showAbout }))
+      .html(d =>
+        compiledTemplate({
+          loaded: true,
+          isAbout: showAbout,
+          islandsIcon,
+          navigateIcon,
+        }),
+      )
       .each(function(d) {
         const inner = d3_select(this)
           .selectAll('.info__inner')

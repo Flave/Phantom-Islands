@@ -47,7 +47,7 @@ class UiState {
 
   @observable muted = false;
   @observable pendingRequests = [];
-  @observable showIntro = true;
+  @observable showIntro = false;
   @observable showAbout = false;
 
   constructor() {
@@ -231,7 +231,7 @@ class UiState {
 
   @computed
   get islands() {
-    return this.islandsData.map(island => {
+    const islands = this.islandsData.map(island => {
       const locationPx = this.getLocationPx(island);
       const { dX, dY, dist } = getDistancesPx(locationPx, this.mapCenterPx);
       const volume = this.distPx2Volume(dist, island.distanceThreshold);
@@ -253,6 +253,17 @@ class UiState {
         pan: Math.max(-1, Math.min(1, dX / this.mapCenterPx.x * 4)),
       };
     });
+
+    islands.forEach(island => {
+      if (island.buddy) {
+        const buddyIsland = _find(islands, { id: island.buddy });
+        island.play = island.volNormal > 0 || buddyIsland.volNormal > 0;
+      } else {
+        island.play = island.volNormal > 0;
+      }
+    });
+
+    return islands;
   }
 
   @computed
@@ -300,7 +311,7 @@ class UiState {
         angle,
         dist,
       };
-    }).filter(hint => Math.abs(this.mapCenter.lng - hint.location.lng) < 90);
+    });
   }
 
   @computed

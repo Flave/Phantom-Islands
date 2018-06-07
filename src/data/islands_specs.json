@@ -298,7 +298,21 @@
     "lastAppearance": "1639 A.D. in some other Atlas",
     "samples": [
       {
-        "id": "turtle_1"
+        "id": "turtle_1",
+        "volumeOffset": 2,
+        "playbackRate": 1,
+        "reverse": false,
+        "filter": {
+          "type": "bandpass",
+          "gain": 0.17,
+          "Q": 1.2,
+          "frequency": {
+            "type": "sine",
+            "rate": 0.5,
+            "min": 100,
+            "max": 500
+          }
+        }
       }
     ]
   },
@@ -312,13 +326,13 @@
       "lat": -5.53333333333333
     },
     "description": "Some description",
-    "distanceThreshold": 1,
+    "distanceThreshold": 0.7,
     "firstAppearance": "1399 A.D. in some Atlas",
     "lastAppearance": "1639 A.D. in some other Atlas",
     "samples": [
       {
         "id": "candy_1",
-        "volumeOffset": -2
+        "volumeOffset": -3
       }
     ]
   },
@@ -331,11 +345,25 @@
       "lat": -5.96666666666667
     },
     "description": "Some description",
+    "distanceThreshold": 5,
     "firstAppearance": "1399 A.D. in some Atlas",
     "lastAppearance": "1639 A.D. in some other Atlas",
     "samples": [
       {
-        "id": "londons_1"
+        "id": "londons_1",
+        "playbackRate": 1,
+        "reverse": false,
+        "filter": {
+          "type": "bandpass",
+          "gain": 0.12,
+          "Q": 1,
+          "frequency": {
+            "type": "sine",
+            "rate": 0.2,
+            "min": 100,
+            "max": 2000
+          }
+        }
       }
     ]
   },
@@ -347,7 +375,7 @@
       "lat": -20.3333333333333
     },
     "description":
-      "In 1622 on the newly established shipping route from Holland around the Cape of Good Hope to Dutch possessions in the East Indies, the <i>Tryal</i> wrecks on rocks off the coast of western Australia. A search and sighting of the rocks is made by a sloop sent in 1718 from the Dutch East Indies capital of Batavia (present day Jakarta) but afterwards numerous Dutch and English expeditions turn up nothing and the Rocks’ existence is cast into doubt. In 1818, the British brig <i>Greyhound</i>, captained by Lieutenant Ritchie, encounters the true Tryal Rocks. They are not recognised as such, however, as the Tryal Rocks are thought to be much further west and, by this time, to have never existed in the first place. Ritchie's discovery is entered on maps as Ritchie's Reef. Then in 1934, after an examination of a letter sent by a survivor of the <i>Tryal</i> shipwreck and a survey of the area, Ritchie’s Reef is declared to definitely be the Tryal Rocks and its name is changed accordingly. Final confirmation comes in 1969, when explosives used in an illegal salvage attempt badly damages the wreck of the sunken <i>Tryal</i>.",
+      "In 1622 on the newly established shipping route from Holland around the Cape of Good Hope to Dutch possessions in the East Indies, the <i>Tryal</i> wrecks on rocks off the coast of western Australia. A search and sighting of the rocks is made by a sloop sent in 1718 from the Dutch East Indies capital of Batavia (present day Jakarta) but numerous subsequent Dutch and English expeditions turn up nothing and the Rocks’ existence is cast into doubt. In 1818, the British brig <i>Greyhound</i>, captained by Lieutenant Ritchie, encounters the true Tryal Rocks. They are not recognised as such, however, as the Tryal Rocks are thought to be much further west and, by this time, to have never existed in the first place. Ritchie's discovery is entered on maps as Ritchie's Reef. Then in 1934, after an examination of a letter sent by a survivor of the <i>Tryal</i> shipwreck and a survey of the area, Ritchie’s Reef is declared to definitely be the Tryal Rocks and its name is changed accordingly. Final confirmation comes in 1969, when explosives used in an illegal salvage attempt badly damages the wreck of the sunken <i>Tryal</i>.",
     "distanceThreshold": 1.5,
     "distanceFilter": {
       "min": 100,
@@ -514,13 +542,28 @@
       "lng": -91.366666666666703,
       "lat": 22.55
     },
-    "description": "Some description",
-    "firstAppearance": "1399 A.D. in some Atlas",
-    "lastAppearance": "1639 A.D. in some other Atlas",
+    "description":
+      "Bermeja begins to appear on maps in the 1530s and is described in <i>Espejo de Navegantes</i> (1540) as <i>blondish or reddish</i> and approx 80-sq. km in size. No further confirmed sighting are reported. In 1997, as the United States and Mexico prepare to negotiate a treaty on sovereignty over international waters in the Gulf of Mexico, the Mexican government sends a survey vessel to scan the area where Bermeja might be – the search turns up nothing. Six senators voice their suspicions that the island may have been destroyed by the US Central Intelligence Agency to ensure US hegemony over the offshore oil and gas fields. Shortly after demanding further investigation into the possibility of Bermeja’s existence and warning of a secret plan by the government to give up exploration rights to US companies, one of the senators is driven off the road and killed by an assailant who is never caught.",
+    "firstAppearance":
+      "Alonso de Santa Cruz’ 1539 map <i>El Yucatan e Islas Adyacentes</i>",
+    "lastAppearance": "1921 Geographic Atlas of the Mexican Republic",
     "samples": [
       {
         "id": "bermeja_1",
-        "volumeOffset": 2
+        "volumeOffset": 10,
+        "playbackRate": 0.5,
+        "reverse": false,
+        "filter": {
+          "type": "bandpass",
+          "gain": 1,
+          "Q": 0.9,
+          "frequency": {
+            "type": "sine",
+            "rate": 0.1,
+            "min": 100,
+            "max": 5000
+          }
+        }
       }
     ]
   },
@@ -539,7 +582,7 @@
     "samples": [
       {
         "id": "rica_de_oro_1",
-        "volumeOffset": 2
+        "volumeOffset": 3
       }
     ]
   },

@@ -23,6 +23,6 @@ export default class OceanSound {
 
   update = (volume, latNormal) => {
     this.player.playbackRate = 1 + latNormal * 0.66;
-    this.masterPanVol.volume.rampTo(volume, 0.5);
+    this.masterPanVol.volume.set('value', volume);
   };
 }

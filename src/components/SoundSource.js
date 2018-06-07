@@ -76,6 +76,14 @@ export default class SoundSource {
     });
   }
 
+  stop() {
+    this.eachPlayer((player, sample) => {
+      if (player.state === 'started') {
+        player.stop();
+      }
+    });
+  }
+
   get loaded() {
     return _every(this.samples, sample => this.players.get(sample.id).loaded);
   }
@@ -87,9 +95,10 @@ export default class SoundSource {
     });
   }
 
-  update = (volume, pan, normalDistance) => {
-    // if (this.id === 'onaseuse_hunter_island')
-    //   console.log(volume, normalDistance);
+  update = (volume, pan, normalDistance, play) => {
+    if (play) this.start();
+    else this.stop();
+
     if (this.distanceFilter) {
       this.distanceFilter.frequency.value = this.distanceFilterScale(
         normalDistance,

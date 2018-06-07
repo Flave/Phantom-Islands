@@ -5,6 +5,7 @@
   top: 0;
   left: 0;
   z-index: 1;
+  background-color: rgba(#fff, 0.4);
 }
 
 .info__inner {
@@ -27,11 +28,21 @@
 
   &--soft {
     border-bottom-style: dashed;
-    //border-bottom-color: #fff;
   }
 
   &--center {
     text-align: center;
+  }
+
+  &--cols {
+    display: flex;
+    padding: 15px 10px;
+
+    .info__copy {
+      width: 50%;
+      padding: 10px;
+      text-align: center;
+    }
   }
 }
 
@@ -45,6 +56,18 @@
   margin: 0;
   font-size: 14px;
   line-height: 1.5em;
+
+  &--small {
+    font-size: 12px;
+  }
+}
+
+.info__icon {
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 8px;
+  height: 55px;
+  text-align: center;
 }
 
 .info__warning-title {

@@ -4,16 +4,29 @@
   </div>
   <% if(!isAbout) { %>
   <div class="info__section info__section--soft">
-    <p class="info__copy"><b>Phantom Islands</b> are artifacts of the age of maritime discovery and colonial expansion. During centuries of ocean exploration these islands were sighted, charted, described and even explored – but their existence has never been ultimately verified. Poised somewhere between cartographical fact and maritime fiction, they haunted seafarers’ maps for hundreds of years, inspiring legends, fantasies, and counterfactual histories. <b>Phantom Islands – A Sonic Atlas</b> interprets and presents these imaginations in the form of an interactive map which charts the sounds of a number of historical phantom islands.</p>
+    <p class="info__copy">Phantom Islands are artifacts of the age of maritime discovery and colonial expansion. During centuries of ocean exploration these islands were sighted, charted, described and even explored – but their existence has never been ultimately verified. Poised somewhere between cartographical fact and maritime fiction, they haunted seafarers’ maps for hundreds of years, inspiring legends, fantasies, and counterfactual histories. Phantom Islands – A Sonic Atlas interprets and presents these imaginations in the form of an interactive map which charts the sounds of a number of historical phantom islands.</p>
+  </div>
+  <div class="info__section info__section--soft info__section--cols">
+    <p class="info__copy info__copy--small">
+      <img class="info__icon" src=<%= islandsIcon %> />
+      Zoom in on individual phantom islands to hear their musical, biophonic and geophonic soundscapes.
+    </p>
+    <p class="info__copy info__copy--small">
+      <img class="info__icon" src=<%= navigateIcon %> />
+      Navigate around the map and click on islands’ names to learn the circumstances of their discovery and the dates of their cartographical existence. 
+    </p>
   </div>
   <% } %>
-  <div class="info__section info__section--soft">
-    <p class="info__copy">Zoom in on individual phantom islands to hear their musical, biophonic and geophonic soundscapes. Navigate around the map and click on islands’ names to learn the circumstances of their discovery and the dates of their cartographical existence. </p>
-  </div>
   <% if(isAbout) { %>
-    <div class="info__section">
-      <p class="info__copy">Concept, Text and Sound: <a href="http://andrewpekler.com" target="_blank">Andrew Pekler</a></p>
-      <p class="info__copy">Design and Development: <a href="https://twitter.com/flaviogortana" target="_blank">Flavio Gortana</a></p>
+    <div class="info__section info__section--soft">
+      <p class="info__copy">Phantom Islands - A Sonic Atlas was commissioned by <a href="http://www.jeudepaume.org/" target="_blank">Jeu de Paume</a> for the exhibition Fourth Worlds: Imaginary Ethnography in Music and Sound</p>
+    </div>
+  <% } %>
+  <% if(isAbout) { %>
+    <div class="info__section info__section--soft">
+      <p class="info__copy">Concept, Text and Sound <a href="http://andrewpekler.com" target="_blank"><b>Andrew Pekler</b></a></p>
+      <p class="info__copy">Design and Development <a href="https://twitter.com/flaviogortana" target="_blank"><b>Flavio Gortana</b></a></p>
+      <p class="info__copy">Research Assistance <a href="https://twitter.com/flaviogortana" target="_blank"><b>Kiwi Menrath</b></a></p>
     </div>
   <% } %>
   <div class="info__section info__section--center">

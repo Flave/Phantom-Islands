@@ -2,8 +2,13 @@
   <head>
     <meta charset="utf-8">
     <title>Phantom Islands</title>
-    <meta description="">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=.53">
+    <meta property="og:title" content="Phantom Islands">
+    <meta property="og:site_name" content="Phantom Islands">
+    <meta property="og:url" content="http://andrewpekler.com/phantom-islands/">
+    <meta property="og:description" content="Phantom Islands – A Sonic Atlas interprets and presents these imaginations in the form of an interactive map which charts the sounds of a number of historical phantom islands.">
+    <meta property="og:type" content="music.musician">
+    <meta property="og:image" content="http://andrewpekler.com/phantom-islands/assets/teaser.png">
     <style>
       #initial-loader {
         position: fixed;
@@ -39,6 +44,18 @@
       .loader__title-path {
         fill: none;
         stroke: #000;
+      }
+
+      .loader__title-text {
+        letter-spacing: .08em;
+      }
+
+      .loader__center-text,
+      .loader__title-text {
+        font-family: 'Roboto Mono', monospace;
+        font-size: 14px;
+        alignment-baseline: middle;
+        text-anchor: middle;
       }
 
       svg {
@@ -88,7 +105,7 @@
         var outerCrossStart = fullR - 35;
         var outerCrossEnd = fullR - 25;
         var innerCrossStart = 30;
-        var innerCrossEnd = fullR - 55;
+        var innerCrossEnd = fullR - 75;
 
         static.setAttribute('class', 'circle-group');
         static.setAttribute('id', 'circle-group__static');
@@ -173,12 +190,47 @@
           rotating.appendChild(text);
         }
 
+        function drawText() {
+          var titleText = document.createElementNS(svgNS,'text');        
+
+          titleText.setAttribute('class', 'loader__title-text');
+          titleText.setAttribute('transform', 'translate(' + center + ',' + (center*2 + 40) + ')');
+          titleText.textContent = 'LOADING…';
+          svgElement.appendChild(titleText);
+
+
+          var textNorth = document.createElementNS(svgNS,'text');
+          textNorth.setAttribute('class', 'loader__center-text');
+          textNorth.textContent = 'N';
+          textNorth.setAttribute('transform', 'translate(' + center + ',' + (center - 68) + ')');
+          rotating.appendChild(textNorth);
+
+          var textEast = document.createElementNS(svgNS,'text');
+          textEast.setAttribute('class', 'loader__center-text');
+          textEast.textContent = 'E';
+          textEast.setAttribute('transform', 'translate(' + (center + 68) + ',' + center + ')');
+          rotating.appendChild(textEast);
+
+          var textSouth = document.createElementNS(svgNS,'text');
+          textSouth.setAttribute('class', 'loader__center-text');
+          textSouth.textContent = 'S';
+          textSouth.setAttribute('transform', 'translate(' + center + ',' + (center + 68) + ')');
+          rotating.appendChild(textSouth);
+
+          var textWest = document.createElementNS(svgNS,'text');
+          textWest.setAttribute('class', 'loader__center-text');
+          textWest.textContent = 'W';
+          textWest.setAttribute('transform', 'translate(' + (center - 68) + ',' + center + ')');
+          rotating.appendChild(textWest);
+        }
+
         drawRing(static, outerStart, outerEnd, 10, 2);
         drawRing(rotating, innerStart, innerEnd, 10, 5);
         drawRing(rotating, outerCrossStart, outerCrossEnd, 360/4, 360/4);
         drawRing(rotating, innerCrossStart, innerCrossEnd, 360/4, 360/4);
         drawArrowHead();
         //drawTextPath();
+        drawText();
 
 
         window.removeInitialLoader = function() {
