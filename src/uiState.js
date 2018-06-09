@@ -10,13 +10,10 @@ import {
 } from './utils';
 import { scaleLinear as d3_scaleLinear } from 'd3-scale';
 import { selectAll as d3_selectAll } from 'd3-selection';
+import { max as d3Max } from 'd3-array';
 
-import _maxBy from 'lodash.maxBy';
 import _minBy from 'lodash.minBy';
-import _sortBy from 'lodash.sortBy';
-import _find from 'lodash.find';
 import _debounce from 'lodash.debounce';
-import _negate from 'lodash.negate';
 import _groupBy from 'lodash.groupBy';
 import _map from 'lodash.map';
 import { LngLatBounds, LngLat, Marker } from 'mapbox-gl';
@@ -127,11 +124,6 @@ class UiState {
       ];
     }
     this.mapInitialized = true;
-  }
-
-  @action
-  setSelectedIsland(id) {
-    this.selectedIsland = id;
   }
 
   @action
@@ -256,7 +248,9 @@ class UiState {
 
     islands.forEach(island => {
       if (island.buddy) {
-        const buddyIsland = _find(islands, { id: island.buddy });
+        const buddyIsland = islands.filter(
+          candidate => island.buddy === candidate.id,
+        )[0];
         island.play = island.volNormal > 0 || buddyIsland.volNormal > 0;
       } else {
         island.play = island.volNormal > 0;
@@ -269,7 +263,7 @@ class UiState {
   @computed
   get popupCandidate() {
     if (!this.islands.length) return;
-    let candidate = _find(this.islands, { id: this.selectedIsland });
+    let candidate;
     const closestCandidate = _minBy(this.islands, 'dist');
     if (this.mapZoom >= 8 && closestCandidate.volNormal > 0.2)
       candidate = closestCandidate;
@@ -293,9 +287,9 @@ class UiState {
 
   @computed
   get islandHints() {
-    let candidates = _sortBy(this.islands, 'dist');
+    let candidates = this.islands.sort((a, b) => a.dist - b.dist);
     candidates = candidates
-      .filter(_negate(this.isIslandInView))
+      .filter(island => !this.isIslandInView(island))
       .map(island => ({
         ...island,
         side: this.getHintSide(island.locationPx),
@@ -317,7 +311,7 @@ class UiState {
   @computed
   get envParams() {
     if (!this.islands.length) return;
-    const maxIslandVol = _maxBy(this.islands, 'volNormal').volNormal;
+    const maxIslandVol = d3Max(this.islands, i => i.volNormal);
     let groupedSurfaces = _groupBy(this.mapSurfacesCache);
     const { land } = groupedSurfaces;
     // Number between 0 and 1 indicating the relative amount of hovered land

@@ -3,7 +3,6 @@ import OceanSound from 'app/components/OceanSound';
 import { autorun, when } from 'mobx';
 import uiState from 'app/uiState';
 import { Volume, Analyser } from 'tone';
-import _find from 'lodash.find';
 
 import oceans from 'app/data/oceans';
 
@@ -38,7 +37,9 @@ export default class SoundManager {
         uiState.removePendingRequest(island.id);
         // Make sure buddy islands start at the same time
         if (island.buddy) {
-          const buddyIsland = _find(this.islandSounds, { id: island.buddy });
+          const buddyIsland = this.islandSounds.filter(
+            i => i.id === island.buddy,
+          )[0];
           if (buddyIsland.loaded) {
             islandSound.start();
             buddyIsland.start();
@@ -62,7 +63,7 @@ export default class SoundManager {
 
     this.masterVol.mute = !readyToPlay || muted;
     islands.forEach(({ id, pan, volume, volNormal, play }) => {
-      const source = _find(this.islandSounds, { id });
+      const source = this.islandSounds.filter(i => i.id === id)[0];
       source.update(volume, pan, volNormal, play);
     });
 
