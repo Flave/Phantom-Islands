@@ -10,6 +10,7 @@ import Intro from 'components/Intro';
 import Hints from 'components/Hints';
 import Muter from 'components/Muter';
 import AboutButton from 'components/AboutButton';
+import CruiseButton from 'components/CruiseButton';
 import LoadingIndicator from 'components/LoadingIndicator';
 import SoundManager from 'components/SoundManager';
 import FrequencyVisualizer from 'components/FrequencyVisualizer';
@@ -50,6 +51,7 @@ if (HAS_WEB_AUDIO) {
   LoadingIndicator();
   FrequencyVisualizer(soundManager)();
   Muter();
+  CruiseButton();
   AboutButton();
 
   autorun(() => {

@@ -46,6 +46,7 @@ class UiState {
   @observable pendingRequests = [];
   @observable showIntro = false;
   @observable showAbout = false;
+  @observable cruiseMode = false;
 
   constructor() {
     // hacky helper to prevent blips of sounds when jumping to different location
@@ -99,6 +100,11 @@ class UiState {
   @action
   setMuted(mute) {
     this.muted = mute;
+  }
+
+  @action
+  setCruiseMode(cruiseMode) {
+    this.cruiseMode = cruiseMode;
   }
 
   @action
@@ -242,7 +248,7 @@ class UiState {
         volNormal,
         volume,
         hide: this.mapZoom < minZoom,
-        pan: Math.max(-1, Math.min(1, dX / this.mapCenterPx.x * 4)),
+        pan: Math.max(-1, Math.min(1, (dX / this.mapCenterPx.x) * 4)),
       };
     });
 
@@ -374,7 +380,7 @@ class UiState {
   @computed
   get sideCenterAngles() {
     const sideSum = this.windowDimensions.width + this.windowDimensions.height;
-    const topBottom = this.windowDimensions.width / sideSum * Math.PI;
+    const topBottom = (this.windowDimensions.width / sideSum) * Math.PI;
     const leftRigth = Math.abs(topBottom - Math.PI);
     return { topBottom, leftRigth };
   }
@@ -494,7 +500,7 @@ class UiState {
     const yPrefix = dY > 0 ? 1 : -1;
     const xPrefix = dX > 0 ? 1 : -1;
     const xIntersection =
-      yPrefix * this.mapCenterPx.y / slope + this.mapCenterPx.x;
+      (yPrefix * this.mapCenterPx.y) / slope + this.mapCenterPx.x;
     const yIntersection =
       xPrefix * this.mapCenterPx.x * slope + this.mapCenterPx.y;
     return {

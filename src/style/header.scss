@@ -14,13 +14,15 @@
   text-transform: uppercase;
 }
 
+.header__cruise,
 .header__muter {
   border-right: 1px solid #ccc;
   padding-right: 15px;
 }
 
 .header__muter,
-.header__about {
+.header__about,
+.header__cruise {
   cursor: pointer;
   letter-spacing: 0.08em;
 }

@@ -39,18 +39,6 @@ module.exports = {
         ],
       },
       {
-        test: /\.json$/,
-        type: 'javascript/auto',
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              name: '[name]-[hash:6].[ext]',
-            },
-          },
-        ],
-      },
-      {
         test: /\.html$/,
         use: [
           {
