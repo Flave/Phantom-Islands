@@ -16,9 +16,7 @@ export default function CruiseButton() {
       .attr('class', className)
       .on('click', () => uiState.setCruiseMode(!uiState.cruiseMode));
 
-    enter
-      .merge(update)
-      .html(uiState.cruiseMode ? 'Stop Cruise' : 'Auto Cruise');
+    enter.merge(update).html(uiState.cruiseMode ? 'Stop Cruise' : 'Cruise');
   }
 
   autorun(_cruiseButon);

@@ -2,65 +2,93 @@ import { autorun, when } from 'mobx';
 import uiState from 'app/uiState';
 import { Marker, Popup } from 'mapbox-gl';
 import { select as d3_select, event as d3_event } from 'd3-selection';
+import { easePolyInOut as d3EasePolyInOut } from 'd3-ease';
 import cruisePath from 'data/cruisePath.json';
+import _minBy from 'lodash.minBy';
 
 class Cruiser {
   constructor(map) {
     this.map = map;
     this.step = 0;
-    this.path = cruisePath.features[0].geometry.coordinates;
     this.isCruising = false;
+    this.waypoints = [];
+    this.cruiseDuration = 15;
+    this.pauseDuration = 2;
   }
 
   start() {
-    this.step = 0;
-    const startPoint = this.path[this.step];
     this.isCruising = true;
+    this.waypoints = uiState.islands
+      .slice()
+      .sort((a, b) => a.cruiseIndex - b.cruiseIndex);
+    const startPoint = _minBy(this.waypoints, 'dist');
+    this.step = this.waypoints.indexOf(startPoint);
+
     this.map.flyTo(
       {
-        center: { lng: startPoint[0], lat: startPoint[1] },
-        zoom: 8,
+        center: startPoint.location,
+        zoom: 7,
       },
       {
         initiator: 'cruiser',
       },
     );
 
-    this.map.once('moveend', this.moveToNextPoint);
+    this.map.once('moveend', e => {
+      if (e.initiator === 'cruiser') this.moveToNextPoint();
+    });
   }
 
-  moveToNextPoint() {
+  moveToNextPoint = () => {
     this.step += 1;
-    let progress = 0;
-    const start = this.path[this.step - 1];
-    const end = this.path[this.step];
-    const dLng = end[0] - start[0];
-    const dLat = end[1] - start[1];
-    const dist = Math.sqrt(dLng * dLng + dLat * dLat);
-    const speed = 0.007;
+    const duration =
+      this.waypoints[this.step].cruiseDuration || this.cruiseDuration;
+    this.stepDuration = duration * 1000; // 100 seconds in milliseconds
+    this.startTime = new Date();
+    this.nextAnimationStep();
+  };
 
-    const nextStep = () => {
-      if (!this.isCruising) return;
+  nextAnimationStep = () => {
+    if (!this.isCruising) return;
+    const ellapsed = new Date() - this.startTime;
+    const progress = ellapsed / this.stepDuration;
+    const easedProgress = d3EasePolyInOut(progress, 2);
+    const startIndex =
+      this.step === 0 ? this.waypoints.length - 1 : this.step - 1;
+    const start = this.waypoints[startIndex].location;
+    const endWaypoint = this.waypoints[this.step];
+    const end = endWaypoint.location;
+    const dLng = end.lng + 0.002 - (start.lng + 0.002);
+    const dLat = end.lat + 0.03 - (start.lat + 0.03);
 
-      const lng = start[0] + dLng * progress;
-      const lat = start[1] + dLat * progress;
-      this.map.jumpTo(
-        {
-          center: { lng, lat },
-        },
-        { initiator: 'cruiser' },
+    const lng = start.lng + dLng * easedProgress;
+    const lat = start.lat + dLat * easedProgress;
+    this.map.jumpTo(
+      {
+        center: { lng, lat },
+      },
+      { initiator: 'cruiser' },
+    );
+
+    if (progress < 1) {
+      window.setTimeout(this.nextAnimationStep, 16);
+    } else if (this.step < this.waypoints.length - 1) {
+      window.setTimeout(
+        this.moveToNextPoint,
+        endWaypoint.pauseDuration || this.pauseDuration * 1000,
       );
-      progress += speed;
-      if (progress < 1) window.setTimeout(nextStep, 16);
-      else if (this.step < this.path.length - 1) this.moveToNextPoint();
-      else this.start();
-    };
-    nextStep();
-  }
+    } else {
+      this.step = 0;
+      window.setTimeout(
+        this.moveToNextPoint,
+        endWaypoint.pauseDuration || this.pauseDuration * 1000,
+      );
+    }
+  };
 
-  stop() {
+  stop = () => {
     this.isCruising = false;
-  }
+  };
 }
 
 const WorldMap = function(map) {
