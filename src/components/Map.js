@@ -3,7 +3,6 @@ import uiState from 'app/uiState';
 import { Marker, Popup } from 'mapbox-gl';
 import { select as d3_select, event as d3_event } from 'd3-selection';
 import { easePolyInOut as d3EasePolyInOut } from 'd3-ease';
-import cruisePath from 'data/cruisePath.json';
 import _minBy from 'lodash.minBy';
 
 class Cruiser {
@@ -13,7 +12,7 @@ class Cruiser {
     this.isCruising = false;
     this.waypoints = [];
     this.cruiseDuration = 15;
-    this.pauseDuration = 2;
+    this.pauseDuration = 35;
   }
 
   start() {
@@ -35,7 +34,13 @@ class Cruiser {
     );
 
     this.map.once('moveend', e => {
-      if (e.initiator === 'cruiser') this.moveToNextPoint();
+      if (e.initiator === 'cruiser') {
+        if (this.step === this.waypoints.length - 1) this.step = -1;
+        window.setTimeout(
+          this.moveToNextPoint,
+          startPoint.pauseDuration * 1000 || this.pauseDuration * 1000,
+        );
+      }
     });
   }
 
@@ -55,7 +60,8 @@ class Cruiser {
     const easedProgress = d3EasePolyInOut(progress, 2);
     const startIndex =
       this.step === 0 ? this.waypoints.length - 1 : this.step - 1;
-    const start = this.waypoints[startIndex].location;
+    const startWaypoint = this.waypoints[startIndex];
+    const start = startWaypoint.location;
     const endWaypoint = this.waypoints[this.step];
     const end = endWaypoint.location;
     const dLng = end.lng + 0.002 - (start.lng + 0.002);
@@ -75,13 +81,13 @@ class Cruiser {
     } else if (this.step < this.waypoints.length - 1) {
       window.setTimeout(
         this.moveToNextPoint,
-        endWaypoint.pauseDuration || this.pauseDuration * 1000,
+        endWaypoint.pauseDuration * 1000 || this.pauseDuration * 1000,
       );
     } else {
-      this.step = 0;
+      this.step = -1;
       window.setTimeout(
         this.moveToNextPoint,
-        endWaypoint.pauseDuration || this.pauseDuration * 1000,
+        endWaypoint.pauseDuration * 1000 || this.pauseDuration * 1000,
       );
     }
   };
@@ -140,13 +146,11 @@ const WorldMap = function(map) {
     uiState.transitionMap(island.location, 9);
   };
 
-  const deselectIsland = () => {
-    uiState.setSelectedIsland();
-  };
-
   const update = transition => {
+    // Start cruise if cruis mode and if is not cruising already
     if (uiState.cruiseMode && !cruiser.isCruising) {
       cruiser.start();
+      // If there uiState map params are not same as set map params it means that some other component initiated a map transition
     } else if (
       uiState.mapZoom !== map.getZoom() ||
       uiState.mapCenter !== map.getCenter()
@@ -161,6 +165,7 @@ const WorldMap = function(map) {
       cruiser.stop();
     }
 
+    // Show/Hide markers on map
     uiState.islands.forEach(island => {
       d3_select(`[data-island-id="${island.id}"]`).classed(
         'is-hidden',
@@ -194,7 +199,6 @@ const WorldMap = function(map) {
     });
   };
 
-  map.on('click', deselectIsland);
   map.on('zoom', handleZoom);
   map.on('move', updateMapParams);
   map.on('load', updateMapParams);
