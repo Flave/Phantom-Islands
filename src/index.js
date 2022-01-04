@@ -15,13 +15,15 @@ import LoadingIndicator from 'components/LoadingIndicator';
 import SoundManager from 'components/SoundManager';
 import FrequencyVisualizer from 'components/FrequencyVisualizer';
 import OldBrowserInfo from 'components/OldBrowserInfo';
+import MobileInfo from 'components/MobileInfo';
 
 import uiState from './uiState';
 import { MAX_ZOOM, MIN_ZOOM, MAX_LAT, MIN_LAT } from './config';
 import { USER_AGENT, HAS_WEB_AUDIO } from './utils';
 
+// Flavio pk.eyJ1IjoiZmxhdmlvZ29ydGFuYSIsImEiOiJzalRHcS1JIn0.aeJmH09S2p_hjOSs3wuT3w
 mapboxgl.accessToken =
-  'pk.eyJ1IjoiZmxhdmlvZ29ydGFuYSIsImEiOiJzalRHcS1JIn0.aeJmH09S2p_hjOSs3wuT3w';
+  'pk.eyJ1IjoiYW5kcmV3cGVrbGVyIiwiYSI6ImNqaTRlNWo2dDA3a2czcHBmcjl1OG1kYjgifQ.5S80knzlvZ5u2jAd9YZOXA';
 
 // //Setup mapbox-gl map
 const map = new mapboxgl.Map({
@@ -42,7 +44,7 @@ if (HAS_WEB_AUDIO) {
   uiState.setMap(map);
 
   const soundManager = new SoundManager();
-
+  MobileInfo(HAS_WEB_AUDIO);
   Intro();
   WorldMap(map);
   Popups()(map);
@@ -59,5 +61,6 @@ if (HAS_WEB_AUDIO) {
   });
 } else {
   window.removeInitialLoader();
-  OldBrowserInfo();
+  if (USER_AGENT.isMobile) MobileInfo(HAS_WEB_AUDIO);
+  else OldBrowserInfo();
 }

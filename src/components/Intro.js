@@ -25,7 +25,8 @@ export default function Info() {
     infoEnter = infoUpdate
       .enter()
       .append('div')
-      .classed('info', true);
+      .classed('info', true)
+      .classed('info--about', showAbout);
 
     info = infoEnter
       .merge(infoUpdate)
@@ -45,7 +46,7 @@ export default function Info() {
         const width = offsetWidth % 2 === 0 ? offsetWidth : offsetWidth - 1;
         const height = offsetHeight % 2 === 0 ? offsetHeight : offsetHeight - 1;
         inner.style.width = `${width}px`;
-        inner.style.height = `${height}px`;
+        //inner.style.height = `${height}px`;
       });
 
     info.selectAll('.info__start').on('click', () => {

@@ -36,6 +36,7 @@ export default function Hints() {
         uiState.transitionMap(island.location, 9);
       })
       .attr('class', d => `hint hint--${d.side}`)
+      .classed('is-behind-header', d => d.isBehindHeader)
       .style('left', d => `${d.borderPos.x}px`)
       .style('top', d => `${d.borderPos.y}px`)
       .each(function(d) {

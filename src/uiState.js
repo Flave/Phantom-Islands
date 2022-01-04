@@ -7,6 +7,7 @@ import {
   getDistancesPx,
   getTranslate,
   getLocationString,
+  USER_AGENT,
 } from './utils';
 import { scaleLinear as d3_scaleLinear } from 'd3-scale';
 import { selectAll as d3_selectAll } from 'd3-selection';
@@ -27,7 +28,7 @@ const MIN_VOLUME = -75;
 const MAX_LAT_MOVEMENT = Math.abs(MIN_LAT - MAX_LAT);
 
 class UiState {
-  @observable mapCenter = { lng: 178, lat: 0 };
+  @observable mapCenter = { lng: 160, lat: 14 };
   @observable mapZoom = MIN_ZOOM;
   @observable mapInitialized = false;
   @observable mapSurfacesCache = [];
@@ -44,8 +45,9 @@ class UiState {
 
   @observable muted = false;
   @observable pendingRequests = [];
-  @observable showIntro = false;
+  @observable showIntro = !USER_AGENT.mobile;
   @observable showAbout = false;
+  @observable showMobileInfo = USER_AGENT.mobile;
   @observable cruiseMode = false;
 
   constructor() {
@@ -95,6 +97,12 @@ class UiState {
   @action
   setShowAbout(show) {
     this.showAbout = show;
+  }
+
+  @action
+  setShowMobileInfo(show) {
+    this.showMobileInfo = show;
+    this.showIntro = !show;
   }
 
   @action
@@ -248,7 +256,7 @@ class UiState {
         volNormal,
         volume,
         hide: this.mapZoom < minZoom,
-        pan: Math.max(-1, Math.min(1, (dX / this.mapCenterPx.x) * 4)),
+        pan: Math.max(-1, Math.min(1, dX / this.mapCenterPx.x * 4)),
       };
     });
 
@@ -293,6 +301,7 @@ class UiState {
 
   @computed
   get islandHints() {
+    let headerWidth = d3_selectAll('#header').node().clientWidth;
     let candidates = this.islands.sort((a, b) => a.dist - b.dist);
     candidates = candidates
       .filter(island => !this.isIslandInView(island))
@@ -304,10 +313,14 @@ class UiState {
     return _map(candidates, sideGroup => {
       const island = sideGroup[0];
       const borderPos = this.getHintPos(island.locationPx);
+      const isBehindHeader =
+        borderPos.y < 20 &&
+        borderPos.x > this.windowDimensions.width - headerWidth;
       const { angle, dist } = this.getPolarPosition(island.locationPx);
       return {
         ...island,
         borderPos,
+        isBehindHeader,
         angle,
         dist,
       };
@@ -380,7 +393,7 @@ class UiState {
   @computed
   get sideCenterAngles() {
     const sideSum = this.windowDimensions.width + this.windowDimensions.height;
-    const topBottom = (this.windowDimensions.width / sideSum) * Math.PI;
+    const topBottom = this.windowDimensions.width / sideSum * Math.PI;
     const leftRigth = Math.abs(topBottom - Math.PI);
     return { topBottom, leftRigth };
   }
@@ -500,7 +513,7 @@ class UiState {
     const yPrefix = dY > 0 ? 1 : -1;
     const xPrefix = dX > 0 ? 1 : -1;
     const xIntersection =
-      (yPrefix * this.mapCenterPx.y) / slope + this.mapCenterPx.x;
+      yPrefix * this.mapCenterPx.y / slope + this.mapCenterPx.x;
     const yIntersection =
       xPrefix * this.mapCenterPx.x * slope + this.mapCenterPx.y;
     return {

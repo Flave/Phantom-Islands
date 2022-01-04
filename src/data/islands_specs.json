@@ -2,8 +2,8 @@
   {
     "name": "Frisland",
     "cruiseIndex": 12,
-    "cruiseDuration": 20,
-    "pauseDuration": 30,
+    "cruiseDuration": 30,
+    "pauseDuration": 60,
     "id": "friesland",
     "location": {
       "lng": -18.0,
@@ -17,7 +17,7 @@
     "samples": [
       {
         "id": "friesland_1",
-        "volumeOffset": 6.5,
+        "volumeOffset": 6.7,
         "playbackRate": 1,
         "reverse": false,
         "filter": {
@@ -36,9 +36,9 @@
   },
   {
     "name": "Buss Island",
-    "cruiseIndex": 14,
-    "cruiseDuration": 20,
-    "pauseDuration": 30,
+    "cruiseIndex": 13,
+    "cruiseDuration": 45,
+    "pauseDuration": 50,
     "id": "buss_island",
     "location": {
       "lng": -28.0,
@@ -54,7 +54,7 @@
         "volumeOffset": 6.5,
         "filter": {
           "type": "bandpass",
-          "gain": 0.05,
+          "gain": 0.1,
           "Q": 0.5,
           "frequency": {
             "type": "sine",
@@ -66,11 +66,11 @@
       },
       {
         "id": "buss_island_2",
-        "volumeOffset": -0.5,
+        "volumeOffset": 0,
         "filter": {
           "type": "bandpass",
-          "gain": 0.17,
-          "Q": 1.2,
+          "gain": 0.5,
+          "Q": 0.9,
           "frequency": {
             "type": "sine",
             "rate": 0.07,
@@ -83,9 +83,9 @@
   },
   {
     "name": "Hy Brasil",
-    "cruiseIndex": 13,
-    "cruiseDuration": 20,
-    "pauseDuration": 30,
+    "cruiseIndex": 15,
+    "cruiseDuration": 45,
+    "pauseDuration": 60,
     "id": "hy_brasil",
     "location": {
       "lng": -17.566666666666599,
@@ -93,7 +93,7 @@
     },
     "description":
       "Hy Brasil is first mentioned in text in the 12th century; the cleric Giraldus Cambrensis reports that it is cloaked in mist, except for one day each seven years when it becomes visible. A number of expeditions from the port of Bristol are sent out to search for Hy Brasil in the late fifteenth century, the last led by John Cabot, who goes on to reach the coast of North America in 1497. The island appears regularly on maps until 1865, by which time it is called Brazil Rock. The last supposed sighting is in 1872. Despite its name, it shares no relation to the country of Brazil, which was named for the brazilwood tree that grew there.",
-    "distanceThreshold": 4,
+    "distanceThreshold": 2,
     "firstAppearance": "Dalorto’s portolan chart of 1325",
     "lastAppearance": "1850 Admiralty chart of the North Atlantic",
     "samples": [
@@ -110,7 +110,7 @@
     "name": "St. Brendan's Island",
     "cruiseIndex": 16,
     "cruiseDuration": 20,
-    "pauseDuration": 30,
+    "pauseDuration": 70,
     "id": "st_brendans_island",
     "location": {
       "lng": -23.233333333333299,
@@ -120,6 +120,7 @@
       "Named after the Irish saint who claims to have landed there in 512 with a group of monks. They report their stay as 15 days, while the ships that expect their return complain that they had to wait a year, during which period the island remained concealed behind a thick curtain of mist. St. Brendan’s discovery is mentioned in several medieval texts and stokes the interest of the Portuguese prince Henry the Navigator (1394–1460), who orders an expedition to the island. In 1719, the Scottish monk Sigbert de Gembloux reports seeing the island, as does Don Matea Dacesta, mayor of Valverde, on the Canary island of El Hierro in 1721. According to the Canary historian Ramirez, in 1723 a priest performs the rite of exorcism towards the island during one of its apparitions behind low cloud. And in 1759 an unnamed Franciscan monk writes of an occasion when the island was visible for 90 minutes and was witnessed by about 40 spectators.",
     "firstAppearance": "1235 Ebstorf map of the world",
     "lastAppearance": "1707 de l’Isle’s map of West Africa",
+    "distanceThreshold": 2,
     "samples": [
       {
         "id": "st_brendans_island_1",
@@ -133,8 +134,8 @@
   {
     "name": "Fonseca",
     "cruiseIndex": 11,
-    "cruiseDuration": 20,
-    "pauseDuration": 30,
+    "cruiseDuration": 35,
+    "pauseDuration": 55,
     "id": "fonseca",
     "location": {
       "lng": -54.8,
@@ -144,17 +145,18 @@
       "In 1628 Charles I of England grants Fonseca to Philip, the Earl of Montgomery. Several expeditions – including one by a group of English Puritans in 1630 – aiming to explore and colonize the island prove unsuccessful. A 1682 account, <i>A Discovery of Fonseca</i>, describes its inhabitants as moon-worshipping Amazon women of Welsh origin. A 1708 pamphlet, <i>A Voyage to the New Island of Fonseca</i>, reports that it is a predominantly British community of around 16,000, with an African slave population of 70,000.",
     "firstAppearance": "Cabot's 1544 map of the world",
     "lastAppearance": "Johnston's 1866 Royal Atlas",
+    "distanceThreshold": 3,
     "samples": [
       {
         "id": "fonseca_1",
-        "volumeOffset": -1.5
+        "volumeOffset": 3
       }
     ]
   },
   {
     "name": "Antillia",
-    "cruiseIndex": 15,
-    "cruiseDuration": 20,
+    "cruiseIndex": 14,
+    "cruiseDuration": 30,
     "pauseDuration": 30,
     "id": "antillia",
     "location": {
@@ -165,19 +167,19 @@
       "Mentioned in various geographies since at least the 1st century, the Atlantic island of Antilia frequently appears west of the Azores on world maps of the 15th century. A 1474 map by Paolo Toscanelli becomes an integral part of Christopher Columbus’ route planning, with Antillia figuring as an ideal stopover point for his West Route to India. On his journey, Columbus does indeed find islands beyond the Azores. However, none of these are Antillia, but rather an archipelago located off the coast of America and given the name Antilles.",
     "firstAppearance": "1424 Zuane Pizzigano map of the Atlantic",
     "lastAppearance": "1631 Hondius’ map of the world",
-    "distanceThreshold": 7,
+    "distanceThreshold": 2,
     "samples": [
       {
         "id": "antillia_1",
-        "volumeOffset": -7
+        "volumeOffset": -9
       }
     ]
   },
   {
     "name": "Pepys Island",
     "cruiseIndex": 18,
-    "cruiseDuration": 20,
-    "pauseDuration": 30,
+    "cruiseDuration": 35,
+    "pauseDuration": 10,
     "id": "pepys_island",
     "location": {
       "lng": -58.4,
@@ -185,14 +187,14 @@
     },
     "description":
       "In 1683 the buccaneer William Ambrose Cowley makes the following entry in his journal: <i>In the latitude of 47°, we saw land, the same being an island not before known. It is a good place for fresh water and tinder. Its harbour is excellent with safe anchorage for a thousand ships. We saw an enormous number of birds on this island and we believe that there will be abundant fishing around its coasts, for they are surrounded by a bottom of sand and shingle.</i> The editor and publisher of Cowley’s journal, William Hacke names this island Pepys after the then secretary of the British Admiralty, Samuel Pepys. Hacke also omits a crucial reference made by Cowley: <i>We saw likewise another island by this that night, which made me thinke them to be the Sebald de Weerts</i> (as the Falkland Islands are called at this time). At least 111 maps and 130 years of searches later, it becomes clear that Pepys must be a misidentified account of the Falkland Islands. Ironically, in a journal entry written on the same ship and later published in <i>A New Voyage Round the World</i> (1697), William Dampier clearly states sighting one of the Falklands on this date.",
-    "distanceThreshold": 5.5,
+    "distanceThreshold": 6.5,
     "firstAppearance":
       "1699 Drawing of Pepys Island by William Hacke, in his book <i>Collection of Original Voyages</i>",
     "lastAppearance": "1808 Admiralty Chart of the South Atlantic",
     "samples": [
       {
         "id": "pepys_island_1",
-        "volumeOffset": 0,
+        "volumeOffset": -1.5,
         "filter": {
           "type": "bandpass",
           "gain": 0.1,
@@ -210,8 +212,8 @@
   {
     "name": "Saxenburgh Island",
     "cruiseIndex": 17,
-    "cruiseDuration": 20,
-    "pauseDuration": 30,
+    "cruiseDuration": 25,
+    "pauseDuration": 40,
     "id": "saxenburgh_island",
     "location": {
       "lng": -19.6666666666666,
@@ -222,17 +224,18 @@
     "firstAppearance": "Herman Moll’s 1710 map of South America",
     "lastAppearance":
       "Nathaniel Dwight’s 1817 <i>A System of Universal Geography for Common Schools</i>",
+    "distanceThreshold": 3,
     "samples": [
       {
         "id": "saxenburgh_island_1",
-        "volumeOffset": 3
+        "volumeOffset": -1
       }
     ]
   },
   {
     "name": "Aurora Islands",
     "cruiseIndex": 19,
-    "cruiseDuration": 20,
+    "cruiseDuration": 45,
     "pauseDuration": 30,
     "id": "aurora_islands",
     "location": {
@@ -243,7 +246,7 @@
       "In April 1502, as part of a Portuguese expedition to explore the extent of the newly found southern continent, Amerigo Vespucci sets sail from Cabo Frio in Brazil and follows the Sirocco winds into the rough, cold South Atlantic. This far below the equator, the familiar constellations of the north disappear beyond the horizon, and in the middle of a storm a new land is sighted. Sailing alongside for almost 20 leagues, Vespucci describes the coast as wild, without any harbour or people and does not attempt to land there. The island remains lost for 250 years until the Spanish trade ship <i>Aurora</i> identifies three islands at the same location in 1762. These islands, now called the Auroras, are sighted several times again in the 18th and 19th century, and deliver the basis for the plot of Edgar Allan Poe’s <i>The Narrative of Arthur Gordon Pym of Nantucket </i>(1838).",
     "firstAppearance": "1808 British Admiralty Chart No. 357",
     "lastAppearance": "John Laurie’s 1859 world map",
-    "distanceThreshold": 7,
+    "distanceThreshold": 3.5,
     "samples": [
       {
         "id": "aurora_islands_1"
@@ -257,8 +260,8 @@
   {
     "name": "Juan de Lisboa",
     "cruiseIndex": 20,
-    "cruiseDuration": 20,
-    "pauseDuration": 30,
+    "cruiseDuration": 30,
+    "pauseDuration": 35,
     "id": "juan_de_lisboa",
     "location": {
       "lng": 52.8,
@@ -268,7 +271,7 @@
       "Juan de Lisboa first appears on a Portuguese map in 1520 and is included in G.A. Magini’s 1597 commentary of Ptolemy’s <i>Geographiae</i>. Specific details are provided in 1707 by the French navigator Boynot, who sees the island on his route between Bourbon and Pondicherry and describes it as about 35 leagues in circumference and possessing a bay with an islet in the middle, along with mountains, forests, rivers, game, hares and wild pigs. In 1765 an unidentified buccaneer reports going ashore and killing a dozen oxen in less than two hours and in 1772 a further sighting is made from a ship passing from the Cape of Good Hope to the Isle of France (Mauritius). In 1806, French authorities, eager to expand their operations in the western Indian Ocean, launch an investigation into the alleged establishment and evacuation of a Portuguese settlement on Juan de Lisboa.",
     "firstAppearance": "Jorge Reinel’s 1520 map of the Indian Ocean",
     "lastAppearance": "Stieler’s Hand Atlas of 1868",
-    "volumeOffset": -2,
+    "volumeOffset": -3,
     "samples": [
       {
         "id": "juan_de_lisboa_1"
@@ -278,8 +281,8 @@
   {
     "name": "Taprobana",
     "cruiseIndex": 26,
-    "cruiseDuration": 2,
-    "pauseDuration": 3,
+    "cruiseDuration": 38,
+    "pauseDuration": 60,
     "id": "taprobana",
     "location": {
       "lng": 88.0,
@@ -298,8 +301,8 @@
         "volumeOffset": 4,
         "filter": {
           "type": "bandpass",
-          "gain": 0.5,
-          "Q": 1.3,
+          "gain": 0.8,
+          "Q": 1.1,
           "frequency": {
             "type": "sine",
             "rate": 0.07,
@@ -313,8 +316,8 @@
   {
     "name": "Gama",
     "cruiseIndex": 24,
-    "cruiseDuration": 20,
-    "pauseDuration": 30,
+    "cruiseDuration": 10,
+    "pauseDuration": 2,
     "id": "gama",
     "location": {
       "lng": 75.0,
@@ -322,24 +325,24 @@
     },
     "description":
       "Along with Turtle, Lonodns and Candy, Gama is part of a group of islands only found on the 1817 Admiralty chart of the Indian Ocean.",
-    "distanceThreshold": 7,
+    "distanceThreshold": 7.5,
     "firstAppearance": "1817 Admiralty chart of the Indian Ocean",
     "lastAppearance": "1817 Admiralty chart of the Indian Ocean",
     "samples": [
       {
         "id": "gama_1",
-        "volumeOffset": 5,
+        "volumeOffset": 6,
         "playbackRate": 1,
         "reverse": false,
         "filter": {
           "type": "bandpass",
-          "gain": 0.17,
+          "gain": 0.5,
           "Q": 1.2,
           "frequency": {
             "type": "sine",
             "rate": 0.07,
-            "min": 225,
-            "max": 5000
+            "min": 200,
+            "max": 8000
           }
         }
       }
@@ -348,16 +351,17 @@
   {
     "name": "Turtle",
     "cruiseIndex": 23,
-    "cruiseDuration": 20,
-    "pauseDuration": 30,
+    "cruiseDuration": 10,
+    "pauseDuration": 1,
     "id": "turtle",
+    "minZoom": 4,
     "location": {
       "lng": 73.0,
       "lat": -4.0
     },
     "description":
       "Along with Gama, Londons and Candy, Turtle is part of a group of islands only found on the 1817 Admiralty chart of the Indian Ocean.",
-    "distanceThreshold": 3,
+    "distanceThreshold": 1.5,
     "firstAppearance": "1817 Admiralty chart of the Indian Ocean",
     "lastAppearance": "1817 Admiralty chart of the Indian Ocean",
     "samples": [
@@ -368,7 +372,7 @@
         "reverse": false,
         "filter": {
           "type": "bandpass",
-          "gain": 0.1,
+          "gain": 0.5,
           "Q": 0.4,
           "frequency": {
             "type": "sine",
@@ -383,9 +387,10 @@
   {
     "name": "Candy",
     "cruiseIndex": 22,
-    "cruiseDuration": 20,
-    "pauseDuration": 30,
+    "cruiseDuration": 10,
+    "pauseDuration": 6,
     "id": "candy",
+    "minZoom": 5,
     "buddy": "londons",
     "location": {
       "lng": 73.983333333333306,
@@ -393,21 +398,21 @@
     },
     "description":
       "Along with Gama, Londons and Turtle, Candy is part of a group of islands only found on the 1817 Admiralty chart of the Indian Ocean.",
-    "distanceThreshold": 0.7,
+    "distanceThreshold": 2,
     "firstAppearance": "1817 Admiralty chart of the Indian Ocean",
     "lastAppearance": "1817 Admiralty chart of the Indian Ocean",
     "samples": [
       {
         "id": "candy_1",
-        "volumeOffset": -3
+        "volumeOffset": -3.3
       }
     ]
   },
   {
     "name": "Londons",
     "cruiseIndex": 21,
-    "cruiseDuration": 20,
-    "pauseDuration": 30,
+    "cruiseDuration": 25,
+    "pauseDuration": 7,
     "id": "londons",
     "buddy": "candy",
     "location": {
@@ -416,18 +421,19 @@
     },
     "description":
       "Along with Candy, Turtle and Gama, Londons is part of a group of islands only found on the 1817 Admiralty chart of the Indian Ocean.",
-    "distanceThreshold": 4,
+    "distanceThreshold": 3.5,
     "firstAppearance": "1817 Admiralty chart of the Indian Ocean",
     "lastAppearance": "1817 Admiralty chart of the Indian Ocean",
     "samples": [
       {
         "id": "londons_1",
+        "volumeOffset": -1,
         "playbackRate": 1,
         "reverse": false,
         "filter": {
           "type": "bandpass",
-          "gain": 0.03,
-          "Q": 0.2,
+          "gain": 0.1,
+          "Q": 0.5,
           "frequency": {
             "type": "sine",
             "rate": 0.8,
@@ -441,8 +447,8 @@
   {
     "name": "Tryal Rocks",
     "cruiseIndex": 25,
-    "cruiseDuration": 20,
-    "pauseDuration": 5,
+    "cruiseDuration": 40,
+    "pauseDuration": 32,
     "id": "trial_rocks",
     "location": {
       "lng": 105.0,
@@ -450,7 +456,7 @@
     },
     "description":
       "In 1622 on the newly established shipping route from Holland around the Cape of Good Hope to Dutch possessions in the East Indies, the <i>Tryal</i> wrecks on rocks off the coast of western Australia. A search and sighting of the rocks is made by a sloop sent in 1718 from the Dutch East Indies capital of Batavia (present day Jakarta) but numerous subsequent Dutch and English expeditions turn up nothing and the Rocks’ existence is cast into doubt. In 1818, the British brig <i>Greyhound</i>, captained by Lieutenant Ritchie, encounters the true Tryal Rocks. They are not recognised as such, however, as the Tryal Rocks are thought to be much further west and, by this time, to have never existed in the first place. Ritchie's discovery is entered on maps as Ritchie's Reef. Then in 1934, after an examination of a letter sent by a survivor of the <i>Tryal</i> shipwreck and a survey of the area, Ritchie’s Reef is declared to definitely be Tryal Rocks. Final confirmation comes in 1969, when explosives used in an illegal salvage attempt badly damages the wreck of the sunken <i>Tryal</i>.",
-    "distanceThreshold": 2.5,
+    "distanceThreshold": 3.5,
     "distanceFilter": {
       "min": 100,
       "max": 4000
@@ -468,8 +474,8 @@
   {
     "name": "Onaseuse (Hunter Island)",
     "cruiseIndex": 6,
-    "cruiseDuration": 20,
-    "pauseDuration": 3,
+    "cruiseDuration": 39,
+    "pauseDuration": 60,
     "id": "onaseuse_hunter_island)",
     "location": {
       "lng": 176.183333333332996,
@@ -479,23 +485,19 @@
       "In the early afternoon of July 20 1823, Captain Hunter and the crew of the <i>Donna Carmelita</i> land on a fertile and populous volcanic island 300 miles north-west of Fiji. They are met by a group of natives bringing them meat and plantains for refreshment. Hunter and some of the men go to meet Funafooah, the king of the island, and present him and his brother with white shirts. Seemingly delighted, they offer gifts in return: a hog, a basket of yams, bananas and cocoa-nuts. The women of the island have red, circular tattoos inscribed their arms, wear shells as ornaments and have some kind of white paste smeared on top of their hair. Captain Hunter also observes that all islanders have their cheekbones perforated and their little fingers cut off at the second joint on the left hand – a peculiarity of self-mutilation that later on arouses the interest of numerous anthropologists. Several attempts to are made to locate Onaseuse in the 19th century but it is never seen again. ",
     "firstAppearance": "1859 British Admiralty Pacific Ocean Chart",
     "lastAppearance": "n/a",
-    "distanceThreshold": 1,
-    "distanceFilter": {
-      "min": 30,
-      "max": 15000
-    },
+    "distanceThreshold": 6,
     "samples": [
       {
         "id": "onaseuse_hunter_island_1",
-        "volumeOffset": 0
+        "volumeOffset": 0.5
       }
     ]
   },
   {
     "name": "Los Jardines",
     "cruiseIndex": 1,
-    "cruiseDuration": 20,
-    "pauseDuration": 30,
+    "cruiseDuration": 60,
+    "pauseDuration": 70,
     "id": "los_jardines",
     "location": {
       "lng": 150.5,
@@ -512,16 +514,18 @@
         "volumeOffset": -1
       },
       {
-        "id": "los_jardines_2"
+        "id": "los_jardines_2",
+        "volumeOffset": 1
       }
     ]
   },
   {
     "name": "Byers Island",
     "cruiseIndex": 5,
-    "cruiseDuration": 20,
-    "pauseDuration": 30,
+    "cruiseDuration": 21,
+    "pauseDuration": 3,
     "id": "byers_island",
+    "minZoom": 3.8,
     "location": {
       "lng": 177.066666666667004,
       "lat": 28.533333333333299
@@ -542,8 +546,8 @@
   {
     "name": "Morrell Island",
     "cruiseIndex": 4,
-    "cruiseDuration": 20,
-    "pauseDuration": 30,
+    "cruiseDuration": 16,
+    "pauseDuration": 3,
     "id": "morrell_island",
     "location": {
       "lng": 174.516666666666993,
@@ -565,8 +569,8 @@
   {
     "name": "Tuanahe",
     "cruiseIndex": 7,
-    "cruiseDuration": 20,
-    "pauseDuration": 30,
+    "cruiseDuration": 23,
+    "pauseDuration": 75,
     "id": "tuanahe",
     "location": {
       "lng": -160.21666666666701,
@@ -577,7 +581,7 @@
     "firstAppearance": "1864 Royal Admiralty chart 2683",
     "lastAppearance":
       "1921 National Geographic Society Isles of the Pacific map",
-    "distanceThreshold": 4,
+    "distanceThreshold": 5,
     "samples": [
       {
         "id": "tuanahe_1",
@@ -588,8 +592,8 @@
   {
     "name": "Dougherty Island",
     "cruiseIndex": 8,
-    "cruiseDuration": 20,
-    "pauseDuration": 30,
+    "cruiseDuration": 50,
+    "pauseDuration": 65,
     "id": "dougherty_island",
     "location": {
       "lng": -120.333333333333002,
@@ -600,23 +604,34 @@
     "firstAppearance": "1892 British Admiralty Chart of the South Pacific",
     "lastAppearance":
       "1910 Royal Geographic Society Chart of the voyage of the <i>Nimrod</i>",
-    "distanceThreshold": 6,
+    "distanceThreshold": 5,
     "samples": [
       {
         "id": "dougherty_island_1",
-        "volumeOffset": -2.7
+        "volumeOffset": 0,
+        "filter": {
+          "type": "bandpass",
+          "gain": 2,
+          "Q": 0.1,
+          "frequency": {
+            "type": "sine",
+            "rate": 0.13,
+            "min": 60,
+            "max": 480
+          }
+        }
       },
       {
         "id": "dougherty_island_2",
-        "volumeOffset": 1.1
+        "volumeOffset": 0.5
       }
     ]
   },
   {
     "name": "Davis Land",
     "cruiseIndex": 9,
-    "cruiseDuration": 20,
-    "pauseDuration": 30,
+    "cruiseDuration": 35,
+    "pauseDuration": 33,
     "id": "davis_land",
     "location": {
       "lng": -91.366666666666703,
@@ -653,18 +668,18 @@
     "samples": [
       {
         "id": "bermeja_1",
-        "volumeOffset": 10,
+        "volumeOffset": 15,
         "playbackRate": 0.5,
         "reverse": false,
         "filter": {
           "type": "bandpass",
-          "gain": 0.5,
-          "Q": 0.9,
+          "gain": 2,
+          "Q": 0.2,
           "frequency": {
             "type": "sine",
-            "rate": 0.3,
+            "rate": 0.2,
             "min": 100,
-            "max": 2000
+            "max": 5000
           }
         }
       }
@@ -673,8 +688,8 @@
   {
     "name": "Rica de Oro",
     "cruiseIndex": 2,
-    "cruiseDuration": 20,
-    "pauseDuration": 30,
+    "cruiseDuration": 30,
+    "pauseDuration": 20,
     "id": "rica_de_oro",
     "location": {
       "lng": 155.0,
@@ -684,11 +699,11 @@
       "A sister island to Rica de Plata, Rica de Oro is the subject of much speculation in the 17th and 18th centuries on the part of the Dutch, Portuguese and Spanish – rivals for colonial power in the Pacific at the time. In 1639 Anthony van Dieman, the governor of the East Indies, sends Matthijs Quast and Abel Janszoon Tasman – later to become the first known European to reach Tasmania and New Zealand – to search for Rica de Plata and Rica de Oro. Quast, eager to find the islands, raises the bonus for the first person to sight land, but also installs punishments for falling asleep on watch: one month's pay and fifty lashings for the first offence, double that amount for the second, and death penalty for the third. They expedition loses nearly half its crew to sickness but does not find the islands.",
     "firstAppearance": "Georg Anson’s 1745 Chart of the Pacific Ocean",
     "lastAppearance": "Andree’s 1922 Handatlas",
-    "distanceThreshold": 2.5,
+    "distanceThreshold": 2,
     "samples": [
       {
         "id": "rica_de_oro_1",
-        "volumeOffset": 3
+        "volumeOffset": -3
       }
     ]
   },
@@ -716,8 +731,8 @@
   {
     "name": "Sandy Island",
     "cruiseIndex": 27,
-    "cruiseDuration": 2,
-    "pauseDuration": 3,
+    "cruiseDuration": 45,
+    "pauseDuration": 60,
     "id": "sandy_island",
     "location": {
       "lng": 159.93,
@@ -728,10 +743,11 @@
     "firstAppearance":
       "Chart of discoveries made in the South Pacific Ocean by HMS Resolution under the command of Captain Cook. 1774, published 1776",
     "lastAppearance": "Google Earth 2012",
+    "distanceThreshold": 2,
     "samples": [
       {
         "id": "sandy_island_1",
-        "volumeOffset": -2,
+        "volumeOffset": -1,
         "filter": {
           "type": "bandpass",
           "gain": 1,

@@ -88,12 +88,14 @@ const userAgent = {};
 
 if (/(android)/i.test(navigator.userAgent)) {
   userAgent.android = true;
+  userAgent.mobile = true;
   userAgent.androidVersion = parseFloat(
     navigator.userAgent.slice(navigator.userAgent.indexOf('Android') + 8),
   );
 } else if (/iP(hone|od|ad)/.test(navigator.platform)) {
   const v = navigator.appVersion.match(/OS (\d+)_(\d+)_?(\d+)?/);
   userAgent.iOS = true;
+  userAgent.mobile = true;
   userAgent.iOSVersion = [
     parseInt(v[1], 10),
     parseInt(v[2], 10),

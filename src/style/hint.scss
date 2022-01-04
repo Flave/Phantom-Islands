@@ -3,6 +3,7 @@
   white-space: nowrap;
   min-width: 160px;
   user-select: none;
+  z-index: 999;
 
   &--top {
     transform: translateX(-50%);
@@ -24,6 +25,10 @@
     .hint__arrow {
       width: 45px;
     }
+  }
+
+  &.is-behind-header {
+    opacity: 0.2;
   }
 }
 
